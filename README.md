@@ -1,6 +1,6 @@
 # firesearch-sdk
 
-![Firesearch is a serverless full text search solution](firesearch-overview.jpg)
+[![Firesearch is a serverless full text search solution](firesearch-overview.jpg)](https://firesearch.dev/)
 
 Firesearch SDK, client libraries, and example code.
 
