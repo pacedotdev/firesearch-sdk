@@ -17,6 +17,8 @@ This is perfect for quickly hacking together an experiment.
 * [Download Go client source code](./clients/go/firesearch.gen.go)
 * [Download Swift client source code](./clients/swift/Firesearch.gen.swift)
 
+As development matures, you should consider adopting a dependency manager.
+
 ### Go
 
 To use the official Go client:
