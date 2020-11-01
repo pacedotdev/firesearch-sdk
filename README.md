@@ -19,7 +19,7 @@ This is perfect for quickly hacking together an experiment.
 
 As development matures, you should consider adopting a dependency manager.
 
-### Go
+### Go
 
 To use the official Go client:
 
