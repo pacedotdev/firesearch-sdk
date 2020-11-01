@@ -19,6 +19,8 @@ This is perfect for quickly hacking together an experiment.
 
 ### Go
 
+To use the official Go client:
+
 ```bash
 go get github.com/pacedotdev/firesearch-sdk/clients/go
 ```
