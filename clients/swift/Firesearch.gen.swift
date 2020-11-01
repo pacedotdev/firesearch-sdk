@@ -38,13 +38,13 @@ class AccessKeyService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var generateKeyResponse: GenerateKeyResponse
 			do {
 				generateKeyResponse = try JSONDecoder().decode(GenerateKeyResponse.self, from: data!)
@@ -88,13 +88,13 @@ class AutocompleteService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var checkAutocompleteIndexNameResponse: CheckAutocompleteIndexNameResponse
 			do {
 				checkAutocompleteIndexNameResponse = try JSONDecoder().decode(CheckAutocompleteIndexNameResponse.self, from: data!)
@@ -129,13 +129,13 @@ class AutocompleteService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var checkAutocompleteIndexPathResponse: CheckAutocompleteIndexPathResponse
 			do {
 				checkAutocompleteIndexPathResponse = try JSONDecoder().decode(CheckAutocompleteIndexPathResponse.self, from: data!)
@@ -169,13 +169,13 @@ class AutocompleteService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var completeResponse: CompleteResponse
 			do {
 				completeResponse = try JSONDecoder().decode(CompleteResponse.self, from: data!)
@@ -209,13 +209,13 @@ class AutocompleteService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var createAutocompleteIndexResponse: CreateAutocompleteIndexResponse
 			do {
 				createAutocompleteIndexResponse = try JSONDecoder().decode(CreateAutocompleteIndexResponse.self, from: data!)
@@ -250,13 +250,13 @@ class AutocompleteService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var deleteAutocompleteDocResponse: DeleteAutocompleteDocResponse
 			do {
 				deleteAutocompleteDocResponse = try JSONDecoder().decode(DeleteAutocompleteDocResponse.self, from: data!)
@@ -291,13 +291,13 @@ class AutocompleteService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var deleteAutocompleteIndexResponse: DeleteAutocompleteIndexResponse
 			do {
 				deleteAutocompleteIndexResponse = try JSONDecoder().decode(DeleteAutocompleteIndexResponse.self, from: data!)
@@ -331,13 +331,13 @@ class AutocompleteService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var getAutocompleteIndexResponse: GetAutocompleteIndexResponse
 			do {
 				getAutocompleteIndexResponse = try JSONDecoder().decode(GetAutocompleteIndexResponse.self, from: data!)
@@ -371,13 +371,13 @@ class AutocompleteService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var getAutocompleteIndexesResponse: GetAutocompleteIndexesResponse
 			do {
 				getAutocompleteIndexesResponse = try JSONDecoder().decode(GetAutocompleteIndexesResponse.self, from: data!)
@@ -411,13 +411,13 @@ class AutocompleteService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var putAutocompleteDocResponse: PutAutocompleteDocResponse
 			do {
 				putAutocompleteDocResponse = try JSONDecoder().decode(PutAutocompleteDocResponse.self, from: data!)
@@ -461,13 +461,13 @@ class IndexService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var checkIndexNameResponse: CheckIndexNameResponse
 			do {
 				checkIndexNameResponse = try JSONDecoder().decode(CheckIndexNameResponse.self, from: data!)
@@ -501,13 +501,13 @@ class IndexService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var checkIndexPathResponse: CheckIndexPathResponse
 			do {
 				checkIndexPathResponse = try JSONDecoder().decode(CheckIndexPathResponse.self, from: data!)
@@ -541,13 +541,13 @@ class IndexService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var createIndexResponse: CreateIndexResponse
 			do {
 				createIndexResponse = try JSONDecoder().decode(CreateIndexResponse.self, from: data!)
@@ -582,13 +582,13 @@ class IndexService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var deleteDocResponse: DeleteDocResponse
 			do {
 				deleteDocResponse = try JSONDecoder().decode(DeleteDocResponse.self, from: data!)
@@ -623,13 +623,13 @@ class IndexService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var deleteIndexResponse: DeleteIndexResponse
 			do {
 				deleteIndexResponse = try JSONDecoder().decode(DeleteIndexResponse.self, from: data!)
@@ -663,13 +663,13 @@ class IndexService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var getIndexResponse: GetIndexResponse
 			do {
 				getIndexResponse = try JSONDecoder().decode(GetIndexResponse.self, from: data!)
@@ -703,13 +703,13 @@ class IndexService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var getIndexesResponse: GetIndexesResponse
 			do {
 				getIndexesResponse = try JSONDecoder().decode(GetIndexesResponse.self, from: data!)
@@ -743,13 +743,13 @@ class IndexService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var putDocResponse: PutDocResponse
 			do {
 				putDocResponse = try JSONDecoder().decode(PutDocResponse.self, from: data!)
@@ -783,13 +783,13 @@ class IndexService {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var searchResponse: SearchResponse
 			do {
 				searchResponse = try JSONDecoder().decode(SearchResponse.self, from: data!)
@@ -1384,14 +1384,14 @@ struct SearchResponse: Encodable, Decodable {
 
 struct OtoError: LocalizedError
 {
-    var errorDescription: String? { return message }
-    var failureReason: String? { return message }
-    var recoverySuggestion: String? { return "" }
-    var helpAnchor: String? { return "" }
+	var errorDescription: String? { return message }
+	var failureReason: String? { return message }
+	var recoverySuggestion: String? { return "" }
+	var helpAnchor: String? { return "" }
 
-    private var message : String
+	private var message : String
 
-    init(_ description: String) {
-        message = description
-    }
+	init(_ description: String) {
+		message = description
+	}
 }
