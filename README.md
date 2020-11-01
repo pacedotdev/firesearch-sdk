@@ -14,6 +14,9 @@ is to copy the client files directly into your own project.
 
 This is perfect for quickly hacking together an experiment.
 
+* [Download Go client source code](./clients/go/firesearch.gen.go)
+* [Download Swift client source code](./clients/swift/Firesearch.gen.swift)
+
 ### Go 
 
 ```bash
