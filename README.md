@@ -18,6 +18,8 @@ This is perfect for quickly hacking together an experiment.
 
 * [Download Go client source code](./clients/go/firesearch.gen.go)
 * [Download Swift client source code](./clients/swift/Firesearch.gen.swift)
+* [Download TypeScript client source code](./clients/ts/firesearch.gen.ts)
+* [Download JavaScript client source code](./clients/js/firesearch.gen.js)
 
 As development matures, you should consider adopting a dependency manager.
 
