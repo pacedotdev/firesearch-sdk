@@ -36,13 +36,13 @@ class OtoClient {
 				completion(nil, err)
 				return
 			}
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode != 200) {
-                    let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-                    completion(nil, err)
-                    return
-                }
-            }
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
 			var <%= camelize_down(method.OutputObject.TypeName) %>: <%= method.OutputObject.TypeName %>
 			do {
 				<%= camelize_down(method.OutputObject.TypeName) %> = try JSONDecoder().decode(<%= method.OutputObject.TypeName %>.self, from: data!)
@@ -68,14 +68,14 @@ class OtoClient {
 
 struct OtoError: LocalizedError
 {
-    var errorDescription: String? { return message }
-    var failureReason: String? { return message }
-    var recoverySuggestion: String? { return "" }
-    var helpAnchor: String? { return "" }
+	var errorDescription: String? { return message }
+	var failureReason: String? { return message }
+	var recoverySuggestion: String? { return "" }
+	var helpAnchor: String? { return "" }
 
-    private var message : String
+	private var message : String
 
-    init(_ description: String) {
-        message = description
-    }
+	init(_ description: String) {
+		message = description
+	}
 }
