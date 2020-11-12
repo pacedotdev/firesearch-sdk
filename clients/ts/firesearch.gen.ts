@@ -618,7 +618,7 @@ export class Field {
 		}
 	}
 
-	// Key is the name of the field.
+	// Key is the name of the field. Cannot begin with an underscore.
 	key: string;
 
 	// Value is the filterable value of this Field.
@@ -1439,14 +1439,22 @@ export class SearchField {
 			this.value = data.value;
 			
 		
+			
+			this.store = data.store;
+			
+		
 		}
 	}
 
-	// Key is the name of the field.
+	// Key is the name of the search field. Cannot begin with an underscore.
 	key: string;
 
 	// Value is the searchable text field.
 	value: string;
+
+	// Store tells Firesearch to store this value and return it in the search results.
+// By default, although the field is searchable, the original value is not stored.
+	store: boolean;
 
 }
 
@@ -1457,10 +1465,6 @@ export class Doc {
 		
 			
 			this.id = data.id;
-			
-		
-			
-			this.title = data.title;
 			
 		
 			
@@ -1476,10 +1480,10 @@ export class Doc {
 		
 			
 				
-					if (data.filterFields) {
-						this.filterFields = new Array<Field>()
-						for (let i = 0; i < data.filterFields.length; i++) {
-							this.filterFields.push(new Field(data.filterFields[i]));
+					if (data.fields) {
+						this.fields = new Array<Field>()
+						for (let i = 0; i < data.fields.length; i++) {
+							this.fields.push(new Field(data.fields[i]));
 						}
 					}
 				
@@ -1491,16 +1495,12 @@ export class Doc {
 	// ID is the document identifier.
 	id: string;
 
-	// Title is an optional string that is returned along with search results. Titles
-// are not searchable. To make the Title searchable, you should explicitly add it
-// to the Fields.
-	title: string;
-
 	// SearchFields are the searchable fields for this document.
 	searchFields: SearchField[];
 
-	// FilterFields are the filterable fields for this document.
-	filterFields: Field[];
+	// Fields are the key/value pairs that make up this document. Fields can be
+// returned in search results, and may be filtered.
+	fields: Field[];
 
 }
 
@@ -1601,10 +1601,6 @@ export class Highlight {
 			this.text = data.text;
 			
 		
-			
-			this.line = data.line;
-			
-		
 		}
 	}
 
@@ -1613,9 +1609,6 @@ export class Highlight {
 
 	// Text is the highlighted text.
 	text: string;
-
-	// Line is the line number where the match occurs.
-	line: number;
 
 }
 
@@ -1727,7 +1720,8 @@ export class SearchQuery {
 	filters: Field[];
 
 	// Select lists the fields to get from the document. Filters are automatically
-// included.
+// included. To get search fields out, they must have been put with store set to
+// true.
 	select: string[];
 
 	// SearchFields is a list of fields to search. If empty, all fields will be
@@ -1769,10 +1763,6 @@ export class SearchResult {
 			
 		
 			
-			this.title = data.title;
-			
-		
-			
 				
 					if (data.fields) {
 						this.fields = new Array<Field>()
@@ -1803,11 +1793,6 @@ export class SearchResult {
 
 	// ID is the document identifier.
 	id: string;
-
-	// Title is an optional string that is returned along with search results. Titles
-// are not searchable. To make the Title searchable, you should explicitly add it
-// to the Fields.
-	title: string;
 
 	// Fields are the selected fields for this document.
 	fields: Field[];

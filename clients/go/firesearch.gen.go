@@ -1074,7 +1074,7 @@ type GenerateKeyResponse struct {
 // Field is a field that can be filtered.
 type Field struct {
 
-	// Key is the name of the field.
+	// Key is the name of the field. Cannot begin with an underscore.
 	Key string `json:"key"`
 
 	// Value is the filterable value of this Field.
@@ -1361,11 +1361,15 @@ type DeleteIndexResponse struct {
 // SearchField is a text field that can be searched.
 type SearchField struct {
 
-	// Key is the name of the field.
+	// Key is the name of the search field. Cannot begin with an underscore.
 	Key string `json:"key"`
 
 	// Value is the searchable text field.
 	Value string `json:"value"`
+
+	// Store tells Firesearch to store this value and return it in the search results.
+	// By default, although the field is searchable, the original value is not stored.
+	Store bool `json:"store"`
 }
 
 // Doc describes a document that can be searched.
@@ -1374,16 +1378,12 @@ type Doc struct {
 	// ID is the document identifier.
 	ID string `json:"id"`
 
-	// Title is an optional string that is returned along with search results. Titles
-	// are not searchable. To make the Title searchable, you should explicitly add it
-	// to the Fields.
-	Title string `json:"title"`
-
 	// SearchFields are the searchable fields for this document.
 	SearchFields []SearchField `json:"searchFields"`
 
-	// FilterFields are the filterable fields for this document.
-	FilterFields []Field `json:"filterFields"`
+	// Fields are the key/value pairs that make up this document. Fields can be
+	// returned in search results, and may be filtered.
+	Fields []Field `json:"fields"`
 }
 
 // GetIndexRequest is the input object for GetIndex.
@@ -1419,9 +1419,6 @@ type Highlight struct {
 
 	// Text is the highlighted text.
 	Text string `json:"text"`
-
-	// Line is the line number where the match occurs.
-	Line int `json:"line"`
 }
 
 // PutDocRequest is the input object for PutDoc.
@@ -1459,7 +1456,8 @@ type SearchQuery struct {
 	Filters []Field `json:"filters"`
 
 	// Select lists the fields to get from the document. Filters are automatically
-	// included.
+	// included. To get search fields out, they must have been put with store set to
+	// true.
 	Select []string `json:"select"`
 
 	// SearchFields is a list of fields to search. If empty, all fields will be
@@ -1483,11 +1481,6 @@ type SearchResult struct {
 
 	// ID is the document identifier.
 	ID string `json:"id"`
-
-	// Title is an optional string that is returned along with search results. Titles
-	// are not searchable. To make the Title searchable, you should explicitly add it
-	// to the Fields.
-	Title string `json:"title"`
 
 	// Fields are the selected fields for this document.
 	Fields []Field `json:"fields"`

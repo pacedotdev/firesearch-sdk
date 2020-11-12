@@ -832,7 +832,7 @@ struct GenerateKeyResponse: Encodable, Decodable {
 // Field is a field that can be filtered.
 struct Field: Encodable, Decodable {
 
-	// Key is the name of the field.
+	// Key is the name of the field. Cannot begin with an underscore.
 	var key: String?
 
 	// Value is the filterable value of this Field.
@@ -1197,11 +1197,15 @@ struct DeleteIndexResponse: Encodable, Decodable {
 // SearchField is a text field that can be searched.
 struct SearchField: Encodable, Decodable {
 
-	// Key is the name of the field.
+	// Key is the name of the search field. Cannot begin with an underscore.
 	var key: String?
 
 	// Value is the searchable text field.
 	var value: String?
+
+	// Store tells Firesearch to store this value and return it in the search results.
+// By default, although the field is searchable, the original value is not stored.
+	var store: Bool?
 
 }
 
@@ -1211,16 +1215,12 @@ struct Doc: Encodable, Decodable {
 	// ID is the document identifier.
 	var id: String?
 
-	// Title is an optional string that is returned along with search results. Titles
-// are not searchable. To make the Title searchable, you should explicitly add it
-// to the Fields.
-	var title: String?
-
 	// SearchFields are the searchable fields for this document.
 	var searchFields: Any?
 
-	// FilterFields are the filterable fields for this document.
-	var filterFields: Any?
+	// Fields are the key/value pairs that make up this document. Fields can be
+// returned in search results, and may be filtered.
+	var fields: Any?
 
 }
 
@@ -1268,9 +1268,6 @@ struct Highlight: Encodable, Decodable {
 	// Text is the highlighted text.
 	var text: String?
 
-	// Line is the line number where the match occurs.
-	var line: Double?
-
 }
 
 // PutDocRequest is the input object for PutDoc.
@@ -1313,7 +1310,8 @@ struct SearchQuery: Encodable, Decodable {
 	var filters: Any?
 
 	// Select lists the fields to get from the document. Filters are automatically
-// included.
+// included. To get search fields out, they must have been put with store set to
+// true.
 	var select: String?
 
 	// SearchFields is a list of fields to search. If empty, all fields will be
@@ -1339,11 +1337,6 @@ struct SearchResult: Encodable, Decodable {
 
 	// ID is the document identifier.
 	var id: String?
-
-	// Title is an optional string that is returned along with search results. Titles
-// are not searchable. To make the Title searchable, you should explicitly add it
-// to the Fields.
-	var title: String?
 
 	// Fields are the selected fields for this document.
 	var fields: Any?
