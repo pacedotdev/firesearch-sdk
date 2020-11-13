@@ -2,6 +2,8 @@
 
 Firesearch SDK, client libraries, and example code.
 
+* The Firesearch API is approaching v1, until then these clients should be considered in beta
+
 [![Firesearch is a serverless full text search solution](firesearch-overview.jpg)](https://firesearch.dev/)
 
 ## Clients
