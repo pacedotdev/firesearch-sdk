@@ -1568,7 +1568,7 @@ extension AnyCodable: Encodable {
 extension SearchResult {
 	func valueField(key: String) -> (Any?) {
         let field = self.fields?.first(where: { (field: Field) -> Bool in
-            return field.key == "title"
+            return field.key == key
         })
 		if field == nil {
 			return nil
