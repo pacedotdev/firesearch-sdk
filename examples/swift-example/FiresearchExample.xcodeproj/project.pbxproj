@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05B87A3C255EC0DA007B6713 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B87A3B255EC0DA007B6713 /* main.swift */; };
+		05F0B40A255EC12D00F26894 /* Firesearch.gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0B409255EC12D00F26894 /* Firesearch.gen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		05B87A38255EC0DA007B6713 /* FiresearchExample */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FiresearchExample; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B87A3B255EC0DA007B6713 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		05F0B409255EC12D00F26894 /* Firesearch.gen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firesearch.gen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 		05B87A3A255EC0DA007B6713 /* FiresearchExample */ = {
 			isa = PBXGroup;
 			children = (
+				05F0B409255EC12D00F26894 /* Firesearch.gen.swift */,
 				05B87A3B255EC0DA007B6713 /* main.swift */,
 			);
 			path = FiresearchExample;
@@ -120,6 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05B87A3C255EC0DA007B6713 /* main.swift in Sources */,
+				05F0B40A255EC12D00F26894 /* Firesearch.gen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

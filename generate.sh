@@ -8,6 +8,9 @@ oto -v \
 	-template ./clients/swift/client.swift.plush -out ./clients/swift/Firesearch.gen.swift \
 	../firesearch/cloudrun/oto
 oto -v \
+	-template ./clients/swift/client.swift.plush -out ./examples/swift-example/FiresearchExample/Firesearch.gen.swift \
+	../firesearch/cloudrun/oto
+oto -v \
 	-template ./clients/ts/client.ts.plush -out ./clients/ts/firesearch.gen.ts \
 	../firesearch/cloudrun/oto
 oto -v \
