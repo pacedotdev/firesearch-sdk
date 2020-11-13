@@ -1,0 +1,186 @@
+<html>
+<head>
+	<title>Firesearch JavaScript example</title>
+	<link rel='stylesheet' href='https://firesearch.dev/public/build/base.css'>
+	<link rel='stylesheet' href='https://firesearch.dev/public/build/bundle.css'>
+</head>
+<body>
+	<script src='firesearch.gen.js'></script>
+	<script>
+
+		/*
+		
+			Hey - thanks for trying Firesearch.
+
+			If you have any questions, ping us at hello@firesearch.dev 
+			and we'll be happy to help.
+
+		*/
+
+		/*
+			Create a Firesearch client, and point it at your
+			running instance
+		*/
+		const client = new firesearch.Client()
+		client.endpoint = 'http://localhost:8888/api'
+
+		/*
+			Use the firesearch.IndexService to add documents 
+			and perform searches on indexes.
+		*/
+		const indexService = new firesearch.IndexService(client)
+				
+		function addMovie() {
+			clear()
+			write('Putting new-movie-2...')
+			const indexPath = document.getElementById('indexPath').value
+			const input = {
+				indexPath: indexPath,
+				doc: {
+					id: 'new-movie-2',
+					searchFields: [
+						{
+							key: "title",
+							value: `Tenet`,
+							store: true,
+						},
+						{
+							key: "directors",
+							value: `Christopher Nolan`,
+							store: true,
+						},
+						{
+							key: "genres",
+							value: `Action,Drama,Thriller,Spy,Adventure,Sci-fi`,
+							store: true,
+						},
+					],
+				}
+			}
+			indexService.putDoc(input)
+				.then(response => {
+					write('success ✓ (now search for "Nolan")')
+				})
+				.catch(e => write('ERROR: ' + e))
+		}
+
+		let input
+		function performSearch() {
+			clear()
+			const q = document.getElementById('q').value
+			if (q === '') {
+				document.getElementById('q').focus()
+				return
+			}
+			const indexPath = document.getElementById('indexPath').value
+			input = {
+				query: {
+					indexPath: indexPath,
+					limit: 5,
+					text: q,
+					select: ['title'],
+				}
+			}
+			write(`POST ${client.endpoint}`)
+			write(JSON.stringify(input, '', '\t'))
+			indexService.search(input)
+				.then(response => {
+					write('')
+					write(`*** Showing ${response.hits.length} result(s) (in ${response.duration}ms)`, true)
+					response.hits.forEach(hit => {
+						let lights = ''
+						hit.highlights.forEach(highlight => {
+							lights += ' ' + highlight.field + ': ' + highlight.text
+						})
+						write(`\t${hitTitle(hit)}\t(${hit.id})\t${lights}\t`, true)
+					})
+					write('')
+					write('Response:')
+					write(JSON.stringify(response, '', '\t'))
+					write('')
+				})
+				.catch(e => write('ERROR: ' + e))
+		}
+
+		function hitTitle(hit) {
+			const t = hit.fields.find(field => field.key === 'title')
+			if (!t) {
+				return 'Untitled'
+			}
+			return t.value
+		}
+
+		function write(s, highlight) {
+			const stdout = document.getElementById('stdout')
+			if (highlight) {
+				stdout.innerHTML += '\n<span class="text-white">' + s + '</span>'
+			} else {
+				stdout.innerHTML += '\n' + s
+			}
+		}
+
+		function clear() {
+			const stdout = document.getElementById('stdout')
+			stdout.innerHTML = ''
+		}
+
+	</script>
+	<div class='flex flex-col flex-wrap w-full items-center'>
+		<div class='container mt-16 p-16 bg-dark-blue bg-opacity-75 rounded-lg shadow-xl gap-8 md:pb-16 flex-grow'>
+			<div class='prose max-w-2xl'>
+				<h1>Firesearch JavaScript example</h1>
+				<p>
+					This example uses the 
+					<input 
+						id='indexPath' 
+						value='firesearch-tutorial/indexes/movies-index'
+						class='shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+						style='width:400px;'
+					/> index
+					that gets created when you follow the live tutorial inside Firesearch.
+				</p>
+				<p>
+					This is a working demo, make sure you're running the Firestore emulator
+					and Firesearch locally at <code>http://localhost:8888</code>.
+				</p>
+				<ol>
+					<li>
+						Search for "Nolan" and note the results
+					</li>
+					<li>
+						Click <b>Add movie to index</b> to add Christopher Nolan's Tenet
+						movie to the search index.
+					</li>
+					<li>
+						Search for "Nolan" again, and notice the new movie
+					</li>
+					<li>
+						View the source code of this page to see how it works
+					</li>
+				</ol>
+				<p>
+					<button 
+						onclick='addMovie()' 
+						class='bg-orange text-white py-0 px-3 md:py-2 md:px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-25'
+					>
+						Add movie to index
+					</button>
+				</p>
+				<p>
+					<input 
+						id='q'
+						class='shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+					/> 
+					<button 
+						onclick='performSearch()' 
+						class='bg-orange text-white py-0 px-3 md:py-2 md:px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-25'
+					>
+						Search
+					</button>
+				</p>
+			</div>
+			<pre class='break-all whitespace-pre-wrap'><code id='stdout'></code></pre>
+		</div>
+	</div>
+</body>
+</html>

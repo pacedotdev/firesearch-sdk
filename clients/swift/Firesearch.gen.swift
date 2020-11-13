@@ -829,7 +829,7 @@ struct GenerateKeyResponse: Encodable, Decodable {
 
 }
 
-// Field is a field that can be filtered.
+// Field is a non-searchable key/value pair that can be filtered at query time.
 struct Field: Encodable, Decodable {
 
 	// Key is the name of the field. Cannot begin with an underscore.

@@ -8,29 +8,39 @@ interface HeadersFunc {
 
 // Client provides access to remote services.
 export class Client {
-	// basepath is the path prefix for the requests.
-	// This may be a path, or an absolute URL.
-	public basepath: String = '/oto/'
+	// endpoint points to the Firesearch API.
+	public endpoint: string = '/api'
+	// secretAPIKey is the secret API key to access the services.
+	// This should only be used for backend to backend communication,
+	// secret keys should never find their way into the browser.
+	public secretAPIKey: string = null
 	// headers allows calling code to mutate the HTTP
 	// headers of the underlying HTTP requests.
-	public headers?: HeadersFunc
+	public headers: HeadersFunc
+
+	constructor(endpoint: string) {
+		this.endpoint = endpoint
+	}
 }
 
 <%= for (service) in def.Services { %>
 <%= format_comment_text(service.Comment) %>export class <%= service.Name %> {
 	constructor(readonly client: Client) {}
 	<%= for (method) in service.Methods { %>
-	<%= format_comment_text(method.Comment) %>	async <%= method.NameLowerCamel %>(<%= camelize_down(method.InputObject.TypeName) %>: <%= method.InputObject.TypeName %> = null) {
+<%= format_comment_text(method.Comment) %>	async <%= method.NameLowerCamel %>(<%= camelize_down(method.InputObject.TypeName) %>: <%= method.InputObject.TypeName %> = null) {
 		if (<%= camelize_down(method.InputObject.TypeName) %> == null) {
 			<%= camelize_down(method.InputObject.TypeName) %> = new <%= method.InputObject.TypeName %>();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + '<%= service.Name %>.<%= method.Name %>', {
+		const response = await fetch(this.client.endpoint + '/<%= service.Name %>.<%= method.Name %>', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(<%= camelize_down(method.InputObject.TypeName) %>),

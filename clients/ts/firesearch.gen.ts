@@ -8,12 +8,19 @@ interface HeadersFunc {
 
 // Client provides access to remote services.
 export class Client {
-	// basepath is the path prefix for the requests.
-	// This may be a path, or an absolute URL.
-	public basepath: String = '/oto/'
+	// endpoint points to the Firesearch API.
+	public endpoint: string = '/api'
+	// secretAPIKey is the secret API key to access the services.
+	// This should only be used for backend to backend communication,
+	// secret keys should never find their way into the browser.
+	public secretAPIKey: string = null
 	// headers allows calling code to mutate the HTTP
 	// headers of the underlying HTTP requests.
-	public headers?: HeadersFunc
+	public headers: HeadersFunc
+
+	constructor(endpoint: string) {
+		this.endpoint = endpoint
+	}
 }
 
 
@@ -21,18 +28,21 @@ export class Client {
 export class AccessKeyService {
 	constructor(readonly client: Client) {}
 	
-	// GenerateKey generates a key for an index path prefix to enable searches.
+// GenerateKey generates a key for an index path prefix to enable searches.
 	async generateKey(generateKeyRequest: GenerateKeyRequest = null) {
 		if (generateKeyRequest == null) {
 			generateKeyRequest = new GenerateKeyRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'AccessKeyService.GenerateKey', {
+		const response = await fetch(this.client.endpoint + '/AccessKeyService.GenerateKey', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(generateKeyRequest),
@@ -55,18 +65,21 @@ export class AccessKeyService {
 export class AutocompleteService {
 	constructor(readonly client: Client) {}
 	
-	// CheckIndexName checks to see if an index name is available or not.
+// CheckIndexName checks to see if an index name is available or not.
 	async checkIndexName(checkAutocompleteIndexNameRequest: CheckAutocompleteIndexNameRequest = null) {
 		if (checkAutocompleteIndexNameRequest == null) {
 			checkAutocompleteIndexNameRequest = new CheckAutocompleteIndexNameRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'AutocompleteService.CheckIndexName', {
+		const response = await fetch(this.client.endpoint + '/AutocompleteService.CheckIndexName', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(checkAutocompleteIndexNameRequest),
@@ -82,19 +95,22 @@ export class AutocompleteService {
 		})
 	}
 	
-	// CheckIndexPath checks to see if an AutocompleteIndexPath is valid for creating
+// CheckIndexPath checks to see if an AutocompleteIndexPath is valid for creating
 // an index.
 	async checkIndexPath(checkAutocompleteIndexPathRequest: CheckAutocompleteIndexPathRequest = null) {
 		if (checkAutocompleteIndexPathRequest == null) {
 			checkAutocompleteIndexPathRequest = new CheckAutocompleteIndexPathRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'AutocompleteService.CheckIndexPath', {
+		const response = await fetch(this.client.endpoint + '/AutocompleteService.CheckIndexPath', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(checkAutocompleteIndexPathRequest),
@@ -110,18 +126,21 @@ export class AutocompleteService {
 		})
 	}
 	
-	// Complete performs a search on an AutocompleteIndex.
+// Complete performs a search on an AutocompleteIndex.
 	async complete(completeRequest: CompleteRequest = null) {
 		if (completeRequest == null) {
 			completeRequest = new CompleteRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'AutocompleteService.Complete', {
+		const response = await fetch(this.client.endpoint + '/AutocompleteService.Complete', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(completeRequest),
@@ -137,18 +156,21 @@ export class AutocompleteService {
 		})
 	}
 	
-	// CreateIndex creates a new index.
+// CreateIndex creates a new index.
 	async createIndex(createAutocompleteIndexRequest: CreateAutocompleteIndexRequest = null) {
 		if (createAutocompleteIndexRequest == null) {
 			createAutocompleteIndexRequest = new CreateAutocompleteIndexRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'AutocompleteService.CreateIndex', {
+		const response = await fetch(this.client.endpoint + '/AutocompleteService.CreateIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(createAutocompleteIndexRequest),
@@ -164,19 +186,22 @@ export class AutocompleteService {
 		})
 	}
 	
-	// DeleteDoc removes a document from an AutocompleteIndex. Once deleted, it will
+// DeleteDoc removes a document from an AutocompleteIndex. Once deleted, it will
 // stop appearing in search results.
 	async deleteDoc(deleteAutocompleteDocRequest: DeleteAutocompleteDocRequest = null) {
 		if (deleteAutocompleteDocRequest == null) {
 			deleteAutocompleteDocRequest = new DeleteAutocompleteDocRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'AutocompleteService.DeleteDoc', {
+		const response = await fetch(this.client.endpoint + '/AutocompleteService.DeleteDoc', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(deleteAutocompleteDocRequest),
@@ -192,19 +217,22 @@ export class AutocompleteService {
 		})
 	}
 	
-	// DeleteIndex deletes the AutocompleteIndex. All index data, as well as any
+// DeleteIndex deletes the AutocompleteIndex. All index data, as well as any
 // metadata about this AutocompleteIndex will be completely deleted.
 	async deleteIndex(deleteAutocompleteIndexRequest: DeleteAutocompleteIndexRequest = null) {
 		if (deleteAutocompleteIndexRequest == null) {
 			deleteAutocompleteIndexRequest = new DeleteAutocompleteIndexRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'AutocompleteService.DeleteIndex', {
+		const response = await fetch(this.client.endpoint + '/AutocompleteService.DeleteIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(deleteAutocompleteIndexRequest),
@@ -220,18 +248,21 @@ export class AutocompleteService {
 		})
 	}
 	
-	// GetIndex gets an AutocompleteIndex.
+// GetIndex gets an AutocompleteIndex.
 	async getIndex(getAutocompleteIndexRequest: GetAutocompleteIndexRequest = null) {
 		if (getAutocompleteIndexRequest == null) {
 			getAutocompleteIndexRequest = new GetAutocompleteIndexRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'AutocompleteService.GetIndex', {
+		const response = await fetch(this.client.endpoint + '/AutocompleteService.GetIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(getAutocompleteIndexRequest),
@@ -247,18 +278,21 @@ export class AutocompleteService {
 		})
 	}
 	
-	// GetIndexes gets a list of AutocompleteIndexes.
+// GetIndexes gets a list of AutocompleteIndexes.
 	async getIndexes(getAutocompleteIndexesRequest: GetAutocompleteIndexesRequest = null) {
 		if (getAutocompleteIndexesRequest == null) {
 			getAutocompleteIndexesRequest = new GetAutocompleteIndexesRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'AutocompleteService.GetIndexes', {
+		const response = await fetch(this.client.endpoint + '/AutocompleteService.GetIndexes', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(getAutocompleteIndexesRequest),
@@ -274,18 +308,21 @@ export class AutocompleteService {
 		})
 	}
 	
-	// PutDoc puts a document into an AutocompleteIndex.
+// PutDoc puts a document into an AutocompleteIndex.
 	async putDoc(putAutocompleteDocRequest: PutAutocompleteDocRequest = null) {
 		if (putAutocompleteDocRequest == null) {
 			putAutocompleteDocRequest = new PutAutocompleteDocRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'AutocompleteService.PutDoc', {
+		const response = await fetch(this.client.endpoint + '/AutocompleteService.PutDoc', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(putAutocompleteDocRequest),
@@ -308,18 +345,21 @@ export class AutocompleteService {
 export class IndexService {
 	constructor(readonly client: Client) {}
 	
-	// CheckIndexName checks to see if an index name is available or not.
+// CheckIndexName checks to see if an index name is available or not.
 	async checkIndexName(checkIndexNameRequest: CheckIndexNameRequest = null) {
 		if (checkIndexNameRequest == null) {
 			checkIndexNameRequest = new CheckIndexNameRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'IndexService.CheckIndexName', {
+		const response = await fetch(this.client.endpoint + '/IndexService.CheckIndexName', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(checkIndexNameRequest),
@@ -335,18 +375,21 @@ export class IndexService {
 		})
 	}
 	
-	// CheckIndexPath checks to see if an IndexPath is valid for creating an index.
+// CheckIndexPath checks to see if an IndexPath is valid for creating an index.
 	async checkIndexPath(checkIndexPathRequest: CheckIndexPathRequest = null) {
 		if (checkIndexPathRequest == null) {
 			checkIndexPathRequest = new CheckIndexPathRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'IndexService.CheckIndexPath', {
+		const response = await fetch(this.client.endpoint + '/IndexService.CheckIndexPath', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(checkIndexPathRequest),
@@ -362,18 +405,21 @@ export class IndexService {
 		})
 	}
 	
-	// CreateIndex creates a new index.
+// CreateIndex creates a new index.
 	async createIndex(createIndexRequest: CreateIndexRequest = null) {
 		if (createIndexRequest == null) {
 			createIndexRequest = new CreateIndexRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'IndexService.CreateIndex', {
+		const response = await fetch(this.client.endpoint + '/IndexService.CreateIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(createIndexRequest),
@@ -389,19 +435,22 @@ export class IndexService {
 		})
 	}
 	
-	// DeleteDoc removes a document from an Index. Once deleted, it will stop appearing
+// DeleteDoc removes a document from an Index. Once deleted, it will stop appearing
 // in search results.
 	async deleteDoc(deleteDocRequest: DeleteDocRequest = null) {
 		if (deleteDocRequest == null) {
 			deleteDocRequest = new DeleteDocRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'IndexService.DeleteDoc', {
+		const response = await fetch(this.client.endpoint + '/IndexService.DeleteDoc', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(deleteDocRequest),
@@ -417,19 +466,22 @@ export class IndexService {
 		})
 	}
 	
-	// DeleteIndex deletes the Index. All index data, as well as any metadata about
+// DeleteIndex deletes the Index. All index data, as well as any metadata about
 // this Index will be completely deleted.
 	async deleteIndex(deleteIndexRequest: DeleteIndexRequest = null) {
 		if (deleteIndexRequest == null) {
 			deleteIndexRequest = new DeleteIndexRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'IndexService.DeleteIndex', {
+		const response = await fetch(this.client.endpoint + '/IndexService.DeleteIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(deleteIndexRequest),
@@ -445,18 +497,21 @@ export class IndexService {
 		})
 	}
 	
-	// GetIndex gets an Index.
+// GetIndex gets an Index.
 	async getIndex(getIndexRequest: GetIndexRequest = null) {
 		if (getIndexRequest == null) {
 			getIndexRequest = new GetIndexRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'IndexService.GetIndex', {
+		const response = await fetch(this.client.endpoint + '/IndexService.GetIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(getIndexRequest),
@@ -472,18 +527,21 @@ export class IndexService {
 		})
 	}
 	
-	// GetIndexes gets a list of Indexes.
+// GetIndexes gets a list of Indexes.
 	async getIndexes(getIndexesRequest: GetIndexesRequest = null) {
 		if (getIndexesRequest == null) {
 			getIndexesRequest = new GetIndexesRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'IndexService.GetIndexes', {
+		const response = await fetch(this.client.endpoint + '/IndexService.GetIndexes', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(getIndexesRequest),
@@ -499,18 +557,21 @@ export class IndexService {
 		})
 	}
 	
-	// PutDoc puts a document into an Index.
+// PutDoc puts a document into an Index.
 	async putDoc(putDocRequest: PutDocRequest = null) {
 		if (putDocRequest == null) {
 			putDocRequest = new PutDocRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'IndexService.PutDoc', {
+		const response = await fetch(this.client.endpoint + '/IndexService.PutDoc', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(putDocRequest),
@@ -526,18 +587,21 @@ export class IndexService {
 		})
 	}
 	
-	// Search performs a search on an Index.
+// Search performs a search on an Index.
 	async search(searchRequest: SearchRequest = null) {
 		if (searchRequest == null) {
 			searchRequest = new SearchRequest();
 		}
 		const headers: HeadersInit = new Headers();
+		if (this.client.secretAPIKey) {
+			headers.set('X-API-Key', this.client.secretAPIKey);
+		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.basepath + 'IndexService.Search', {
+		const response = await fetch(this.client.endpoint + '/IndexService.Search', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(searchRequest),
@@ -602,7 +666,7 @@ export class GenerateKeyResponse {
 
 }
 
-// Field is a field that can be filtered.
+// Field is a non-searchable key/value pair that can be filtered at query time.
 export class Field {
 	constructor(data?: any) {
 		if (data) {
@@ -1867,3 +1931,4 @@ export class SearchResponse {
 	error: string;
 
 }
+

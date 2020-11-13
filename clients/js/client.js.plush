@@ -2,27 +2,38 @@
 
 'use strict';
 
-<%= for (service) in def.Services { %> 
-<%= format_comment_text(service.Comment) %>export class <%= service.Name %> {
-	<%= for (method) in service.Methods { %>
-	<%= format_comment_text(method.Comment) %>	async <%= camelize_down(method.Name) %>(<%= camelize_down(method.InputObject.TypeName) %>) {
-		const headers = {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
-		}
-		<%= camelize_down(method.InputObject.TypeName) %> = <%= camelize_down(method.InputObject.TypeName) %> || {}
-		const response = await fetch('/oto/<%= service.Name %>.<%= method.Name %>', {
-			method: 'POST',
-			headers: headers,
-			body: JSON.stringify(<%= camelize_down(method.InputObject.TypeName) %>)
-		})
-		return response.json().then(json => {
-			if (json.error) {
-				throw new Error(json.error)
-			}
-			return json
-		})
+const firesearch = {}
+firesearch.Client = function(endpoint) {
+	this.endpoint = endpoint || '/api'
+	this.getHeaders = function() {
+		return {}
 	}
-	<% } %>
 }
+
+<%= for (service) in def.Services { %>
+<%= format_comment_text(service.Comment) %>firesearch.<%= service.Name %> = function(client) {
+	this.client = client
+}
+
+<%= for (method) in service.Methods { %>
+firesearch.<%= service.Name %>.prototype.<%= method.NameLowerCamel %> = async function(<%= camelize_down(method.InputObject.TypeName) %>) {
+	let headers = this.client.getHeaders();
+	headers['Accept'] = 'application/json';
+	headers['Content-Type'] = 'application/json';
+	const response = await fetch(this.client.endpoint + '/<%= service.Name %>.<%= method.Name %>', {
+		method: 'POST',
+		headers: headers,
+		body: JSON.stringify(<%= camelize_down(method.InputObject.TypeName) %>),
+	})
+	if (response.status !== 200) {
+		throw new Error(`firesearch: <%= service.Name %>.<%= method.Name %>: ${response.status} ${response.statusText}`);
+	}
+	return response.json().then((json) => {
+		if (json.error) {
+			throw new Error('firesearch: ' + json.error);
+		}
+		return json;
+	})	
+}
+<% } %>
 <% } %>
