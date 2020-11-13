@@ -30,7 +30,7 @@ As development matures, you should consider adopting a dependency manager.
 To use the official Go client:
 
 ```bash
-go get github.com/pacedotdev/firesearch-sdk/clients/go
+go get github.com/pacedotdev/firesearch-sdk/clients/go/firesearch
 ```
 
 * The Go client is maintained as a Go module
