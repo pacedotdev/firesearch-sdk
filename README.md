@@ -16,7 +16,7 @@ via Firesearch's API.
 A simple way to integrate with Firesearch without dependency management
 is to copy the client files directly into your own project.
 
-* **Go** • [Download](./clients/go/firesearch.gen.go) • [Example](examples/go-example)
+* **Go** • [Download](./clients/go/firesearch/firesearch.gen.go) • [Example](examples/go-example)
 * **Swift** • [Download](./clients/swift/Firesearch.gen.swift) • [Example](examples/swift-example)
 * **TypeScript** • [Download](./clients/ts/firesearch.gen.ts)
 * **JavaScript** • [Download](./clients/js/firesearch.gen.js) • [Example](examples/javascript-example)
