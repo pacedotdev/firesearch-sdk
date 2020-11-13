@@ -7,4 +7,4 @@ Firesearch Go client.
 
 ### Before you start
 
-This example uses the `firesearch-tutorial/indexes/movies-index` index that gets created when you follow the live tutorial inside Firesearch.
+This example uses the `firesearch-tutorial/indexes/movies-index` index that gets created when you follow the [Live tutorial](https://firesearch.dev/docs/tutorial).

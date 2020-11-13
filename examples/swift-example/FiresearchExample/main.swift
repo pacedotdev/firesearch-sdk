@@ -12,6 +12,8 @@
     This code runs assuming you are running Firesearch locally, and have
     just completed the Live tutorial.
  
+    To get started: https://firesearch.dev/docs/tutorial 
+ 
     Specifically, the firesearch-tutorial/indexes/movies-index index
     must exist.
  

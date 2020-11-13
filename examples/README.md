@@ -6,4 +6,4 @@ a running Firesearch instance.
 You can follow the [Live tutorial](https://firesearch.dev/docs/tutorial) to get an instance
 running locally, and then run any of the example projects.
 
-* These examples require the `firesearch-tutorial/indexes/movies-index` index that gets created when you follow the live tutorial inside Firesearch
+This example uses the `firesearch-tutorial/indexes/movies-index` index that gets created when you follow the [Live tutorial](https://firesearch.dev/docs/tutorial).

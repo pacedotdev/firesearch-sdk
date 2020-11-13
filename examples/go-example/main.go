@@ -11,6 +11,18 @@ import (
 	"github.com/pacedotdev/firesearch-sdk/clients/go/firesearch"
 )
 
+/*
+
+	This little program connects to Firesearch and writes a new document,
+	and performs a search.
+
+	It runs against a real instance of Firesearch,
+	you should start by following the live tutorial: https://firesearch.dev/docs/tutorial
+
+	Thanks for trying Firesearch.
+
+*/
+
 func run(ctx context.Context, args []string) error {
 	flags := flag.NewFlagSet(args[0], flag.ContinueOnError)
 	var (
