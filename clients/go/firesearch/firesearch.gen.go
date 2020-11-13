@@ -1512,3 +1512,13 @@ type SearchResponse struct {
 	// would return more results
 	More bool `json:"more"`
 }
+
+// FieldValue gets a value from the Fields by key.
+func (s SearchResult) FieldValue(key string) (interface{}, bool) {
+	for _, field := range s.Fields {
+		if field.Key == key {
+			return field.Value, true
+		}
+	}
+	return nil, false
+}
