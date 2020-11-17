@@ -28,8 +28,8 @@ export class Client {
 export class AccessKeyService {
 	constructor(readonly client: Client) {}
 	
-// GenerateKey generates a key for an index path prefix to enable searches, the
-// access key would expire in 24 hours
+// GenerateKey generates a key for an index path prefix to enable searches. The key
+// expires after 24 hours.
 	async generateKey(generateKeyRequest: GenerateKeyRequest = null) {
 		if (generateKeyRequest == null) {
 			generateKeyRequest = new GenerateKeyRequest();

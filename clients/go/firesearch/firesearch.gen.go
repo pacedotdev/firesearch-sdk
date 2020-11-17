@@ -53,8 +53,8 @@ func NewAccessKeyService(client *Client) *AccessKeyService {
 	}
 }
 
-// GenerateKey generates a key for an index path prefix to enable searches, the
-// access key would expire in 24 hours
+// GenerateKey generates a key for an index path prefix to enable searches. The key
+// expires after 24 hours.
 func (s *AccessKeyService) GenerateKey(ctx context.Context, r GenerateKeyRequest) (*GenerateKeyResponse, error) {
 	requestBodyBytes, err := json.Marshal(r)
 	if err != nil {

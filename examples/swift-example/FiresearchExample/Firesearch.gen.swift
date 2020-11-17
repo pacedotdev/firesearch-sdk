@@ -17,8 +17,8 @@ class AccessKeyService {
 		self.client = client
 	}
 
-	// GenerateKey generates a key for an index path prefix to enable searches, the
-// access key would expire in 24 hours
+	// GenerateKey generates a key for an index path prefix to enable searches. The key
+// expires after 24 hours.
 	func generateKey(withRequest generateKeyRequest: GenerateKeyRequest, completion: @escaping (_ response: GenerateKeyResponse?, _ error: Error?) -> ()) {
 		let url = "\(self.client.endpoint)/AccessKeyService.GenerateKey"
 		var request = URLRequest(url: URL(string: url)!)
