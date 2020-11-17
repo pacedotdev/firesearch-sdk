@@ -53,7 +53,8 @@ func NewAccessKeyService(client *Client) *AccessKeyService {
 	}
 }
 
-// GenerateKey generates a key for an index path prefix to enable searches.
+// GenerateKey generates a key for an index path prefix to enable searches. The key
+// expires after 24 hours.
 func (s *AccessKeyService) GenerateKey(ctx context.Context, r GenerateKeyRequest) (*GenerateKeyResponse, error) {
 	requestBodyBytes, err := json.Marshal(r)
 	if err != nil {
@@ -1067,7 +1068,7 @@ type GenerateKeyRequest struct {
 type GenerateKeyResponse struct {
 
 	// AccessKey is the string that you have to pass to Search or Complete methods, to
-	// be able to perform searches.
+	// be able to perform searches, it would be valid for 24 hours
 	AccessKey string `json:"accessKey"`
 }
 
@@ -1507,9 +1508,10 @@ type SearchResponse struct {
 	// Cursor is a encoded string that you can pass to a new Query to get more results.
 	Cursor string `json:"cursor"`
 
-	// More is false when there are not more search results, and true when the system
-	// thinks it could be more search results but is not warantee that the new query
-	// would return more results
+	// More indicates that there may be more search results. If true, make the same
+	// Search request passing this Cursor. For performance reasons, Firesearch doesn't
+	// always know with certainty so it's possible the subsequent request will return
+	// no results.
 	More bool `json:"more"`
 }
 

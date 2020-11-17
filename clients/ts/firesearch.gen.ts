@@ -17,9 +17,12 @@ export class Client {
 	// headers allows calling code to mutate the HTTP
 	// headers of the underlying HTTP requests.
 	public headers: HeadersFunc
-
+	// fetch is the method to use to access remote
+	// services.
+	public fetch
 	constructor(endpoint: string) {
 		this.endpoint = endpoint
+		this.fetch = window.fetch.bind(window)
 	}
 }
 
@@ -28,7 +31,8 @@ export class Client {
 export class AccessKeyService {
 	constructor(readonly client: Client) {}
 	
-// GenerateKey generates a key for an index path prefix to enable searches.
+// GenerateKey generates a key for an index path prefix to enable searches. The key
+// expires after 24 hours.
 	async generateKey(generateKeyRequest: GenerateKeyRequest = null) {
 		if (generateKeyRequest == null) {
 			generateKeyRequest = new GenerateKeyRequest();
@@ -42,7 +46,7 @@ export class AccessKeyService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/AccessKeyService.GenerateKey', {
+		const response = await this.client.fetch(this.client.endpoint + '/AccessKeyService.GenerateKey', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(generateKeyRequest),
@@ -79,7 +83,7 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/AutocompleteService.CheckIndexName', {
+		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CheckIndexName', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(checkAutocompleteIndexNameRequest),
@@ -110,7 +114,7 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/AutocompleteService.CheckIndexPath', {
+		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CheckIndexPath', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(checkAutocompleteIndexPathRequest),
@@ -140,7 +144,7 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/AutocompleteService.Complete', {
+		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.Complete', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(completeRequest),
@@ -170,7 +174,7 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/AutocompleteService.CreateIndex', {
+		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CreateIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(createAutocompleteIndexRequest),
@@ -201,7 +205,7 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/AutocompleteService.DeleteDoc', {
+		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.DeleteDoc', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(deleteAutocompleteDocRequest),
@@ -232,7 +236,7 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/AutocompleteService.DeleteIndex', {
+		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.DeleteIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(deleteAutocompleteIndexRequest),
@@ -262,7 +266,7 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/AutocompleteService.GetIndex', {
+		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.GetIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(getAutocompleteIndexRequest),
@@ -292,7 +296,7 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/AutocompleteService.GetIndexes', {
+		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.GetIndexes', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(getAutocompleteIndexesRequest),
@@ -322,7 +326,7 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/AutocompleteService.PutDoc', {
+		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.PutDoc', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(putAutocompleteDocRequest),
@@ -359,7 +363,7 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/IndexService.CheckIndexName', {
+		const response = await this.client.fetch(this.client.endpoint + '/IndexService.CheckIndexName', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(checkIndexNameRequest),
@@ -389,7 +393,7 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/IndexService.CheckIndexPath', {
+		const response = await this.client.fetch(this.client.endpoint + '/IndexService.CheckIndexPath', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(checkIndexPathRequest),
@@ -419,7 +423,7 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/IndexService.CreateIndex', {
+		const response = await this.client.fetch(this.client.endpoint + '/IndexService.CreateIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(createIndexRequest),
@@ -450,7 +454,7 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/IndexService.DeleteDoc', {
+		const response = await this.client.fetch(this.client.endpoint + '/IndexService.DeleteDoc', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(deleteDocRequest),
@@ -481,7 +485,7 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/IndexService.DeleteIndex', {
+		const response = await this.client.fetch(this.client.endpoint + '/IndexService.DeleteIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(deleteIndexRequest),
@@ -511,7 +515,7 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/IndexService.GetIndex', {
+		const response = await this.client.fetch(this.client.endpoint + '/IndexService.GetIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(getIndexRequest),
@@ -541,7 +545,7 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/IndexService.GetIndexes', {
+		const response = await this.client.fetch(this.client.endpoint + '/IndexService.GetIndexes', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(getIndexesRequest),
@@ -571,7 +575,7 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/IndexService.PutDoc', {
+		const response = await this.client.fetch(this.client.endpoint + '/IndexService.PutDoc', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(putDocRequest),
@@ -601,7 +605,7 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/IndexService.Search', {
+		const response = await this.client.fetch(this.client.endpoint + '/IndexService.Search', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(searchRequest),
@@ -658,7 +662,7 @@ export class GenerateKeyResponse {
 	}
 
 	// AccessKey is the string that you have to pass to Search or Complete methods, to
-// be able to perform searches.
+// be able to perform searches, it would be valid for 24 hours
 	accessKey: string;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
@@ -1922,9 +1926,10 @@ export class SearchResponse {
 	// Cursor is a encoded string that you can pass to a new Query to get more results.
 	cursor: string;
 
-	// More is false when there are not more search results, and true when the system
-// thinks it could be more search results but is not warantee that the new query
-// would return more results
+	// More indicates that there may be more search results. If true, make the same
+// Search request passing this Cursor. For performance reasons, Firesearch doesn't
+// always know with certainty so it's possible the subsequent request will return
+// no results.
 	more: boolean;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.

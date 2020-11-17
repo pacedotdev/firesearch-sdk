@@ -17,9 +17,12 @@ export class Client {
 	// headers allows calling code to mutate the HTTP
 	// headers of the underlying HTTP requests.
 	public headers: HeadersFunc
-
+	// fetch is the method to use to access remote
+	// services.
+	public fetch
 	constructor(endpoint: string) {
 		this.endpoint = endpoint
+		this.fetch = window.fetch.bind(window)
 	}
 }
 
@@ -40,7 +43,7 @@ export class Client {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
-		const response = await fetch(this.client.endpoint + '/<%= service.Name %>.<%= method.Name %>', {
+		const response = await this.client.fetch(this.client.endpoint + '/<%= service.Name %>.<%= method.Name %>', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(<%= camelize_down(method.InputObject.TypeName) %>),

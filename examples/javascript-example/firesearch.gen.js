@@ -8,6 +8,7 @@ firesearch.Client = function(endpoint) {
 	this.getHeaders = function() {
 		return {}
 	}
+	this.fetch = window.fetch.bind(window)
 }
 
 
@@ -21,7 +22,7 @@ firesearch.AccessKeyService.prototype.generateKey = async function(generateKeyRe
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/AccessKeyService.GenerateKey', {
+	const response = await this.client.fetch(this.client.endpoint + '/AccessKeyService.GenerateKey', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(generateKeyRequest),
@@ -49,7 +50,7 @@ firesearch.AutocompleteService.prototype.checkIndexName = async function(checkAu
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/AutocompleteService.CheckIndexName', {
+	const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CheckIndexName', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(checkAutocompleteIndexNameRequest),
@@ -69,7 +70,7 @@ firesearch.AutocompleteService.prototype.checkIndexPath = async function(checkAu
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/AutocompleteService.CheckIndexPath', {
+	const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CheckIndexPath', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(checkAutocompleteIndexPathRequest),
@@ -89,7 +90,7 @@ firesearch.AutocompleteService.prototype.complete = async function(completeReque
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/AutocompleteService.Complete', {
+	const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.Complete', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(completeRequest),
@@ -109,7 +110,7 @@ firesearch.AutocompleteService.prototype.createIndex = async function(createAuto
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/AutocompleteService.CreateIndex', {
+	const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CreateIndex', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(createAutocompleteIndexRequest),
@@ -129,7 +130,7 @@ firesearch.AutocompleteService.prototype.deleteDoc = async function(deleteAutoco
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/AutocompleteService.DeleteDoc', {
+	const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.DeleteDoc', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(deleteAutocompleteDocRequest),
@@ -149,7 +150,7 @@ firesearch.AutocompleteService.prototype.deleteIndex = async function(deleteAuto
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/AutocompleteService.DeleteIndex', {
+	const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.DeleteIndex', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(deleteAutocompleteIndexRequest),
@@ -169,7 +170,7 @@ firesearch.AutocompleteService.prototype.getIndex = async function(getAutocomple
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/AutocompleteService.GetIndex', {
+	const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.GetIndex', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(getAutocompleteIndexRequest),
@@ -189,7 +190,7 @@ firesearch.AutocompleteService.prototype.getIndexes = async function(getAutocomp
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/AutocompleteService.GetIndexes', {
+	const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.GetIndexes', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(getAutocompleteIndexesRequest),
@@ -209,7 +210,7 @@ firesearch.AutocompleteService.prototype.putDoc = async function(putAutocomplete
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/AutocompleteService.PutDoc', {
+	const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.PutDoc', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(putAutocompleteDocRequest),
@@ -237,7 +238,7 @@ firesearch.IndexService.prototype.checkIndexName = async function(checkIndexName
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/IndexService.CheckIndexName', {
+	const response = await this.client.fetch(this.client.endpoint + '/IndexService.CheckIndexName', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(checkIndexNameRequest),
@@ -257,7 +258,7 @@ firesearch.IndexService.prototype.checkIndexPath = async function(checkIndexPath
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/IndexService.CheckIndexPath', {
+	const response = await this.client.fetch(this.client.endpoint + '/IndexService.CheckIndexPath', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(checkIndexPathRequest),
@@ -277,7 +278,7 @@ firesearch.IndexService.prototype.createIndex = async function(createIndexReques
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/IndexService.CreateIndex', {
+	const response = await this.client.fetch(this.client.endpoint + '/IndexService.CreateIndex', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(createIndexRequest),
@@ -297,7 +298,7 @@ firesearch.IndexService.prototype.deleteDoc = async function(deleteDocRequest) {
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/IndexService.DeleteDoc', {
+	const response = await this.client.fetch(this.client.endpoint + '/IndexService.DeleteDoc', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(deleteDocRequest),
@@ -317,7 +318,7 @@ firesearch.IndexService.prototype.deleteIndex = async function(deleteIndexReques
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/IndexService.DeleteIndex', {
+	const response = await this.client.fetch(this.client.endpoint + '/IndexService.DeleteIndex', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(deleteIndexRequest),
@@ -337,7 +338,7 @@ firesearch.IndexService.prototype.getIndex = async function(getIndexRequest) {
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/IndexService.GetIndex', {
+	const response = await this.client.fetch(this.client.endpoint + '/IndexService.GetIndex', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(getIndexRequest),
@@ -357,7 +358,7 @@ firesearch.IndexService.prototype.getIndexes = async function(getIndexesRequest)
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/IndexService.GetIndexes', {
+	const response = await this.client.fetch(this.client.endpoint + '/IndexService.GetIndexes', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(getIndexesRequest),
@@ -377,7 +378,7 @@ firesearch.IndexService.prototype.putDoc = async function(putDocRequest) {
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/IndexService.PutDoc', {
+	const response = await this.client.fetch(this.client.endpoint + '/IndexService.PutDoc', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(putDocRequest),
@@ -397,7 +398,7 @@ firesearch.IndexService.prototype.search = async function(searchRequest) {
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/IndexService.Search', {
+	const response = await this.client.fetch(this.client.endpoint + '/IndexService.Search', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(searchRequest),
