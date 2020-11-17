@@ -39,9 +39,18 @@ let putDocRequest = PutDocRequest(
     doc: Doc(
         id: "new-movie-3",
         searchFields: [
-            SearchField(key: "title", value: "Tenet", store: true),
-            SearchField(key: "directors", value: "Christopher Nolan", store: true),
-            SearchField(key: "genres", value: "Action,Drama,Thriller,Spy,Adventure,Sci-fi", store: true)
+            SearchField(
+                key: "title",
+                value: "Tenet", store: true
+            ),
+            SearchField(
+                key: "directors",
+                value: "Christopher Nolan", store: true
+            ),
+            SearchField(
+                key: "genres",
+                value: "Action,Drama,Thriller,Spy,Adventure,Sci-fi", store: true
+            )
         ],
         fields: nil
     )

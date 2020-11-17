@@ -30,7 +30,7 @@ firesearch.AccessKeyService.prototype.generateKey = async function(generateKeyRe
 	if (response.status !== 200) {
 		throw new Error(`firesearch: AccessKeyService.GenerateKey: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -58,7 +58,7 @@ firesearch.AutocompleteService.prototype.checkIndexName = async function(checkAu
 	if (response.status !== 200) {
 		throw new Error(`firesearch: AutocompleteService.CheckIndexName: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -78,7 +78,7 @@ firesearch.AutocompleteService.prototype.checkIndexPath = async function(checkAu
 	if (response.status !== 200) {
 		throw new Error(`firesearch: AutocompleteService.CheckIndexPath: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -98,7 +98,7 @@ firesearch.AutocompleteService.prototype.complete = async function(completeReque
 	if (response.status !== 200) {
 		throw new Error(`firesearch: AutocompleteService.Complete: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -118,7 +118,7 @@ firesearch.AutocompleteService.prototype.createIndex = async function(createAuto
 	if (response.status !== 200) {
 		throw new Error(`firesearch: AutocompleteService.CreateIndex: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -138,7 +138,7 @@ firesearch.AutocompleteService.prototype.deleteDoc = async function(deleteAutoco
 	if (response.status !== 200) {
 		throw new Error(`firesearch: AutocompleteService.DeleteDoc: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -158,7 +158,7 @@ firesearch.AutocompleteService.prototype.deleteIndex = async function(deleteAuto
 	if (response.status !== 200) {
 		throw new Error(`firesearch: AutocompleteService.DeleteIndex: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -178,7 +178,7 @@ firesearch.AutocompleteService.prototype.getIndex = async function(getAutocomple
 	if (response.status !== 200) {
 		throw new Error(`firesearch: AutocompleteService.GetIndex: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -198,7 +198,7 @@ firesearch.AutocompleteService.prototype.getIndexes = async function(getAutocomp
 	if (response.status !== 200) {
 		throw new Error(`firesearch: AutocompleteService.GetIndexes: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -218,7 +218,7 @@ firesearch.AutocompleteService.prototype.putDoc = async function(putAutocomplete
 	if (response.status !== 200) {
 		throw new Error(`firesearch: AutocompleteService.PutDoc: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -246,7 +246,7 @@ firesearch.IndexService.prototype.checkIndexName = async function(checkIndexName
 	if (response.status !== 200) {
 		throw new Error(`firesearch: IndexService.CheckIndexName: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -266,7 +266,7 @@ firesearch.IndexService.prototype.checkIndexPath = async function(checkIndexPath
 	if (response.status !== 200) {
 		throw new Error(`firesearch: IndexService.CheckIndexPath: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -286,7 +286,7 @@ firesearch.IndexService.prototype.createIndex = async function(createIndexReques
 	if (response.status !== 200) {
 		throw new Error(`firesearch: IndexService.CreateIndex: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -306,7 +306,7 @@ firesearch.IndexService.prototype.deleteDoc = async function(deleteDocRequest) {
 	if (response.status !== 200) {
 		throw new Error(`firesearch: IndexService.DeleteDoc: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -326,7 +326,7 @@ firesearch.IndexService.prototype.deleteIndex = async function(deleteIndexReques
 	if (response.status !== 200) {
 		throw new Error(`firesearch: IndexService.DeleteIndex: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -346,7 +346,7 @@ firesearch.IndexService.prototype.getIndex = async function(getIndexRequest) {
 	if (response.status !== 200) {
 		throw new Error(`firesearch: IndexService.GetIndex: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -366,7 +366,7 @@ firesearch.IndexService.prototype.getIndexes = async function(getIndexesRequest)
 	if (response.status !== 200) {
 		throw new Error(`firesearch: IndexService.GetIndexes: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -386,7 +386,7 @@ firesearch.IndexService.prototype.putDoc = async function(putDocRequest) {
 	if (response.status !== 200) {
 		throw new Error(`firesearch: IndexService.PutDoc: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
@@ -406,7 +406,7 @@ firesearch.IndexService.prototype.search = async function(searchRequest) {
 	if (response.status !== 200) {
 		throw new Error(`firesearch: IndexService.Search: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}

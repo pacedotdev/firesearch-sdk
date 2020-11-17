@@ -29,7 +29,7 @@ firesearch.<%= service.Name %>.prototype.<%= method.NameLowerCamel %> = async fu
 	if (response.status !== 200) {
 		throw new Error(`firesearch: <%= service.Name %>.<%= method.Name %>: ${response.status} ${response.statusText}`);
 	}
-	return response.json().then((json) => {
+	return response.json().then(json => {
 		if (json.error) {
 			throw new Error('firesearch: ' + json.error);
 		}
