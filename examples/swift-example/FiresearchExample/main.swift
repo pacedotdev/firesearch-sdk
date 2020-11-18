@@ -34,6 +34,77 @@ let indexService = IndexService(withClient: client)
 
 print("Firesearch Swift example")
 
+
+let searchRequest2 = SearchRequest(
+    query: SearchQuery(
+        indexPath: "firesearch/indexes/my-index",
+        accessKey: "oisurgbhviodljgnuhidofgjdfiughdfiughindfg",
+        limit: 10,
+        text: "meaning of life",
+        filters: [
+            Field(
+                key: "status",
+                value: AnyCodable(value: "active")
+            )
+        ],
+        select: ["description","notes"],
+        searchFields: ["description"],
+        cursor: "aaabbbccc12233"
+    )
+)
+indexService.search(withRequest: searchRequest2) {
+    (searchResponse: SearchResponse?, err: Error?) in
+    
+    if err != nil {
+        print("ERROR: \(err!)")
+        return
+    }
+    
+}
+
+
+let searchResponse = SearchResponse(
+    query: SearchQuery(
+        indexPath: "firesearch/indexes/my-index",
+        accessKey: "oisurgbhviodljgnuhidofgjdfiughdfiughindfg",
+        limit: 10,
+        text: "meaning of life",
+        filters: [
+            Field(
+                key: "status",
+                value: AnyCodable(value: "active")
+            )
+        ],
+        select: ["description","notes"],
+        searchFields: ["description"],
+        cursor: "aaabbbccc12233"
+    ),
+    hits: [
+        SearchResult(
+            id: "document-id",
+            fields: [
+                Field(
+                    key: "status",
+                    value: AnyCodable(value: "active")
+                )
+            ],
+            highlights: [
+                Highlight(
+                    field: "description",
+                    text: "This is the text that matched the search."
+                )
+            ],
+            score: 1
+        )
+    ],
+    duration: 325,
+    cursor: "aaabbbccc12233",
+    more: true
+)
+
+
+
+
 let putDocRequest = PutDocRequest(
     indexPath: indexPath,
     doc: Doc(
@@ -50,7 +121,7 @@ let putDocRequest = PutDocRequest(
             SearchField(
                 key: "genres",
                 value: "Action,Drama,Thriller,Spy,Adventure,Sci-fi", store: true
-            )
+            ),
         ],
         fields: nil
     )

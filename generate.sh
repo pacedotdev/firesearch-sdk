@@ -1,5 +1,8 @@
 #!/bin/bash
 oto -v \
+	-template ./clients/python/firesearch.py.plush -out ./clients/python/firesearch.gen.py \
+	../firesearch/cloudrun/oto
+oto -v \
 	-template ./clients/go/firesearch/client.go.plush -out ./clients/go/firesearch/firesearch.gen.go \
 	-pkg firesearch \
 	../firesearch/cloudrun/oto

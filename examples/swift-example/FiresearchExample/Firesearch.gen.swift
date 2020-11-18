@@ -17,7 +17,8 @@ class AccessKeyService {
 		self.client = client
 	}
 
-	// GenerateKey generates a key for an index path prefix to enable searches.
+	// GenerateKey generates a key for an index path prefix to enable searches. The key
+// expires after 24 hours.
 	func generateKey(withRequest generateKeyRequest: GenerateKeyRequest, completion: @escaping (_ response: GenerateKeyResponse?, _ error: Error?) -> ()) {
 		let url = "\(self.client.endpoint)/AccessKeyService.GenerateKey"
 		var request = URLRequest(url: URL(string: url)!)
@@ -916,7 +917,7 @@ struct GenerateKeyRequest: Codable {
 struct GenerateKeyResponse: Codable {
 
 	// AccessKey is the string that you have to pass to Search or Complete methods, to
-// be able to perform searches.
+// be able to perform searches, it would be valid for 24 hours
 	var accessKey:  String?
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
@@ -1459,9 +1460,10 @@ struct SearchResponse: Codable {
 	// Cursor is a encoded string that you can pass to a new Query to get more results.
 	var cursor:  String?
 
-	// More is false when there are not more search results, and true when the system
-// thinks it could be more search results but is not warantee that the new query
-// would return more results
+	// More indicates that there may be more search results. If true, make the same
+// Search request passing this Cursor. For performance reasons, Firesearch doesn't
+// always know with certainty so it's possible the subsequent request will return
+// no results.
 	var more:  Bool?
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
