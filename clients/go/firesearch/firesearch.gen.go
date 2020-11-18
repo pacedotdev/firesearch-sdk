@@ -31,10 +31,10 @@ type Client struct {
 }
 
 // NewClient makes a new Client.
-func NewClient(endpoint string, APIKey string) *Client {
+func NewClient(endpoint string, apiKey string) *Client {
 	c := &Client{
 		Endpoint:   endpoint,
-		APIKey:     APIKey,
+		APIKey:     apiKey,
 		Debug:      func(s string) {},
 		HTTPClient: &http.Client{Timeout: 10 * time.Second},
 	}
