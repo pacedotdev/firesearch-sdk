@@ -21,6 +21,8 @@ is to copy the client files directly into your own project.
 
 ### Go
 
+* [Read the Official Go Client reference documentation](https://pkg.go.dev/github.com/pacedotdev/firesearch-sdk/clients/go/firesearch)
+
 To use the official Go client:
 
 ```bash
