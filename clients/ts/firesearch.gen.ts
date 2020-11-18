@@ -10,10 +10,10 @@ interface HeadersFunc {
 export class Client {
 	// endpoint points to the Firesearch API.
 	public endpoint: string = '/api'
-	// secretAPIKey is the secret API key to access the services.
+	// apiKey is the secret API key to access the services.
 	// This should only be used for backend to backend communication,
 	// secret keys should never find their way into the browser.
-	public secretAPIKey: string = null
+	public apiKey: string = null
 	// headers allows calling code to mutate the HTTP
 	// headers of the underlying HTTP requests.
 	public headers: HeadersFunc
@@ -38,8 +38,8 @@ export class AccessKeyService {
 			generateKeyRequest = new GenerateKeyRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -75,8 +75,8 @@ export class AutocompleteService {
 			checkAutocompleteIndexNameRequest = new CheckAutocompleteIndexNameRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -106,8 +106,8 @@ export class AutocompleteService {
 			checkAutocompleteIndexPathRequest = new CheckAutocompleteIndexPathRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -136,8 +136,8 @@ export class AutocompleteService {
 			completeRequest = new CompleteRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -166,8 +166,8 @@ export class AutocompleteService {
 			createAutocompleteIndexRequest = new CreateAutocompleteIndexRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -197,8 +197,8 @@ export class AutocompleteService {
 			deleteAutocompleteDocRequest = new DeleteAutocompleteDocRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -228,8 +228,8 @@ export class AutocompleteService {
 			deleteAutocompleteIndexRequest = new DeleteAutocompleteIndexRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -258,8 +258,8 @@ export class AutocompleteService {
 			getAutocompleteIndexRequest = new GetAutocompleteIndexRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -288,8 +288,8 @@ export class AutocompleteService {
 			getAutocompleteIndexesRequest = new GetAutocompleteIndexesRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -318,8 +318,8 @@ export class AutocompleteService {
 			putAutocompleteDocRequest = new PutAutocompleteDocRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -355,8 +355,8 @@ export class IndexService {
 			checkIndexNameRequest = new CheckIndexNameRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -385,8 +385,8 @@ export class IndexService {
 			checkIndexPathRequest = new CheckIndexPathRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -415,8 +415,8 @@ export class IndexService {
 			createIndexRequest = new CreateIndexRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -446,8 +446,8 @@ export class IndexService {
 			deleteDocRequest = new DeleteDocRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -477,8 +477,8 @@ export class IndexService {
 			deleteIndexRequest = new DeleteIndexRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -507,8 +507,8 @@ export class IndexService {
 			getIndexRequest = new GetIndexRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -537,8 +537,8 @@ export class IndexService {
 			getIndexesRequest = new GetIndexesRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -567,8 +567,8 @@ export class IndexService {
 			putDocRequest = new PutDocRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -597,8 +597,8 @@ export class IndexService {
 			searchRequest = new SearchRequest();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');
@@ -661,8 +661,8 @@ export class GenerateKeyResponse {
 		}
 	}
 
-	// AccessKey is the string that you have to pass to Search or Complete methods, to
-// be able to perform searches, it would be valid for 24 hours
+	// AccessKey is the string that gets passed to `Search` and `Complete` methods to
+// perform searches. Access keys are valid for 24 hours.
 	accessKey: string;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.

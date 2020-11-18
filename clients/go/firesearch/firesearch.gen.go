@@ -22,8 +22,8 @@ type Client struct {
 	// Endpoint is the URL of the remote server that this Client should
 	// access.
 	Endpoint string
-	// SecretAPIKey is the secret API key to allow access to the service.
-	SecretAPIKey string
+	// APIKey is the string that provides access to the service.
+	APIKey string
 	// HTTPClient is the http.Client to use when making HTTP requests.
 	HTTPClient *http.Client
 	// Debug writes a line of debug log output.
@@ -31,12 +31,12 @@ type Client struct {
 }
 
 // NewClient makes a new Client.
-func NewClient(endpoint string, secretAPIKey string) *Client {
+func NewClient(endpoint string, APIKey string) *Client {
 	c := &Client{
-		Endpoint:     endpoint,
-		SecretAPIKey: secretAPIKey,
-		Debug:        func(s string) {},
-		HTTPClient:   &http.Client{Timeout: 10 * time.Second},
+		Endpoint:   endpoint,
+		APIKey:     APIKey,
+		Debug:      func(s string) {},
+		HTTPClient: &http.Client{Timeout: 10 * time.Second},
 	}
 	return c
 }
@@ -69,7 +69,7 @@ func (s *AccessKeyService) GenerateKey(ctx context.Context, r GenerateKeyRequest
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -133,7 +133,7 @@ func (s *AutocompleteService) CheckIndexName(ctx context.Context, r CheckAutocom
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -185,7 +185,7 @@ func (s *AutocompleteService) CheckIndexPath(ctx context.Context, r CheckAutocom
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -236,7 +236,7 @@ func (s *AutocompleteService) Complete(ctx context.Context, r CompleteRequest) (
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -287,7 +287,7 @@ func (s *AutocompleteService) CreateIndex(ctx context.Context, r CreateAutocompl
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -339,7 +339,7 @@ func (s *AutocompleteService) DeleteDoc(ctx context.Context, r DeleteAutocomplet
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -391,7 +391,7 @@ func (s *AutocompleteService) DeleteIndex(ctx context.Context, r DeleteAutocompl
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -442,7 +442,7 @@ func (s *AutocompleteService) GetIndex(ctx context.Context, r GetAutocompleteInd
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -493,7 +493,7 @@ func (s *AutocompleteService) GetIndexes(ctx context.Context, r GetAutocompleteI
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -544,7 +544,7 @@ func (s *AutocompleteService) PutDoc(ctx context.Context, r PutAutocompleteDocRe
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -608,7 +608,7 @@ func (s *IndexService) CheckIndexName(ctx context.Context, r CheckIndexNameReque
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -659,7 +659,7 @@ func (s *IndexService) CheckIndexPath(ctx context.Context, r CheckIndexPathReque
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -710,7 +710,7 @@ func (s *IndexService) CreateIndex(ctx context.Context, r CreateIndexRequest) (*
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -762,7 +762,7 @@ func (s *IndexService) DeleteDoc(ctx context.Context, r DeleteDocRequest) (*Dele
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -814,7 +814,7 @@ func (s *IndexService) DeleteIndex(ctx context.Context, r DeleteIndexRequest) (*
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -865,7 +865,7 @@ func (s *IndexService) GetIndex(ctx context.Context, r GetIndexRequest) (*GetInd
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -916,7 +916,7 @@ func (s *IndexService) GetIndexes(ctx context.Context, r GetIndexesRequest) (*Ge
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -967,7 +967,7 @@ func (s *IndexService) PutDoc(ctx context.Context, r PutDocRequest) (*PutDocResp
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -1018,7 +1018,7 @@ func (s *IndexService) Search(ctx context.Context, r SearchRequest) (*SearchResp
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {
@@ -1067,8 +1067,8 @@ type GenerateKeyRequest struct {
 // GenerateKeyResponse is the output object for GenerateKey.
 type GenerateKeyResponse struct {
 
-	// AccessKey is the string that you have to pass to Search or Complete methods, to
-	// be able to perform searches, it would be valid for 24 hours
+	// AccessKey is the string that gets passed to `Search` and `Complete` methods to
+	// perform searches. Access keys are valid for 24 hours.
 	AccessKey string `json:"accessKey"`
 }
 

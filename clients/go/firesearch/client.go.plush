@@ -24,8 +24,8 @@ type Client struct {
 	// Endpoint is the URL of the remote server that this Client should
 	// access.
 	Endpoint  string
-	// SecretAPIKey is the secret API key to allow access to the service.
-	SecretAPIKey string
+	// APIKey is the string that provides access to the service.
+	APIKey string
 	// HTTPClient is the http.Client to use when making HTTP requests.
 	HTTPClient 	*http.Client
 	// Debug writes a line of debug log output.
@@ -33,10 +33,10 @@ type Client struct {
 }
 
 // NewClient makes a new Client.
-func NewClient(endpoint string, secretAPIKey string) *Client {
+func NewClient(endpoint string, APIKey string) *Client {
 	c := &Client{
 		Endpoint: endpoint,
-		SecretAPIKey: secretAPIKey,
+		APIKey: APIKey,
 		Debug: func(s string) {},
 		HTTPClient: &http.Client{Timeout:10*time.Second},
 	}
@@ -70,7 +70,7 @@ func New<%= service.Name %>(client *Client) *<%= service.Name %> {
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.SecretAPIKey)
+	req.Header.Set("X-API-Key", s.client.APIKey)
 	req = req.WithContext(ctx)
 	resp, err := s.client.HTTPClient.Do(req)
 	if err != nil {

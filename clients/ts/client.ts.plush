@@ -10,10 +10,10 @@ interface HeadersFunc {
 export class Client {
 	// endpoint points to the Firesearch API.
 	public endpoint: string = '/api'
-	// secretAPIKey is the secret API key to access the services.
+	// apiKey is the secret API key to access the services.
 	// This should only be used for backend to backend communication,
 	// secret keys should never find their way into the browser.
-	public secretAPIKey: string = null
+	public apiKey: string = null
 	// headers allows calling code to mutate the HTTP
 	// headers of the underlying HTTP requests.
 	public headers: HeadersFunc
@@ -35,8 +35,8 @@ export class Client {
 			<%= camelize_down(method.InputObject.TypeName) %> = new <%= method.InputObject.TypeName %>();
 		}
 		const headers: HeadersInit = new Headers();
-		if (this.client.secretAPIKey) {
-			headers.set('X-API-Key', this.client.secretAPIKey);
+		if (this.client.apiKey) {
+			headers.set('X-API-Key', this.client.apiKey);
 		}
 		headers.set('Accept', 'application/json');
 		headers.set('Content-Type', 'application/json');

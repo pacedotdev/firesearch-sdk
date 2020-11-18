@@ -916,8 +916,8 @@ struct GenerateKeyRequest: Codable {
 // GenerateKeyResponse is the output object for GenerateKey.
 struct GenerateKeyResponse: Codable {
 
-	// AccessKey is the string that you have to pass to Search or Complete methods, to
-// be able to perform searches, it would be valid for 24 hours
+	// AccessKey is the string that gets passed to `Search` and `Complete` methods to
+// perform searches. Access keys are valid for 24 hours.
 	var accessKey:  String?
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
