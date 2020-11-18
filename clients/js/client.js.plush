@@ -8,6 +8,7 @@ firesearch.Client = function(endpoint) {
 	this.getHeaders = function() {
 		return {}
 	}
+	this.fetch = window.fetch.bind(window)
 }
 
 <%= for (service) in def.Services { %>
@@ -20,7 +21,7 @@ firesearch.<%= service.Name %>.prototype.<%= method.NameLowerCamel %> = async fu
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await fetch(this.client.endpoint + '/<%= service.Name %>.<%= method.Name %>', {
+	const response = await this.client.fetch(this.client.endpoint + '/<%= service.Name %>.<%= method.Name %>', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(<%= camelize_down(method.InputObject.TypeName) %>),
