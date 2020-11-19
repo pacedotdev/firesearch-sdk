@@ -11,8 +11,6 @@ class Client:
 		self.apiKey = apiKey
 		if self.endpoint == "":
 			raise FieldError(field="endpoint", message="endpoint missing")
-		if self.apiKey == "":
-			raise FieldError(field="apiKey", message="apiKey missing")
 
 class AccessKeyService:
 	"""AccessKeyService provides keys needed to perform searches."""
@@ -20,7 +18,7 @@ class AccessKeyService:
 	def __init__(self, client):
 		self.client = client
 	
-	def generateKey(generateKeyRequest):
+	def generateKey(self, generateKeyRequest):
 		"""GenerateKey generates a key for an index path prefix to enable searches. The key expires after 24 hours."""
 		url = "{}/AccessKeyService.GenerateKey".format(self.client.endpoint)
 		headers = {
@@ -32,8 +30,10 @@ class AccessKeyService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
 class AutocompleteService:
@@ -42,7 +42,7 @@ class AutocompleteService:
 	def __init__(self, client):
 		self.client = client
 	
-	def checkIndexName(checkAutocompleteIndexNameRequest):
+	def checkIndexName(self, checkAutocompleteIndexNameRequest):
 		"""CheckIndexName checks to see if an index name is available or not."""
 		url = "{}/AutocompleteService.CheckIndexName".format(self.client.endpoint)
 		headers = {
@@ -54,11 +54,13 @@ class AutocompleteService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def checkIndexPath(checkAutocompleteIndexPathRequest):
+	def checkIndexPath(self, checkAutocompleteIndexPathRequest):
 		"""CheckIndexPath checks to see if an AutocompleteIndexPath is valid for creating an index."""
 		url = "{}/AutocompleteService.CheckIndexPath".format(self.client.endpoint)
 		headers = {
@@ -70,11 +72,13 @@ class AutocompleteService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def complete(completeRequest):
+	def complete(self, completeRequest):
 		"""Complete performs a search on an AutocompleteIndex."""
 		url = "{}/AutocompleteService.Complete".format(self.client.endpoint)
 		headers = {
@@ -86,11 +90,13 @@ class AutocompleteService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def createIndex(createAutocompleteIndexRequest):
+	def createIndex(self, createAutocompleteIndexRequest):
 		"""CreateIndex creates a new index."""
 		url = "{}/AutocompleteService.CreateIndex".format(self.client.endpoint)
 		headers = {
@@ -102,11 +108,13 @@ class AutocompleteService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def deleteDoc(deleteAutocompleteDocRequest):
+	def deleteDoc(self, deleteAutocompleteDocRequest):
 		"""DeleteDoc removes a document from an AutocompleteIndex. Once deleted, it will stop appearing in search results."""
 		url = "{}/AutocompleteService.DeleteDoc".format(self.client.endpoint)
 		headers = {
@@ -118,11 +126,13 @@ class AutocompleteService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def deleteIndex(deleteAutocompleteIndexRequest):
+	def deleteIndex(self, deleteAutocompleteIndexRequest):
 		"""DeleteIndex deletes the AutocompleteIndex. All index data, as well as any metadata about this AutocompleteIndex will be completely deleted."""
 		url = "{}/AutocompleteService.DeleteIndex".format(self.client.endpoint)
 		headers = {
@@ -134,11 +144,13 @@ class AutocompleteService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def getIndex(getAutocompleteIndexRequest):
+	def getIndex(self, getAutocompleteIndexRequest):
 		"""GetIndex gets an AutocompleteIndex."""
 		url = "{}/AutocompleteService.GetIndex".format(self.client.endpoint)
 		headers = {
@@ -150,11 +162,13 @@ class AutocompleteService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def getIndexes(getAutocompleteIndexesRequest):
+	def getIndexes(self, getAutocompleteIndexesRequest):
 		"""GetIndexes gets a list of AutocompleteIndexes."""
 		url = "{}/AutocompleteService.GetIndexes".format(self.client.endpoint)
 		headers = {
@@ -166,11 +180,13 @@ class AutocompleteService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def putDoc(putAutocompleteDocRequest):
+	def putDoc(self, putAutocompleteDocRequest):
 		"""PutDoc puts a document into an AutocompleteIndex."""
 		url = "{}/AutocompleteService.PutDoc".format(self.client.endpoint)
 		headers = {
@@ -182,8 +198,10 @@ class AutocompleteService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
 class IndexService:
@@ -192,7 +210,7 @@ class IndexService:
 	def __init__(self, client):
 		self.client = client
 	
-	def checkIndexName(checkIndexNameRequest):
+	def checkIndexName(self, checkIndexNameRequest):
 		"""CheckIndexName checks to see if an index name is available or not."""
 		url = "{}/IndexService.CheckIndexName".format(self.client.endpoint)
 		headers = {
@@ -204,11 +222,13 @@ class IndexService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def checkIndexPath(checkIndexPathRequest):
+	def checkIndexPath(self, checkIndexPathRequest):
 		"""CheckIndexPath checks to see if an IndexPath is valid for creating an index."""
 		url = "{}/IndexService.CheckIndexPath".format(self.client.endpoint)
 		headers = {
@@ -220,11 +240,13 @@ class IndexService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def createIndex(createIndexRequest):
+	def createIndex(self, createIndexRequest):
 		"""CreateIndex creates a new index."""
 		url = "{}/IndexService.CreateIndex".format(self.client.endpoint)
 		headers = {
@@ -236,11 +258,13 @@ class IndexService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def deleteDoc(deleteDocRequest):
+	def deleteDoc(self, deleteDocRequest):
 		"""DeleteDoc removes a document from an Index. Once deleted, it will stop appearing in search results."""
 		url = "{}/IndexService.DeleteDoc".format(self.client.endpoint)
 		headers = {
@@ -252,11 +276,13 @@ class IndexService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def deleteIndex(deleteIndexRequest):
+	def deleteIndex(self, deleteIndexRequest):
 		"""DeleteIndex deletes the Index. All index data, as well as any metadata about this Index will be completely deleted."""
 		url = "{}/IndexService.DeleteIndex".format(self.client.endpoint)
 		headers = {
@@ -268,11 +294,13 @@ class IndexService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def getIndex(getIndexRequest):
+	def getIndex(self, getIndexRequest):
 		"""GetIndex gets an Index."""
 		url = "{}/IndexService.GetIndex".format(self.client.endpoint)
 		headers = {
@@ -284,11 +312,13 @@ class IndexService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def getIndexes(getIndexesRequest):
+	def getIndexes(self, getIndexesRequest):
 		"""GetIndexes gets a list of Indexes."""
 		url = "{}/IndexService.GetIndexes".format(self.client.endpoint)
 		headers = {
@@ -300,11 +330,13 @@ class IndexService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def putDoc(putDocRequest):
+	def putDoc(self, putDocRequest):
 		"""PutDoc puts a document into an Index."""
 		url = "{}/IndexService.PutDoc".format(self.client.endpoint)
 		headers = {
@@ -316,11 +348,13 @@ class IndexService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-	def search(searchRequest):
+	def search(self, searchRequest):
 		"""Search performs a search on an Index."""
 		url = "{}/IndexService.Search".format(self.client.endpoint)
 		headers = {
@@ -332,1093 +366,12 @@ class IndexService:
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()
-		if j.error != "":
-			raise OtoError(message=j.error)
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
 		return j
 	
-
-
-
-class GenerateKeyRequest:
-	"""GenerateKeyRequest is the input object for GenerateKey.
-	Attributes
-	----------
-	
-	indexPathPrefix
-		IndexPathPrefix is the collection path prefix in Firestore to provide access for. For example, if you put the prefix "firesearch/orgs/my-org" you will be able to perform searches on both "firesearch/orgs/my-org/cards" and "firesearch/orgs/my-org/messages" indexes.
-	
-	"""
-
-	def __init__(self):
-		self.indexPathPrefix = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class GenerateKeyResponse:
-	"""GenerateKeyResponse is the output object for GenerateKey.
-	Attributes
-	----------
-	
-	accessKey
-		AccessKey is the string that gets passed to `Search` and `Complete` methods to perform searches. Access keys are valid for 24 hours.
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.accessKey = None
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class Field:
-	"""Field is a non-searchable key/value pair that can be filtered at query time.
-	Attributes
-	----------
-	
-	key
-		Key is the name of the field. Cannot begin with an underscore.
-	
-	value
-		Value is the filterable value of this Field.
-	
-	"""
-
-	def __init__(self):
-		self.key = None
-		self.value = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class AutocompleteDoc:
-	"""AutocompleteDoc describes a document that can be searched.
-	Attributes
-	----------
-	
-	id
-		ID is the document identifier.
-	
-	text
-		Text is a string that can be completed via a call to Complete.
-	
-	fields
-		Fields are the filterable fields for this document.
-	
-	"""
-
-	def __init__(self):
-		self.id = None
-		self.text = None
-		self.fields = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class AutocompleteIndex:
-	"""AutocompleteIndex describes a search index.
-	Attributes
-	----------
-	
-	indexPath
-		IndexPath is the collection path in Firestore for this index. Each index must use a unique path.
-	
-	name
-		Name is an internal human readable name for this index. End users will never see this.
-	
-	caseSensitive
-		CaseSensitive preserves case across this index. By default, all entries and queries are lowercased.
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-		self.name = None
-		self.caseSensitive = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CheckAutocompleteIndexNameRequest:
-	"""CheckAutocompleteIndexNameRequest is the input for CheckAutocompleteIndexPath.
-	Attributes
-	----------
-	
-	indexName
-		IndexName is the name of the index to check.
-	
-	"""
-
-	def __init__(self):
-		self.indexName = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class ValidationResult:
-	"""ValidationResult describes the result of a validation check.
-	Attributes
-	----------
-	
-	valid
-		Valid indicates whether the validation was successful or not.
-	
-	message
-		Message is a human readable objection, or empty if valid.
-	
-	"""
-
-	def __init__(self):
-		self.valid = None
-		self.message = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CheckAutocompleteIndexNameResponse:
-	"""CheckAutocompleteIndexNameResponse is the output for CheckAutocompleteIndexName.
-	Attributes
-	----------
-	
-	validationResult
-		ValidationResult holds the result of the check.
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.validationResult = None
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CheckAutocompleteIndexPathRequest:
-	"""CheckAutocompleteIndexPathRequest is the input object for CheckAutocompleteIndexPath.
-	Attributes
-	----------
-	
-	indexPath
-		
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CheckAutocompleteIndexPathResponse:
-	"""CheckAutocompleteIndexPathResponse is the output for CheckAutocompleteIndexPath.
-	Attributes
-	----------
-	
-	validationResult
-		ValidationResult holds the result of the check.
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.validationResult = None
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CompleteQuery:
-	"""CompleteQuery describes a search query.
-	Attributes
-	----------
-	
-	indexPath
-		IndexPath is the path of the index to search.
-	
-	accessKey
-		AccessKey authenticates the request. Get an AccessKey from the AccessKeyService.GenerateKey method.
-	
-	limit
-		Limit is the maximum number of search results to return. Smaller limits are faster.
-	
-	text
-		Text contains a phrase to autocomplete.
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-		self.accessKey = None
-		self.limit = None
-		self.text = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CompleteRequest:
-	"""CompleteRequest is the input object for Search.
-	Attributes
-	----------
-	
-	query
-		Query is the CompleteQuery to perform.
-	
-	"""
-
-	def __init__(self):
-		self.query = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CompleteResponse:
-	"""CompleteResponse is the output object for Search.
-	Attributes
-	----------
-	
-	query
-		Query is the CompleteQuery that generated these results.
-	
-	hits
-		Hits are the search results.
-	
-	duration
-		Duration is the milliseconds that the search took to execute in the server side
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.query = None
-		self.hits = None
-		self.duration = None
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CreateAutocompleteIndexRequest:
-	"""CreateAutocompleteIndexRequest is the input object for CreateAutocompleteIndex.
-	Attributes
-	----------
-	
-	index
-		Index is the AutocompleteIndex to create.
-	
-	"""
-
-	def __init__(self):
-		self.index = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CreateAutocompleteIndexResponse:
-	"""CreateAutocompleteIndexResponse is the output object for CreateAutocompleteIndex.
-	Attributes
-	----------
-	
-	index
-		Index is the AutocompleteIndex that was created.
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.index = None
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class DeleteAutocompleteDocRequest:
-	"""DeleteAutocompleteDocRequest is the input object for DeleteAutocompleteDoc.
-	Attributes
-	----------
-	
-	indexPath
-		IndexPath is the AutocompleteIndex to delete from.
-	
-	id
-		ID is the identifier of the document to delete.
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-		self.id = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class DeleteAutocompleteDocResponse:
-	"""DeleteAutocompleteDocResponse is the output object for DeleteAutocompleteDoc.
-	Attributes
-	----------
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class DeleteAutocompleteIndexRequest:
-	"""DeleteAutocompleteIndexRequest is the input object for DeleteAutocompleteIndex.
-	Attributes
-	----------
-	
-	indexPath
-		IndexPath is the collection path in Firestore that identifies an AutocompleteIndex.
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class DeleteAutocompleteIndexResponse:
-	"""DeleteAutocompleteIndexResponse is the output object for DeleteAutocompleteIndex.
-	Attributes
-	----------
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class GetAutocompleteIndexRequest:
-	"""GetAutocompleteIndexRequest is the input object for GetAutocompleteIndex.
-	Attributes
-	----------
-	
-	indexPath
-		IndexPath is the collection path in Firestore that identifies an AutocompleteIndex.
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class GetAutocompleteIndexResponse:
-	"""GetAutocompleteIndexResponse is the output object for GetAutocompleteIndex.
-	Attributes
-	----------
-	
-	index
-		Index is the AutocompleteIndex that was created.
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.index = None
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class GetAutocompleteIndexesRequest:
-	"""GetAutocompleteIndexesRequest is the input object for GetAutocompleteIndexes.
-	Attributes
-	----------
-	
-	"""
-
-	def __init__(self):
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class GetAutocompleteIndexesResponse:
-	"""GetAutocompleteIndexesResponse is the output object for GetAutocompleteIndexes.
-	Attributes
-	----------
-	
-	indexes
-		Indexes are the indexes managed by this service.
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.indexes = None
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class PutAutocompleteDocRequest:
-	"""PutAutocompleteDocRequest is the input object for PutAutocompleteDoc.
-	Attributes
-	----------
-	
-	indexPath
-		IndexPath is the AutocompleteIndex to put a document to.
-	
-	doc
-		Doc is the document to put.
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-		self.doc = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class PutAutocompleteDocResponse:
-	"""PutAutocompleteDocResponse is the output object for PutAutocompleteDoc.
-	Attributes
-	----------
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CheckIndexNameRequest:
-	"""CheckIndexNameRequest is the input for CheckIndexPath.
-	Attributes
-	----------
-	
-	indexName
-		IndexName is the name of the index to check.
-	
-	"""
-
-	def __init__(self):
-		self.indexName = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CheckIndexNameResponse:
-	"""CheckIndexNameResponse is the output for CheckIndexName.
-	Attributes
-	----------
-	
-	validationResult
-		ValidationResult holds the result of the check.
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.validationResult = None
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CheckIndexPathRequest:
-	"""CheckIndexPathRequest is the input object for CheckIndexPath.
-	Attributes
-	----------
-	
-	indexPath
-		
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CheckIndexPathResponse:
-	"""CheckIndexPathResponse is the output for CheckIndexPath.
-	Attributes
-	----------
-	
-	validationResult
-		ValidationResult holds the result of the check.
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.validationResult = None
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class Index:
-	"""Index describes a search index.
-	Attributes
-	----------
-	
-	indexPath
-		IndexPath is the collection path in Firestore for this index. Each index must use a unique path.
-	
-	name
-		Name is an internal human readable name for this index. End users will never see this.
-	
-	language
-		Language of the index.
-	
-	keepStopWords
-		KeepStopWords prevents stop words from being removed from this index.
-	
-	caseSensitive
-		CaseSensitive preserves case across this index. By default, all entries and queries are lowercased.
-	
-	noStem
-		NoStem prevents words from being reduced. Only effective if a Language is specified.
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-		self.name = None
-		self.language = None
-		self.keepStopWords = None
-		self.caseSensitive = None
-		self.noStem = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CreateIndexRequest:
-	"""CreateIndexRequest is the input object for CreateIndex.
-	Attributes
-	----------
-	
-	index
-		Index is the Index to create.
-	
-	"""
-
-	def __init__(self):
-		self.index = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class CreateIndexResponse:
-	"""CreateIndexResponse is the output object for CreateIndex.
-	Attributes
-	----------
-	
-	index
-		Index is the Index that was created.
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.index = None
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class DeleteDocRequest:
-	"""DeleteDocRequest is the input object for DeleteDoc.
-	Attributes
-	----------
-	
-	indexPath
-		IndexPath is the Index to delete from.
-	
-	id
-		ID is the identifier of the document to delete.
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-		self.id = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class DeleteDocResponse:
-	"""DeleteDocResponse is the output object for DeleteDoc.
-	Attributes
-	----------
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class DeleteIndexRequest:
-	"""DeleteIndexRequest is the input object for DeleteIndex.
-	Attributes
-	----------
-	
-	indexPath
-		IndexPath is the collection path in Firestore that identifies an Index.
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class DeleteIndexResponse:
-	"""DeleteIndexResponse is the output object for DeleteIndex.
-	Attributes
-	----------
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class SearchField:
-	"""SearchField is a text field that can be searched.
-	Attributes
-	----------
-	
-	key
-		Key is the name of the search field. Cannot begin with an underscore.
-	
-	value
-		Value is the searchable text field.
-	
-	store
-		Store tells Firesearch to store this value and return it in the search results. By default, although the field is searchable, the original value is not stored.
-	
-	"""
-
-	def __init__(self):
-		self.key = None
-		self.value = None
-		self.store = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class Doc:
-	"""Doc describes a document that can be searched.
-	Attributes
-	----------
-	
-	id
-		ID is the document identifier.
-	
-	searchFields
-		SearchFields are the searchable fields for this document.
-	
-	fields
-		Fields are the key/value pairs that make up this document. Fields can be returned in search results, and may be filtered.
-	
-	"""
-
-	def __init__(self):
-		self.id = None
-		self.searchFields = None
-		self.fields = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class GetIndexRequest:
-	"""GetIndexRequest is the input object for GetIndex.
-	Attributes
-	----------
-	
-	indexPath
-		IndexPath is the collection path in Firestore that identifies an Index.
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class GetIndexResponse:
-	"""GetIndexResponse is the output object for GetIndex.
-	Attributes
-	----------
-	
-	index
-		Index is the Index that was created.
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.index = None
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class GetIndexesRequest:
-	"""GetIndexesRequest is the input object for GetIndexes.
-	Attributes
-	----------
-	
-	"""
-
-	def __init__(self):
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class GetIndexesResponse:
-	"""GetIndexesResponse is the output object for GetIndexes.
-	Attributes
-	----------
-	
-	indexes
-		Indexes are the indexes managed by this service.
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.indexes = None
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class Highlight:
-	"""Highlight describes an area that specifically matches a search query.
-	Attributes
-	----------
-	
-	field
-		Field is the name of the field.
-	
-	text
-		Text is the highlighted text.
-	
-	"""
-
-	def __init__(self):
-		self.field = None
-		self.text = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class PutDocRequest:
-	"""PutDocRequest is the input object for PutDoc.
-	Attributes
-	----------
-	
-	indexPath
-		IndexPath is the Index to put a document to.
-	
-	doc
-		Doc is the document to put.
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-		self.doc = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class PutDocResponse:
-	"""PutDocResponse is the output object for PutDoc.
-	Attributes
-	----------
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class SearchQuery:
-	"""SearchQuery describes a search query.
-	Attributes
-	----------
-	
-	indexPath
-		IndexPath is the path of the index to search.
-	
-	accessKey
-		AccessKey authenticates the request. Get an AccessKey from the AccessKeyService.GenerateKey method.
-	
-	limit
-		Limit is the maximum number of search results to return. Smaller limits are faster.
-	
-	text
-		Text contains a phrase to search for.
-	
-	filters
-		Filters are a list of where filters to apply when performing the search.
-	
-	select
-		Select lists the fields to get from the document. Filters are automatically included. To get search fields out, they must have been put with store set to true.
-	
-	searchFields
-		SearchFields is a list of fields to search. If empty, all fields will be searched.
-	
-	cursor
-		Cursor is a encoded string from a previous Query, that you can use to get more results.
-	
-	"""
-
-	def __init__(self):
-		self.indexPath = None
-		self.accessKey = None
-		self.limit = None
-		self.text = None
-		self.filters = None
-		self.select = None
-		self.searchFields = None
-		self.cursor = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class SearchRequest:
-	"""SearchRequest is the input object for Search.
-	Attributes
-	----------
-	
-	query
-		Query is the SearchQuery to perform.
-	
-	"""
-
-	def __init__(self):
-		self.query = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class SearchResult:
-	"""SearchResult is a document that matches a search query.
-	Attributes
-	----------
-	
-	id
-		ID is the document identifier.
-	
-	fields
-		Fields are the selected fields for this document.
-	
-	highlights
-		Highlights describe areas within the text that specifically match the query.
-	
-	score
-		Score is a relative value for this query. Higher score is better.
-	
-	"""
-
-	def __init__(self):
-		self.id = None
-		self.fields = None
-		self.highlights = None
-		self.score = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
-
-
-class SearchResponse:
-	"""SearchResponse is the output object for Search.
-	Attributes
-	----------
-	
-	query
-		Query is the SearchQuery that generated these results.
-	
-	hits
-		Hits are the search results.
-	
-	duration
-		Duration is the milliseconds that the search took to execute in the server side
-	
-	cursor
-		Cursor is a encoded string that you can pass to a new Query to get more results.
-	
-	more
-		More indicates that there may be more search results. If true, make the same Search request passing this Cursor. For performance reasons, Firesearch doesn't always know with certainty so it's possible the subsequent request will return no results.
-	
-	error
-		Error is string explaining what went wrong. Empty if everything was fine.
-	
-	"""
-
-	def __init__(self):
-		self.query = None
-		self.hits = None
-		self.duration = None
-		self.cursor = None
-		self.more = None
-		self.error = None
-			
-	def json():
-		""""get a JSON representation of this object"""
-		return json.dumps(self)
 
 
 

@@ -1,2 +1,4 @@
 xcuserdata
 .DS_Store
+./clients/python/__pycache__
+*.pyc
