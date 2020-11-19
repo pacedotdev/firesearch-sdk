@@ -354,7 +354,7 @@ class GenerateKeyRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class GenerateKeyResponse:
@@ -376,7 +376,7 @@ class GenerateKeyResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class Field:
@@ -398,7 +398,7 @@ class Field:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class AutocompleteDoc:
@@ -424,7 +424,7 @@ class AutocompleteDoc:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class AutocompleteIndex:
@@ -450,7 +450,7 @@ class AutocompleteIndex:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CheckAutocompleteIndexNameRequest:
@@ -468,7 +468,7 @@ class CheckAutocompleteIndexNameRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class ValidationResult:
@@ -490,7 +490,7 @@ class ValidationResult:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CheckAutocompleteIndexNameResponse:
@@ -512,7 +512,7 @@ class CheckAutocompleteIndexNameResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CheckAutocompleteIndexPathRequest:
@@ -530,7 +530,7 @@ class CheckAutocompleteIndexPathRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CheckAutocompleteIndexPathResponse:
@@ -552,7 +552,7 @@ class CheckAutocompleteIndexPathResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CompleteQuery:
@@ -582,7 +582,7 @@ class CompleteQuery:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CompleteRequest:
@@ -600,7 +600,7 @@ class CompleteRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CompleteResponse:
@@ -630,7 +630,7 @@ class CompleteResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CreateAutocompleteIndexRequest:
@@ -648,7 +648,7 @@ class CreateAutocompleteIndexRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CreateAutocompleteIndexResponse:
@@ -670,7 +670,7 @@ class CreateAutocompleteIndexResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class DeleteAutocompleteDocRequest:
@@ -692,7 +692,7 @@ class DeleteAutocompleteDocRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class DeleteAutocompleteDocResponse:
@@ -710,7 +710,7 @@ class DeleteAutocompleteDocResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class DeleteAutocompleteIndexRequest:
@@ -728,7 +728,7 @@ class DeleteAutocompleteIndexRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class DeleteAutocompleteIndexResponse:
@@ -746,7 +746,7 @@ class DeleteAutocompleteIndexResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class GetAutocompleteIndexRequest:
@@ -764,7 +764,7 @@ class GetAutocompleteIndexRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class GetAutocompleteIndexResponse:
@@ -786,7 +786,7 @@ class GetAutocompleteIndexResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class GetAutocompleteIndexesRequest:
@@ -800,7 +800,7 @@ class GetAutocompleteIndexesRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class GetAutocompleteIndexesResponse:
@@ -822,7 +822,7 @@ class GetAutocompleteIndexesResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class PutAutocompleteDocRequest:
@@ -844,7 +844,7 @@ class PutAutocompleteDocRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class PutAutocompleteDocResponse:
@@ -862,7 +862,7 @@ class PutAutocompleteDocResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CheckIndexNameRequest:
@@ -880,7 +880,7 @@ class CheckIndexNameRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CheckIndexNameResponse:
@@ -902,7 +902,7 @@ class CheckIndexNameResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CheckIndexPathRequest:
@@ -920,7 +920,7 @@ class CheckIndexPathRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CheckIndexPathResponse:
@@ -942,7 +942,7 @@ class CheckIndexPathResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class Index:
@@ -980,7 +980,7 @@ class Index:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CreateIndexRequest:
@@ -998,7 +998,7 @@ class CreateIndexRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class CreateIndexResponse:
@@ -1020,7 +1020,7 @@ class CreateIndexResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class DeleteDocRequest:
@@ -1042,7 +1042,7 @@ class DeleteDocRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class DeleteDocResponse:
@@ -1060,7 +1060,7 @@ class DeleteDocResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class DeleteIndexRequest:
@@ -1078,7 +1078,7 @@ class DeleteIndexRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class DeleteIndexResponse:
@@ -1096,7 +1096,7 @@ class DeleteIndexResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class SearchField:
@@ -1122,7 +1122,7 @@ class SearchField:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class Doc:
@@ -1148,7 +1148,7 @@ class Doc:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class GetIndexRequest:
@@ -1166,7 +1166,7 @@ class GetIndexRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class GetIndexResponse:
@@ -1188,7 +1188,7 @@ class GetIndexResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class GetIndexesRequest:
@@ -1202,7 +1202,7 @@ class GetIndexesRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class GetIndexesResponse:
@@ -1224,7 +1224,7 @@ class GetIndexesResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class Highlight:
@@ -1246,7 +1246,7 @@ class Highlight:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class PutDocRequest:
@@ -1268,7 +1268,7 @@ class PutDocRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class PutDocResponse:
@@ -1286,7 +1286,7 @@ class PutDocResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class SearchQuery:
@@ -1332,7 +1332,7 @@ class SearchQuery:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class SearchRequest:
@@ -1350,7 +1350,7 @@ class SearchRequest:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class SearchResult:
@@ -1380,7 +1380,7 @@ class SearchResult:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 class SearchResponse:
@@ -1418,7 +1418,7 @@ class SearchResponse:
 			
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 
 
