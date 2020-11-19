@@ -54,7 +54,7 @@ class <%= object.Name %>:
 		<% } %>	
 	def json():
 		""""get a JSON representation of this object"""
-		return json.puts(self)
+		return json.dumps(self)
 
 <% } %>
 
