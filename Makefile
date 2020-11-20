@@ -23,5 +23,8 @@ gen:
 	oto -v \
 		-template ./clients/js/client.js.plush -out ./examples/javascript-example/firesearch.gen.js \
 		../firesearch/cloudrun/oto
+	oto -v \
+		-template ./clients/js/client.js.plush -out ./examples/firebase-example/website/firesearch.gen.js \
+		../firesearch/cloudrun/oto
 
 .PHONY: gen

@@ -1,0 +1,64 @@
+<html>
+<head>
+	<title>Blog demo - Firesearch</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="preconnect" href="https://firesearch.dev">
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap" rel="stylesheet">
+	<link rel='stylesheet' href='https://firesearch.dev/public/build/base.css'>
+	<link rel='stylesheet' href='https://firesearch.dev/public/build/bundle.css'>
+</head>
+<body class='flex justify-center'>
+	<div class='container container p-8 bg-dark-blue bg-opacity-75 shadow-xl gap-8 md:pb-16 flex-grow overflow-x-hidden'>
+		<div class='prose max-w-xl'>
+			<h1>Firesearch blog demo</h1>
+			<p>
+				This JavaScript/HTML app is a simple, searchable
+				blog.
+			</p>
+			<h2>How does it work?</h2>
+			<p>
+				The front-end puts blog posts in Firestore via the
+				Firebase SDK.
+			</p>
+			<p>
+				Cloud Functions running in Google Cloud Platform respond to the
+				documents and automatically add it to a Firesearch index.
+			</p>
+			<p>
+				This front-end app then performs searches with the
+				Firesearch JavaScript client.
+			</p>
+			<h2>
+				What would you like to do?
+			</h2>
+			<ul>
+				<li>
+					<a href='posts.html'>View blog posts</a>
+				</li>
+				<li>
+					<a href='create.html'>Create a new blog post</a>
+				</li>
+				<li>
+					<a 
+						href='https://github.com/pacedotdev/firesearch-sdk/tree/main/examples/firebase-example' 
+						target='github'
+					>Learn how to deploy this app yourself</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script src="/__/firebase/8.1.1/firebase-app.js"></script>
+	<script src="/__/firebase/init.js"></script>
+	<script src='firesearch.gen.js'></script>
+	<script src='app.js'></script>
+	<script>
+
+		app.onload(() => {
+			
+			
+
+		})
+
+	</script>
+</body>
+</html>
