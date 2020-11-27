@@ -22,7 +22,6 @@ export class Client {
 	public fetch: any = null
 	constructor(endpoint: string) {
 		this.endpoint = endpoint
-		this.fetch = window ? window.fetch.bind(window) : null
 	}
 }
 
@@ -42,6 +41,9 @@ export class Client {
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
+		}
+		if (this.client.fetch == null) {
+			throw new Error(`<%= service.Name %>.<%= method.Name %>: no fetch (try client.fetch = window.fetch)`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/<%= service.Name %>.<%= method.Name %>', {
 			method: 'POST',
@@ -95,5 +97,3 @@ const stringDefault = ''
 const numberDefault = 0
 const booleanDefault = false 
 const anyDefault = null
-
-var window = window

@@ -22,7 +22,6 @@ export class Client {
 	public fetch: any = null
 	constructor(endpoint: string) {
 		this.endpoint = endpoint
-		this.fetch = window ? window.fetch.bind(window) : null
 	}
 }
 
@@ -45,6 +44,9 @@ export class AccessKeyService {
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
+		}
+		if (this.client.fetch == null) {
+			throw new Error(`AccessKeyService.GenerateKey: no fetch (try client.fetch = window.fetch)`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/AccessKeyService.GenerateKey', {
 			method: 'POST',
@@ -83,6 +85,9 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
+		if (this.client.fetch == null) {
+			throw new Error(`AutocompleteService.CheckIndexName: no fetch (try client.fetch = window.fetch)`)
+		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CheckIndexName', {
 			method: 'POST',
 			headers: headers,
@@ -114,6 +119,9 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
+		if (this.client.fetch == null) {
+			throw new Error(`AutocompleteService.CheckIndexPath: no fetch (try client.fetch = window.fetch)`)
+		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CheckIndexPath', {
 			method: 'POST',
 			headers: headers,
@@ -144,6 +152,9 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
+		if (this.client.fetch == null) {
+			throw new Error(`AutocompleteService.Complete: no fetch (try client.fetch = window.fetch)`)
+		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.Complete', {
 			method: 'POST',
 			headers: headers,
@@ -173,6 +184,9 @@ export class AutocompleteService {
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
+		}
+		if (this.client.fetch == null) {
+			throw new Error(`AutocompleteService.CreateIndex: no fetch (try client.fetch = window.fetch)`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CreateIndex', {
 			method: 'POST',
@@ -205,6 +219,9 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
+		if (this.client.fetch == null) {
+			throw new Error(`AutocompleteService.DeleteDoc: no fetch (try client.fetch = window.fetch)`)
+		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.DeleteDoc', {
 			method: 'POST',
 			headers: headers,
@@ -236,6 +253,9 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
+		if (this.client.fetch == null) {
+			throw new Error(`AutocompleteService.DeleteIndex: no fetch (try client.fetch = window.fetch)`)
+		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.DeleteIndex', {
 			method: 'POST',
 			headers: headers,
@@ -265,6 +285,9 @@ export class AutocompleteService {
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
+		}
+		if (this.client.fetch == null) {
+			throw new Error(`AutocompleteService.GetIndex: no fetch (try client.fetch = window.fetch)`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.GetIndex', {
 			method: 'POST',
@@ -296,6 +319,9 @@ export class AutocompleteService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
+		if (this.client.fetch == null) {
+			throw new Error(`AutocompleteService.GetIndexes: no fetch (try client.fetch = window.fetch)`)
+		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.GetIndexes', {
 			method: 'POST',
 			headers: headers,
@@ -325,6 +351,9 @@ export class AutocompleteService {
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
+		}
+		if (this.client.fetch == null) {
+			throw new Error(`AutocompleteService.PutDoc: no fetch (try client.fetch = window.fetch)`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.PutDoc', {
 			method: 'POST',
@@ -363,6 +392,9 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
+		if (this.client.fetch == null) {
+			throw new Error(`IndexService.CheckIndexName: no fetch (try client.fetch = window.fetch)`)
+		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.CheckIndexName', {
 			method: 'POST',
 			headers: headers,
@@ -393,6 +425,9 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
+		if (this.client.fetch == null) {
+			throw new Error(`IndexService.CheckIndexPath: no fetch (try client.fetch = window.fetch)`)
+		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.CheckIndexPath', {
 			method: 'POST',
 			headers: headers,
@@ -422,6 +457,9 @@ export class IndexService {
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
+		}
+		if (this.client.fetch == null) {
+			throw new Error(`IndexService.CreateIndex: no fetch (try client.fetch = window.fetch)`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.CreateIndex', {
 			method: 'POST',
@@ -454,6 +492,9 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
+		if (this.client.fetch == null) {
+			throw new Error(`IndexService.DeleteDoc: no fetch (try client.fetch = window.fetch)`)
+		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.DeleteDoc', {
 			method: 'POST',
 			headers: headers,
@@ -485,6 +526,9 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
+		if (this.client.fetch == null) {
+			throw new Error(`IndexService.DeleteIndex: no fetch (try client.fetch = window.fetch)`)
+		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.DeleteIndex', {
 			method: 'POST',
 			headers: headers,
@@ -514,6 +558,9 @@ export class IndexService {
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
+		}
+		if (this.client.fetch == null) {
+			throw new Error(`IndexService.GetIndex: no fetch (try client.fetch = window.fetch)`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.GetIndex', {
 			method: 'POST',
@@ -545,6 +592,9 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
+		if (this.client.fetch == null) {
+			throw new Error(`IndexService.GetIndexes: no fetch (try client.fetch = window.fetch)`)
+		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.GetIndexes', {
 			method: 'POST',
 			headers: headers,
@@ -575,6 +625,9 @@ export class IndexService {
 		if (this.client.headers) {
 			await this.client.headers(headers);
 		}
+		if (this.client.fetch == null) {
+			throw new Error(`IndexService.PutDoc: no fetch (try client.fetch = window.fetch)`)
+		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.PutDoc', {
 			method: 'POST',
 			headers: headers,
@@ -604,6 +657,9 @@ export class IndexService {
 		headers.set('Content-Type', 'application/json');
 		if (this.client.headers) {
 			await this.client.headers(headers);
+		}
+		if (this.client.fetch == null) {
+			throw new Error(`IndexService.Search: no fetch (try client.fetch = window.fetch)`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.Search', {
 			method: 'POST',
@@ -1943,5 +1999,3 @@ const stringDefault = ''
 const numberDefault = 0
 const booleanDefault = false 
 const anyDefault = null
-
-var window = window
