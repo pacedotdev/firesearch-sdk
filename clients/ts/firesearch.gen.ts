@@ -1943,3 +1943,5 @@ const stringDefault = ''
 const numberDefault = 0
 const booleanDefault = false 
 const anyDefault = null
+
+var window = window
