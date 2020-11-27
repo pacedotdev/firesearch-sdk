@@ -22,7 +22,7 @@ export class Client {
 	public fetch: any = null
 	constructor(endpoint: string) {
 		this.endpoint = endpoint
-		this.fetch = window.fetch.bind(window)
+		this.fetch = window ? window.fetch.bind(window) : null
 	}
 }
 
