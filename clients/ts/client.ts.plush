@@ -20,7 +20,7 @@ export class Client {
 <%= format_comment_text(service.Comment) %>export class <%= service.Name %> {
 	constructor(readonly client: Client) {}
 	<%= for (method) in service.Methods { %>
-<%= format_comment_text(method.Comment) %>	async <%= method.NameLowerCamel %>(<%= camelize_down(method.InputObject.TypeName) %>?: <%= method.InputObject.TypeName %>) {
+<%= format_comment_text(method.Comment) %>	async <%= method.NameLowerCamel %>(<%= camelize_down(method.InputObject.TypeName) %>?: <%= method.InputObject.TypeName %>): Promise<<%= method.OutputObject.TypeName %>> {
 		if (<%= camelize_down(method.InputObject.TypeName) %> == null) {
 			<%= camelize_down(method.InputObject.TypeName) %> = new <%= method.InputObject.TypeName %>();
 		}
