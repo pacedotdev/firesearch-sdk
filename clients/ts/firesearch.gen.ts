@@ -728,7 +728,7 @@ export class AutocompleteDoc {
 	text: string = stringDefault;
 
 	// Fields are the filterable fields for this document.
-	fields: Field[];
+	fields?: Field[];
 
 }
 
@@ -826,7 +826,7 @@ export class CheckAutocompleteIndexNameResponse {
 	}
 
 	// ValidationResult holds the result of the check.
-	validationResult: ValidationResult;
+	validationResult?: ValidationResult;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	error: string = stringDefault;
@@ -869,7 +869,7 @@ export class CheckAutocompleteIndexPathResponse {
 	}
 
 	// ValidationResult holds the result of the check.
-	validationResult: ValidationResult;
+	validationResult?: ValidationResult;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	error: string = stringDefault;
@@ -931,7 +931,7 @@ export class CompleteRequest {
 	}
 
 	// Query is the CompleteQuery to perform.
-	query: CompleteQuery;
+	query?: CompleteQuery;
 
 }
 
@@ -969,10 +969,10 @@ export class CompleteResponse {
 	}
 
 	// Query is the CompleteQuery that generated these results.
-	query: CompleteQuery;
+	query?: CompleteQuery;
 
 	// Hits are the search results.
-	hits: AutocompleteDoc[];
+	hits?: AutocompleteDoc[];
 
 	// Duration is the milliseconds that the search took to execute in the server side
 	duration: number = numberDefault;
@@ -997,7 +997,7 @@ export class CreateAutocompleteIndexRequest {
 	}
 
 	// Index is the AutocompleteIndex to create.
-	index: AutocompleteIndex;
+	index?: AutocompleteIndex;
 
 }
 
@@ -1021,7 +1021,7 @@ export class CreateAutocompleteIndexResponse {
 	}
 
 	// Index is the AutocompleteIndex that was created.
-	index: AutocompleteIndex;
+	index?: AutocompleteIndex;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	error: string = stringDefault;
@@ -1142,7 +1142,7 @@ export class GetAutocompleteIndexResponse {
 	}
 
 	// Index is the AutocompleteIndex that was created.
-	index: AutocompleteIndex;
+	index?: AutocompleteIndex;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	error: string = stringDefault;
@@ -1183,7 +1183,7 @@ export class GetAutocompleteIndexesResponse {
 	}
 
 	// Indexes are the indexes managed by this service.
-	indexes: AutocompleteIndex[];
+	indexes?: AutocompleteIndex[];
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	error: string = stringDefault;
@@ -1212,7 +1212,7 @@ export class PutAutocompleteDocRequest {
 	indexPath: string = stringDefault;
 
 	// Doc is the document to put.
-	doc: AutocompleteDoc;
+	doc?: AutocompleteDoc;
 
 }
 
@@ -1269,7 +1269,7 @@ export class CheckIndexNameResponse {
 	}
 
 	// ValidationResult holds the result of the check.
-	validationResult: ValidationResult;
+	validationResult?: ValidationResult;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	error: string = stringDefault;
@@ -1311,7 +1311,7 @@ export class CheckIndexPathResponse {
 	}
 
 	// ValidationResult holds the result of the check.
-	validationResult: ValidationResult;
+	validationResult?: ValidationResult;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	error: string = stringDefault;
@@ -1389,7 +1389,7 @@ export class CreateIndexRequest {
 	}
 
 	// Index is the Index to create.
-	index: Index;
+	index?: Index;
 
 }
 
@@ -1412,7 +1412,7 @@ export class CreateIndexResponse {
 	}
 
 	// Index is the Index that was created.
-	index: Index;
+	index?: Index;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	error: string = stringDefault;
@@ -1564,11 +1564,11 @@ export class Doc {
 	id: string = stringDefault;
 
 	// SearchFields are the searchable fields for this document.
-	searchFields: SearchField[];
+	searchFields?: SearchField[];
 
 	// Fields are the key/value pairs that make up this document. Fields can be
 // returned in search results, and may be filtered.
-	fields: Field[];
+	fields?: Field[];
 
 }
 
@@ -1608,7 +1608,7 @@ export class GetIndexResponse {
 	}
 
 	// Index is the Index that was created.
-	index: Index;
+	index?: Index;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	error: string = stringDefault;
@@ -1649,7 +1649,7 @@ export class GetIndexesResponse {
 	}
 
 	// Indexes are the indexes managed by this service.
-	indexes: Index[];
+	indexes?: Index[];
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	error: string = stringDefault;
@@ -1702,7 +1702,7 @@ export class PutDocRequest {
 	indexPath: string = stringDefault;
 
 	// Doc is the document to put.
-	doc: Doc;
+	doc?: Doc;
 
 }
 
@@ -1785,7 +1785,7 @@ export class SearchQuery {
 	text: string = stringDefault;
 
 	// Filters are a list of where filters to apply when performing the search.
-	filters: Field[];
+	filters?: Field[];
 
 	// Select lists the fields to get from the document. Filters are automatically
 // included. To get search fields out, they must have been put with store set to
@@ -1817,7 +1817,7 @@ export class SearchRequest {
 	}
 
 	// Query is the SearchQuery to perform.
-	query: SearchQuery;
+	query?: SearchQuery;
 
 }
 
@@ -1863,10 +1863,10 @@ export class SearchResult {
 	id: string = stringDefault;
 
 	// Fields are the selected fields for this document.
-	fields: Field[];
+	fields?: Field[];
 
 	// Highlights describe areas within the text that specifically match the query.
-	highlights: Highlight[];
+	highlights?: Highlight[];
 
 	// Score is a relative value for this query. Higher score is better.
 	score: number = numberDefault;
@@ -1915,10 +1915,10 @@ export class SearchResponse {
 	}
 
 	// Query is the SearchQuery that generated these results.
-	query: SearchQuery;
+	query?: SearchQuery;
 
 	// Hits are the search results.
-	hits: SearchResult[];
+	hits?: SearchResult[];
 
 	// Duration is the milliseconds that the search took to execute in the server side
 	duration: number = numberDefault;
@@ -1942,3 +1942,4 @@ export class SearchResponse {
 const stringDefault = ''
 const numberDefault = 0
 const booleanDefault = false 
+const anyDefault = null
