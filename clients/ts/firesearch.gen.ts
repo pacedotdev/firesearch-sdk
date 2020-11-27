@@ -33,7 +33,7 @@ export class AccessKeyService {
 	
 // GenerateKey generates a key for an index path prefix to enable searches. The key
 // expires after 24 hours.
-	async generateKey(generateKeyRequest: GenerateKeyRequest = null) {
+	async generateKey(generateKeyRequest?: GenerateKeyRequest) {
 		if (generateKeyRequest == null) {
 			generateKeyRequest = new GenerateKeyRequest();
 		}
@@ -70,7 +70,7 @@ export class AutocompleteService {
 	constructor(readonly client: Client) {}
 	
 // CheckIndexName checks to see if an index name is available or not.
-	async checkIndexName(checkAutocompleteIndexNameRequest: CheckAutocompleteIndexNameRequest = null) {
+	async checkIndexName(checkAutocompleteIndexNameRequest?: CheckAutocompleteIndexNameRequest) {
 		if (checkAutocompleteIndexNameRequest == null) {
 			checkAutocompleteIndexNameRequest = new CheckAutocompleteIndexNameRequest();
 		}
@@ -101,7 +101,7 @@ export class AutocompleteService {
 	
 // CheckIndexPath checks to see if an AutocompleteIndexPath is valid for creating
 // an index.
-	async checkIndexPath(checkAutocompleteIndexPathRequest: CheckAutocompleteIndexPathRequest = null) {
+	async checkIndexPath(checkAutocompleteIndexPathRequest?: CheckAutocompleteIndexPathRequest) {
 		if (checkAutocompleteIndexPathRequest == null) {
 			checkAutocompleteIndexPathRequest = new CheckAutocompleteIndexPathRequest();
 		}
@@ -131,7 +131,7 @@ export class AutocompleteService {
 	}
 	
 // Complete performs a search on an AutocompleteIndex.
-	async complete(completeRequest: CompleteRequest = null) {
+	async complete(completeRequest?: CompleteRequest) {
 		if (completeRequest == null) {
 			completeRequest = new CompleteRequest();
 		}
@@ -161,7 +161,7 @@ export class AutocompleteService {
 	}
 	
 // CreateIndex creates a new index.
-	async createIndex(createAutocompleteIndexRequest: CreateAutocompleteIndexRequest = null) {
+	async createIndex(createAutocompleteIndexRequest?: CreateAutocompleteIndexRequest) {
 		if (createAutocompleteIndexRequest == null) {
 			createAutocompleteIndexRequest = new CreateAutocompleteIndexRequest();
 		}
@@ -192,7 +192,7 @@ export class AutocompleteService {
 	
 // DeleteDoc removes a document from an AutocompleteIndex. Once deleted, it will
 // stop appearing in search results.
-	async deleteDoc(deleteAutocompleteDocRequest: DeleteAutocompleteDocRequest = null) {
+	async deleteDoc(deleteAutocompleteDocRequest?: DeleteAutocompleteDocRequest) {
 		if (deleteAutocompleteDocRequest == null) {
 			deleteAutocompleteDocRequest = new DeleteAutocompleteDocRequest();
 		}
@@ -223,7 +223,7 @@ export class AutocompleteService {
 	
 // DeleteIndex deletes the AutocompleteIndex. All index data, as well as any
 // metadata about this AutocompleteIndex will be completely deleted.
-	async deleteIndex(deleteAutocompleteIndexRequest: DeleteAutocompleteIndexRequest = null) {
+	async deleteIndex(deleteAutocompleteIndexRequest?: DeleteAutocompleteIndexRequest) {
 		if (deleteAutocompleteIndexRequest == null) {
 			deleteAutocompleteIndexRequest = new DeleteAutocompleteIndexRequest();
 		}
@@ -253,7 +253,7 @@ export class AutocompleteService {
 	}
 	
 // GetIndex gets an AutocompleteIndex.
-	async getIndex(getAutocompleteIndexRequest: GetAutocompleteIndexRequest = null) {
+	async getIndex(getAutocompleteIndexRequest?: GetAutocompleteIndexRequest) {
 		if (getAutocompleteIndexRequest == null) {
 			getAutocompleteIndexRequest = new GetAutocompleteIndexRequest();
 		}
@@ -283,7 +283,7 @@ export class AutocompleteService {
 	}
 	
 // GetIndexes gets a list of AutocompleteIndexes.
-	async getIndexes(getAutocompleteIndexesRequest: GetAutocompleteIndexesRequest = null) {
+	async getIndexes(getAutocompleteIndexesRequest?: GetAutocompleteIndexesRequest) {
 		if (getAutocompleteIndexesRequest == null) {
 			getAutocompleteIndexesRequest = new GetAutocompleteIndexesRequest();
 		}
@@ -313,7 +313,7 @@ export class AutocompleteService {
 	}
 	
 // PutDoc puts a document into an AutocompleteIndex.
-	async putDoc(putAutocompleteDocRequest: PutAutocompleteDocRequest = null) {
+	async putDoc(putAutocompleteDocRequest?: PutAutocompleteDocRequest) {
 		if (putAutocompleteDocRequest == null) {
 			putAutocompleteDocRequest = new PutAutocompleteDocRequest();
 		}
@@ -350,7 +350,7 @@ export class IndexService {
 	constructor(readonly client: Client) {}
 	
 // CheckIndexName checks to see if an index name is available or not.
-	async checkIndexName(checkIndexNameRequest: CheckIndexNameRequest = null) {
+	async checkIndexName(checkIndexNameRequest?: CheckIndexNameRequest) {
 		if (checkIndexNameRequest == null) {
 			checkIndexNameRequest = new CheckIndexNameRequest();
 		}
@@ -380,7 +380,7 @@ export class IndexService {
 	}
 	
 // CheckIndexPath checks to see if an IndexPath is valid for creating an index.
-	async checkIndexPath(checkIndexPathRequest: CheckIndexPathRequest = null) {
+	async checkIndexPath(checkIndexPathRequest?: CheckIndexPathRequest) {
 		if (checkIndexPathRequest == null) {
 			checkIndexPathRequest = new CheckIndexPathRequest();
 		}
@@ -410,7 +410,7 @@ export class IndexService {
 	}
 	
 // CreateIndex creates a new index.
-	async createIndex(createIndexRequest: CreateIndexRequest = null) {
+	async createIndex(createIndexRequest?: CreateIndexRequest) {
 		if (createIndexRequest == null) {
 			createIndexRequest = new CreateIndexRequest();
 		}
@@ -441,7 +441,7 @@ export class IndexService {
 	
 // DeleteDoc removes a document from an Index. Once deleted, it will stop appearing
 // in search results.
-	async deleteDoc(deleteDocRequest: DeleteDocRequest = null) {
+	async deleteDoc(deleteDocRequest?: DeleteDocRequest) {
 		if (deleteDocRequest == null) {
 			deleteDocRequest = new DeleteDocRequest();
 		}
@@ -472,7 +472,7 @@ export class IndexService {
 	
 // DeleteIndex deletes the Index. All index data, as well as any metadata about
 // this Index will be completely deleted.
-	async deleteIndex(deleteIndexRequest: DeleteIndexRequest = null) {
+	async deleteIndex(deleteIndexRequest?: DeleteIndexRequest) {
 		if (deleteIndexRequest == null) {
 			deleteIndexRequest = new DeleteIndexRequest();
 		}
@@ -502,7 +502,7 @@ export class IndexService {
 	}
 	
 // GetIndex gets an Index.
-	async getIndex(getIndexRequest: GetIndexRequest = null) {
+	async getIndex(getIndexRequest?: GetIndexRequest) {
 		if (getIndexRequest == null) {
 			getIndexRequest = new GetIndexRequest();
 		}
@@ -532,7 +532,7 @@ export class IndexService {
 	}
 	
 // GetIndexes gets a list of Indexes.
-	async getIndexes(getIndexesRequest: GetIndexesRequest = null) {
+	async getIndexes(getIndexesRequest?: GetIndexesRequest) {
 		if (getIndexesRequest == null) {
 			getIndexesRequest = new GetIndexesRequest();
 		}
@@ -562,7 +562,7 @@ export class IndexService {
 	}
 	
 // PutDoc puts a document into an Index.
-	async putDoc(putDocRequest: PutDocRequest = null) {
+	async putDoc(putDocRequest?: PutDocRequest) {
 		if (putDocRequest == null) {
 			putDocRequest = new PutDocRequest();
 		}
@@ -592,7 +592,7 @@ export class IndexService {
 	}
 	
 // Search performs a search on an Index.
-	async search(searchRequest: SearchRequest = null) {
+	async search(searchRequest?: SearchRequest) {
 		if (searchRequest == null) {
 			searchRequest = new SearchRequest();
 		}
