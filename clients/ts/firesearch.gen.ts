@@ -1790,11 +1790,11 @@ export class SearchQuery {
 	// Select lists the fields to get from the document. Filters are automatically
 // included. To get search fields out, they must have been put with store set to
 // true.
-	select: string[];
+	select?: string[];
 
 	// SearchFields is a list of fields to search. If empty, all fields will be
 // searched.
-	searchFields: string[];
+	searchFields?: string[];
 
 	// Cursor is a encoded string from a previous Query, that you can use to get more
 // results.
