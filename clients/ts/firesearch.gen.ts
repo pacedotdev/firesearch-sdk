@@ -641,7 +641,7 @@ export class GenerateKeyRequest {
 // for. For example, if you put the prefix "firesearch/orgs/my-org" you will be
 // able to perform searches on both "firesearch/orgs/my-org/cards" and
 // "firesearch/orgs/my-org/messages" indexes.
-	indexPathPrefix: string;
+	indexPathPrefix: string = stringDefault;
 
 }
 
@@ -663,10 +663,10 @@ export class GenerateKeyResponse {
 
 	// AccessKey is the string that gets passed to `Search` and `Complete` methods to
 // perform searches. Access keys are valid for 24 hours.
-	accessKey: string;
+	accessKey: string = stringDefault;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -687,10 +687,10 @@ export class Field {
 	}
 
 	// Key is the name of the field. Cannot begin with an underscore.
-	key: string;
+	key: string = stringDefault;
 
 	// Value is the filterable value of this Field.
-	value: any;
+	value: any = anyDefault;
 
 }
 
@@ -722,10 +722,10 @@ export class AutocompleteDoc {
 	}
 
 	// ID is the document identifier.
-	id: string;
+	id: string = stringDefault;
 
 	// Text is a string that can be completed via a call to Complete.
-	text: string;
+	text: string = stringDefault;
 
 	// Fields are the filterable fields for this document.
 	fields: Field[];
@@ -754,15 +754,15 @@ export class AutocompleteIndex {
 
 	// IndexPath is the collection path in Firestore for this index. Each index must
 // use a unique path.
-	indexPath: string;
+	indexPath: string = stringDefault;
 
 	// Name is an internal human readable name for this index. End users will never see
 // this.
-	name: string;
+	name: string = stringDefault;
 
 	// CaseSensitive preserves case across this index. By default, all entries and
 // queries are lowercased.
-	caseSensitive: boolean;
+	caseSensitive: boolean = booleanDefault;
 
 }
 
@@ -779,7 +779,7 @@ export class CheckAutocompleteIndexNameRequest {
 	}
 
 	// IndexName is the name of the index to check.
-	indexName: string;
+	indexName: string = stringDefault;
 
 }
 
@@ -800,10 +800,10 @@ export class ValidationResult {
 	}
 
 	// Valid indicates whether the validation was successful or not.
-	valid: boolean;
+	valid: boolean = booleanDefault;
 
 	// Message is a human readable objection, or empty if valid.
-	message: string;
+	message: string = stringDefault;
 
 }
 
@@ -829,7 +829,7 @@ export class CheckAutocompleteIndexNameResponse {
 	validationResult: ValidationResult;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -846,7 +846,7 @@ export class CheckAutocompleteIndexPathRequest {
 		}
 	}
 
-		indexPath: string;
+		indexPath: string = stringDefault;
 
 }
 
@@ -872,7 +872,7 @@ export class CheckAutocompleteIndexPathResponse {
 	validationResult: ValidationResult;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -901,18 +901,18 @@ export class CompleteQuery {
 	}
 
 	// IndexPath is the path of the index to search.
-	indexPath: string;
+	indexPath: string = stringDefault;
 
 	// AccessKey authenticates the request. Get an AccessKey from the
 // AccessKeyService.GenerateKey method.
-	accessKey: string;
+	accessKey: string = stringDefault;
 
 	// Limit is the maximum number of search results to return. Smaller limits are
 // faster.
-	limit: number;
+	limit: number = numberDefault;
 
 	// Text contains a phrase to autocomplete.
-	text: string;
+	text: string = stringDefault;
 
 }
 
@@ -975,10 +975,10 @@ export class CompleteResponse {
 	hits: AutocompleteDoc[];
 
 	// Duration is the milliseconds that the search took to execute in the server side
-	duration: number;
+	duration: number = numberDefault;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1024,7 +1024,7 @@ export class CreateAutocompleteIndexResponse {
 	index: AutocompleteIndex;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1045,10 +1045,10 @@ export class DeleteAutocompleteDocRequest {
 	}
 
 	// IndexPath is the AutocompleteIndex to delete from.
-	indexPath: string;
+	indexPath: string = stringDefault;
 
 	// ID is the identifier of the document to delete.
-	id: string;
+	id: string = stringDefault;
 
 }
 
@@ -1065,7 +1065,7 @@ export class DeleteAutocompleteDocResponse {
 	}
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1083,7 +1083,7 @@ export class DeleteAutocompleteIndexRequest {
 
 	// IndexPath is the collection path in Firestore that identifies an
 // AutocompleteIndex.
-	indexPath: string;
+	indexPath: string = stringDefault;
 
 }
 
@@ -1101,7 +1101,7 @@ export class DeleteAutocompleteIndexResponse {
 	}
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1119,7 +1119,7 @@ export class GetAutocompleteIndexRequest {
 
 	// IndexPath is the collection path in Firestore that identifies an
 // AutocompleteIndex.
-	indexPath: string;
+	indexPath: string = stringDefault;
 
 }
 
@@ -1145,7 +1145,7 @@ export class GetAutocompleteIndexResponse {
 	index: AutocompleteIndex;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1186,7 +1186,7 @@ export class GetAutocompleteIndexesResponse {
 	indexes: AutocompleteIndex[];
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1209,7 +1209,7 @@ export class PutAutocompleteDocRequest {
 	}
 
 	// IndexPath is the AutocompleteIndex to put a document to.
-	indexPath: string;
+	indexPath: string = stringDefault;
 
 	// Doc is the document to put.
 	doc: AutocompleteDoc;
@@ -1229,7 +1229,7 @@ export class PutAutocompleteDocResponse {
 	}
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1246,7 +1246,7 @@ export class CheckIndexNameRequest {
 	}
 
 	// IndexName is the name of the index to check.
-	indexName: string;
+	indexName: string = stringDefault;
 
 }
 
@@ -1272,7 +1272,7 @@ export class CheckIndexNameResponse {
 	validationResult: ValidationResult;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1288,7 +1288,7 @@ export class CheckIndexPathRequest {
 		}
 	}
 
-		indexPath: string;
+		indexPath: string = stringDefault;
 
 }
 
@@ -1314,7 +1314,7 @@ export class CheckIndexPathResponse {
 	validationResult: ValidationResult;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1352,25 +1352,25 @@ export class Index {
 
 	// IndexPath is the collection path in Firestore for this index. Each index must
 // use a unique path.
-	indexPath: string;
+	indexPath: string = stringDefault;
 
 	// Name is an internal human readable name for this index. End users will never see
 // this.
-	name: string;
+	name: string = stringDefault;
 
 	// Language of the index.
-	language: string;
+	language: string = stringDefault;
 
 	// KeepStopWords prevents stop words from being removed from this index.
-	keepStopWords: boolean;
+	keepStopWords: boolean = booleanDefault;
 
 	// CaseSensitive preserves case across this index. By default, all entries and
 // queries are lowercased.
-	caseSensitive: boolean;
+	caseSensitive: boolean = booleanDefault;
 
 	// NoStem prevents words from being reduced. Only effective if a Language is
 // specified.
-	noStem: boolean;
+	noStem: boolean = booleanDefault;
 
 }
 
@@ -1415,7 +1415,7 @@ export class CreateIndexResponse {
 	index: Index;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1436,10 +1436,10 @@ export class DeleteDocRequest {
 	}
 
 	// IndexPath is the Index to delete from.
-	indexPath: string;
+	indexPath: string = stringDefault;
 
 	// ID is the identifier of the document to delete.
-	id: string;
+	id: string = stringDefault;
 
 }
 
@@ -1456,7 +1456,7 @@ export class DeleteDocResponse {
 	}
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1473,7 +1473,7 @@ export class DeleteIndexRequest {
 	}
 
 	// IndexPath is the collection path in Firestore that identifies an Index.
-	indexPath: string;
+	indexPath: string = stringDefault;
 
 }
 
@@ -1490,7 +1490,7 @@ export class DeleteIndexResponse {
 	}
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1515,14 +1515,14 @@ export class SearchField {
 	}
 
 	// Key is the name of the search field. Cannot begin with an underscore.
-	key: string;
+	key: string = stringDefault;
 
 	// Value is the searchable text field.
-	value: string;
+	value: string = stringDefault;
 
 	// Store tells Firesearch to store this value and return it in the search results.
 // By default, although the field is searchable, the original value is not stored.
-	store: boolean;
+	store: boolean = booleanDefault;
 
 }
 
@@ -1561,7 +1561,7 @@ export class Doc {
 	}
 
 	// ID is the document identifier.
-	id: string;
+	id: string = stringDefault;
 
 	// SearchFields are the searchable fields for this document.
 	searchFields: SearchField[];
@@ -1585,7 +1585,7 @@ export class GetIndexRequest {
 	}
 
 	// IndexPath is the collection path in Firestore that identifies an Index.
-	indexPath: string;
+	indexPath: string = stringDefault;
 
 }
 
@@ -1611,7 +1611,7 @@ export class GetIndexResponse {
 	index: Index;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1652,7 +1652,7 @@ export class GetIndexesResponse {
 	indexes: Index[];
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1673,10 +1673,10 @@ export class Highlight {
 	}
 
 	// Field is the name of the field.
-	field: string;
+	field: string = stringDefault;
 
 	// Text is the highlighted text.
-	text: string;
+	text: string = stringDefault;
 
 }
 
@@ -1699,7 +1699,7 @@ export class PutDocRequest {
 	}
 
 	// IndexPath is the Index to put a document to.
-	indexPath: string;
+	indexPath: string = stringDefault;
 
 	// Doc is the document to put.
 	doc: Doc;
@@ -1719,7 +1719,7 @@ export class PutDocResponse {
 	}
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
@@ -1771,18 +1771,18 @@ export class SearchQuery {
 	}
 
 	// IndexPath is the path of the index to search.
-	indexPath: string;
+	indexPath: string = stringDefault;
 
 	// AccessKey authenticates the request. Get an AccessKey from the
 // AccessKeyService.GenerateKey method.
-	accessKey: string;
+	accessKey: string = stringDefault;
 
 	// Limit is the maximum number of search results to return. Smaller limits are
 // faster.
-	limit: number;
+	limit: number = numberDefault;
 
 	// Text contains a phrase to search for.
-	text: string;
+	text: string = stringDefault;
 
 	// Filters are a list of where filters to apply when performing the search.
 	filters: Field[];
@@ -1798,7 +1798,7 @@ export class SearchQuery {
 
 	// Cursor is a encoded string from a previous Query, that you can use to get more
 // results.
-	cursor: string;
+	cursor: string = stringDefault;
 
 }
 
@@ -1860,7 +1860,7 @@ export class SearchResult {
 	}
 
 	// ID is the document identifier.
-	id: string;
+	id: string = stringDefault;
 
 	// Fields are the selected fields for this document.
 	fields: Field[];
@@ -1869,7 +1869,7 @@ export class SearchResult {
 	highlights: Highlight[];
 
 	// Score is a relative value for this query. Higher score is better.
-	score: number;
+	score: number = numberDefault;
 
 }
 
@@ -1921,19 +1921,24 @@ export class SearchResponse {
 	hits: SearchResult[];
 
 	// Duration is the milliseconds that the search took to execute in the server side
-	duration: number;
+	duration: number = numberDefault;
 
 	// Cursor is a encoded string that you can pass to a new Query to get more results.
-	cursor: string;
+	cursor: string = stringDefault;
 
 	// More indicates that there may be more search results. If true, make the same
 // Search request passing this Cursor. For performance reasons, Firesearch doesn't
 // always know with certainty so it's possible the subsequent request will return
 // no results.
-	more: boolean;
+	more: boolean = booleanDefault;
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string;
+	error: string = stringDefault;
 
 }
 
+
+// these defaults make the template easier to write.
+const stringDefault = ''
+const numberDefault = 0
+const booleanDefault = false 
