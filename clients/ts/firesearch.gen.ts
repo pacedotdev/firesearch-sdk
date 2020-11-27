@@ -54,7 +54,7 @@ export class AccessKeyService {
 		if (response.status !== 200) {
 			throw new Error(`AccessKeyService.GenerateKey: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -91,7 +91,7 @@ export class AutocompleteService {
 		if (response.status !== 200) {
 			throw new Error(`AutocompleteService.CheckIndexName: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -122,7 +122,7 @@ export class AutocompleteService {
 		if (response.status !== 200) {
 			throw new Error(`AutocompleteService.CheckIndexPath: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -152,7 +152,7 @@ export class AutocompleteService {
 		if (response.status !== 200) {
 			throw new Error(`AutocompleteService.Complete: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -182,7 +182,7 @@ export class AutocompleteService {
 		if (response.status !== 200) {
 			throw new Error(`AutocompleteService.CreateIndex: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -213,7 +213,7 @@ export class AutocompleteService {
 		if (response.status !== 200) {
 			throw new Error(`AutocompleteService.DeleteDoc: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -244,7 +244,7 @@ export class AutocompleteService {
 		if (response.status !== 200) {
 			throw new Error(`AutocompleteService.DeleteIndex: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -274,7 +274,7 @@ export class AutocompleteService {
 		if (response.status !== 200) {
 			throw new Error(`AutocompleteService.GetIndex: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -304,7 +304,7 @@ export class AutocompleteService {
 		if (response.status !== 200) {
 			throw new Error(`AutocompleteService.GetIndexes: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -334,7 +334,7 @@ export class AutocompleteService {
 		if (response.status !== 200) {
 			throw new Error(`AutocompleteService.PutDoc: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -371,7 +371,7 @@ export class IndexService {
 		if (response.status !== 200) {
 			throw new Error(`IndexService.CheckIndexName: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -401,7 +401,7 @@ export class IndexService {
 		if (response.status !== 200) {
 			throw new Error(`IndexService.CheckIndexPath: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -431,7 +431,7 @@ export class IndexService {
 		if (response.status !== 200) {
 			throw new Error(`IndexService.CreateIndex: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -462,7 +462,7 @@ export class IndexService {
 		if (response.status !== 200) {
 			throw new Error(`IndexService.DeleteDoc: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -493,7 +493,7 @@ export class IndexService {
 		if (response.status !== 200) {
 			throw new Error(`IndexService.DeleteIndex: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -523,7 +523,7 @@ export class IndexService {
 		if (response.status !== 200) {
 			throw new Error(`IndexService.GetIndex: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -553,7 +553,7 @@ export class IndexService {
 		if (response.status !== 200) {
 			throw new Error(`IndexService.GetIndexes: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -583,7 +583,7 @@ export class IndexService {
 		if (response.status !== 200) {
 			throw new Error(`IndexService.PutDoc: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
@@ -613,7 +613,7 @@ export class IndexService {
 		if (response.status !== 200) {
 			throw new Error(`IndexService.Search: ${response.status} ${response.statusText}`);
 		}
-		return response.json().then((json) => {
+		return response.json().then((json: any) => {
 			if (json.error) {
 				throw new Error(json.error);
 			}
