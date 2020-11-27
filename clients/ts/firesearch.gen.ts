@@ -3,7 +3,7 @@
 // HeadersFunc allows you to mutate headers for each request.
 // Useful for adding authorization into the client.
 interface HeadersFunc {
-	(headers: HeadersInit);
+	(headers: HeadersInit): void;
 }
 
 // Client provides access to remote services.
@@ -13,13 +13,13 @@ export class Client {
 	// apiKey is the secret API key to access the services.
 	// This should only be used for backend to backend communication,
 	// secret keys should never find their way into the browser.
-	public apiKey: string = null
+	public apiKey: string = ''
 	// headers allows calling code to mutate the HTTP
 	// headers of the underlying HTTP requests.
-	public headers: HeadersFunc
+	public headers?: HeadersFunc
 	// fetch is the method to use to access remote
 	// services.
-	public fetch
+	public fetch: any = null
 	constructor(endpoint: string) {
 		this.endpoint = endpoint
 		this.fetch = window.fetch.bind(window)
