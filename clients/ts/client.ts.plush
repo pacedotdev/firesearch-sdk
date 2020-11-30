@@ -31,7 +31,7 @@ export class Client {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`<%= service.Name %>.<%= method.Name %>: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`<%= service.Name %>.<%= method.Name %>: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/<%= service.Name %>.<%= method.Name %>', {
 			method: 'POST',
