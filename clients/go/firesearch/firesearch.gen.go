@@ -118,109 +118,6 @@ func NewAutocompleteService(client *Client) *AutocompleteService {
 	}
 }
 
-// CheckIndexName checks to see if an index name is available or not.
-func (s *AutocompleteService) CheckIndexName(ctx context.Context, r CheckAutocompleteIndexNameRequest) (*CheckAutocompleteIndexNameResponse, error) {
-	requestBodyBytes, err := json.Marshal(r)
-	if err != nil {
-		return nil, errors.Wrap(err, "AutocompleteService.CheckIndexName: marshal CheckAutocompleteIndexNameRequest")
-	}
-	url := s.client.Endpoint + "/AutocompleteService.CheckIndexName"
-	s.client.Debug(fmt.Sprintf("POST %s", url))
-	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
-	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
-	if err != nil {
-		return nil, errors.Wrap(err, "AutocompleteService.CheckIndexName: NewRequest")
-	}
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.APIKey)
-	req = req.WithContext(ctx)
-	resp, err := s.client.HTTPClient.Do(req)
-	if err != nil {
-		return nil, errors.Wrap(err, "AutocompleteService.CheckIndexName")
-	}
-	defer resp.Body.Close()
-	var response struct {
-		CheckAutocompleteIndexNameResponse
-		Error string
-	}
-	var bodyReader io.Reader = resp.Body
-	if strings.Contains(resp.Header.Get("Content-Encoding"), "gzip") {
-		decodedBody, err := gzip.NewReader(resp.Body)
-		if err != nil {
-			return nil, errors.Wrap(err, "AutocompleteService.CheckIndexName: new gzip reader")
-		}
-		defer decodedBody.Close()
-		bodyReader = decodedBody
-	}
-	respBodyBytes, err := ioutil.ReadAll(bodyReader)
-	if err != nil {
-		return nil, errors.Wrap(err, "AutocompleteService.CheckIndexName: read response body")
-	}
-	if err := json.Unmarshal(respBodyBytes, &response); err != nil {
-		if resp.StatusCode != http.StatusOK {
-			return nil, errors.Errorf("AutocompleteService.CheckIndexName: (%d) %v", resp.StatusCode, string(respBodyBytes))
-		}
-		return nil, errors.Wrap(err, "decode json body")
-	}
-	if response.Error != "" {
-		return nil, errors.New(response.Error)
-	}
-	return &response.CheckAutocompleteIndexNameResponse, nil
-}
-
-// CheckIndexPath checks to see if an AutocompleteIndexPath is valid for creating
-// an index.
-func (s *AutocompleteService) CheckIndexPath(ctx context.Context, r CheckAutocompleteIndexPathRequest) (*CheckAutocompleteIndexPathResponse, error) {
-	requestBodyBytes, err := json.Marshal(r)
-	if err != nil {
-		return nil, errors.Wrap(err, "AutocompleteService.CheckIndexPath: marshal CheckAutocompleteIndexPathRequest")
-	}
-	url := s.client.Endpoint + "/AutocompleteService.CheckIndexPath"
-	s.client.Debug(fmt.Sprintf("POST %s", url))
-	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
-	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
-	if err != nil {
-		return nil, errors.Wrap(err, "AutocompleteService.CheckIndexPath: NewRequest")
-	}
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.APIKey)
-	req = req.WithContext(ctx)
-	resp, err := s.client.HTTPClient.Do(req)
-	if err != nil {
-		return nil, errors.Wrap(err, "AutocompleteService.CheckIndexPath")
-	}
-	defer resp.Body.Close()
-	var response struct {
-		CheckAutocompleteIndexPathResponse
-		Error string
-	}
-	var bodyReader io.Reader = resp.Body
-	if strings.Contains(resp.Header.Get("Content-Encoding"), "gzip") {
-		decodedBody, err := gzip.NewReader(resp.Body)
-		if err != nil {
-			return nil, errors.Wrap(err, "AutocompleteService.CheckIndexPath: new gzip reader")
-		}
-		defer decodedBody.Close()
-		bodyReader = decodedBody
-	}
-	respBodyBytes, err := ioutil.ReadAll(bodyReader)
-	if err != nil {
-		return nil, errors.Wrap(err, "AutocompleteService.CheckIndexPath: read response body")
-	}
-	if err := json.Unmarshal(respBodyBytes, &response); err != nil {
-		if resp.StatusCode != http.StatusOK {
-			return nil, errors.Errorf("AutocompleteService.CheckIndexPath: (%d) %v", resp.StatusCode, string(respBodyBytes))
-		}
-		return nil, errors.Wrap(err, "decode json body")
-	}
-	if response.Error != "" {
-		return nil, errors.New(response.Error)
-	}
-	return &response.CheckAutocompleteIndexPathResponse, nil
-}
-
 // Complete performs a search on an AutocompleteIndex.
 func (s *AutocompleteService) Complete(ctx context.Context, r CompleteRequest) (*CompleteResponse, error) {
 	requestBodyBytes, err := json.Marshal(r)
@@ -593,108 +490,6 @@ func NewIndexService(client *Client) *IndexService {
 	}
 }
 
-// CheckIndexName checks to see if an index name is available or not.
-func (s *IndexService) CheckIndexName(ctx context.Context, r CheckIndexNameRequest) (*CheckIndexNameResponse, error) {
-	requestBodyBytes, err := json.Marshal(r)
-	if err != nil {
-		return nil, errors.Wrap(err, "IndexService.CheckIndexName: marshal CheckIndexNameRequest")
-	}
-	url := s.client.Endpoint + "/IndexService.CheckIndexName"
-	s.client.Debug(fmt.Sprintf("POST %s", url))
-	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
-	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
-	if err != nil {
-		return nil, errors.Wrap(err, "IndexService.CheckIndexName: NewRequest")
-	}
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.APIKey)
-	req = req.WithContext(ctx)
-	resp, err := s.client.HTTPClient.Do(req)
-	if err != nil {
-		return nil, errors.Wrap(err, "IndexService.CheckIndexName")
-	}
-	defer resp.Body.Close()
-	var response struct {
-		CheckIndexNameResponse
-		Error string
-	}
-	var bodyReader io.Reader = resp.Body
-	if strings.Contains(resp.Header.Get("Content-Encoding"), "gzip") {
-		decodedBody, err := gzip.NewReader(resp.Body)
-		if err != nil {
-			return nil, errors.Wrap(err, "IndexService.CheckIndexName: new gzip reader")
-		}
-		defer decodedBody.Close()
-		bodyReader = decodedBody
-	}
-	respBodyBytes, err := ioutil.ReadAll(bodyReader)
-	if err != nil {
-		return nil, errors.Wrap(err, "IndexService.CheckIndexName: read response body")
-	}
-	if err := json.Unmarshal(respBodyBytes, &response); err != nil {
-		if resp.StatusCode != http.StatusOK {
-			return nil, errors.Errorf("IndexService.CheckIndexName: (%d) %v", resp.StatusCode, string(respBodyBytes))
-		}
-		return nil, errors.Wrap(err, "decode json body")
-	}
-	if response.Error != "" {
-		return nil, errors.New(response.Error)
-	}
-	return &response.CheckIndexNameResponse, nil
-}
-
-// CheckIndexPath checks to see if an IndexPath is valid for creating an index.
-func (s *IndexService) CheckIndexPath(ctx context.Context, r CheckIndexPathRequest) (*CheckIndexPathResponse, error) {
-	requestBodyBytes, err := json.Marshal(r)
-	if err != nil {
-		return nil, errors.Wrap(err, "IndexService.CheckIndexPath: marshal CheckIndexPathRequest")
-	}
-	url := s.client.Endpoint + "/IndexService.CheckIndexPath"
-	s.client.Debug(fmt.Sprintf("POST %s", url))
-	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
-	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
-	if err != nil {
-		return nil, errors.Wrap(err, "IndexService.CheckIndexPath: NewRequest")
-	}
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Accept-Encoding", "gzip")
-	req.Header.Set("X-API-Key", s.client.APIKey)
-	req = req.WithContext(ctx)
-	resp, err := s.client.HTTPClient.Do(req)
-	if err != nil {
-		return nil, errors.Wrap(err, "IndexService.CheckIndexPath")
-	}
-	defer resp.Body.Close()
-	var response struct {
-		CheckIndexPathResponse
-		Error string
-	}
-	var bodyReader io.Reader = resp.Body
-	if strings.Contains(resp.Header.Get("Content-Encoding"), "gzip") {
-		decodedBody, err := gzip.NewReader(resp.Body)
-		if err != nil {
-			return nil, errors.Wrap(err, "IndexService.CheckIndexPath: new gzip reader")
-		}
-		defer decodedBody.Close()
-		bodyReader = decodedBody
-	}
-	respBodyBytes, err := ioutil.ReadAll(bodyReader)
-	if err != nil {
-		return nil, errors.Wrap(err, "IndexService.CheckIndexPath: read response body")
-	}
-	if err := json.Unmarshal(respBodyBytes, &response); err != nil {
-		if resp.StatusCode != http.StatusOK {
-			return nil, errors.Errorf("IndexService.CheckIndexPath: (%d) %v", resp.StatusCode, string(respBodyBytes))
-		}
-		return nil, errors.Wrap(err, "decode json body")
-	}
-	if response.Error != "" {
-		return nil, errors.New(response.Error)
-	}
-	return &response.CheckIndexPathResponse, nil
-}
-
 // CreateIndex creates a new index.
 func (s *IndexService) CreateIndex(ctx context.Context, r CreateIndexRequest) (*CreateIndexResponse, error) {
 	requestBodyBytes, err := json.Marshal(r)
@@ -1054,6 +849,121 @@ func (s *IndexService) Search(ctx context.Context, r SearchRequest) (*SearchResp
 	return &response.SearchResponse, nil
 }
 
+// MetaService provides convenience methods to check or validate indexes. Most
+// people will not need to use this service.
+type MetaService struct {
+	client *Client
+}
+
+// NewMetaService makes a new client for accessing MetaService services.
+func NewMetaService(client *Client) *MetaService {
+	return &MetaService{
+		client: client,
+	}
+}
+
+// CheckIndexName checks to see if an index name is available or not.
+func (s *MetaService) CheckIndexName(ctx context.Context, r CheckIndexNameRequest) (*CheckIndexNameResponse, error) {
+	requestBodyBytes, err := json.Marshal(r)
+	if err != nil {
+		return nil, errors.Wrap(err, "MetaService.CheckIndexName: marshal CheckIndexNameRequest")
+	}
+	url := s.client.Endpoint + "/MetaService.CheckIndexName"
+	s.client.Debug(fmt.Sprintf("POST %s", url))
+	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
+	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
+	if err != nil {
+		return nil, errors.Wrap(err, "MetaService.CheckIndexName: NewRequest")
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Accept-Encoding", "gzip")
+	req.Header.Set("X-API-Key", s.client.APIKey)
+	req = req.WithContext(ctx)
+	resp, err := s.client.HTTPClient.Do(req)
+	if err != nil {
+		return nil, errors.Wrap(err, "MetaService.CheckIndexName")
+	}
+	defer resp.Body.Close()
+	var response struct {
+		CheckIndexNameResponse
+		Error string
+	}
+	var bodyReader io.Reader = resp.Body
+	if strings.Contains(resp.Header.Get("Content-Encoding"), "gzip") {
+		decodedBody, err := gzip.NewReader(resp.Body)
+		if err != nil {
+			return nil, errors.Wrap(err, "MetaService.CheckIndexName: new gzip reader")
+		}
+		defer decodedBody.Close()
+		bodyReader = decodedBody
+	}
+	respBodyBytes, err := ioutil.ReadAll(bodyReader)
+	if err != nil {
+		return nil, errors.Wrap(err, "MetaService.CheckIndexName: read response body")
+	}
+	if err := json.Unmarshal(respBodyBytes, &response); err != nil {
+		if resp.StatusCode != http.StatusOK {
+			return nil, errors.Errorf("MetaService.CheckIndexName: (%d) %v", resp.StatusCode, string(respBodyBytes))
+		}
+		return nil, errors.Wrap(err, "decode json body")
+	}
+	if response.Error != "" {
+		return nil, errors.New(response.Error)
+	}
+	return &response.CheckIndexNameResponse, nil
+}
+
+// CheckIndexPath checks to see if an IndexPath is valid for creating an index.
+func (s *MetaService) CheckIndexPath(ctx context.Context, r CheckIndexPathRequest) (*CheckIndexPathResponse, error) {
+	requestBodyBytes, err := json.Marshal(r)
+	if err != nil {
+		return nil, errors.Wrap(err, "MetaService.CheckIndexPath: marshal CheckIndexPathRequest")
+	}
+	url := s.client.Endpoint + "/MetaService.CheckIndexPath"
+	s.client.Debug(fmt.Sprintf("POST %s", url))
+	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
+	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
+	if err != nil {
+		return nil, errors.Wrap(err, "MetaService.CheckIndexPath: NewRequest")
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Accept-Encoding", "gzip")
+	req.Header.Set("X-API-Key", s.client.APIKey)
+	req = req.WithContext(ctx)
+	resp, err := s.client.HTTPClient.Do(req)
+	if err != nil {
+		return nil, errors.Wrap(err, "MetaService.CheckIndexPath")
+	}
+	defer resp.Body.Close()
+	var response struct {
+		CheckIndexPathResponse
+		Error string
+	}
+	var bodyReader io.Reader = resp.Body
+	if strings.Contains(resp.Header.Get("Content-Encoding"), "gzip") {
+		decodedBody, err := gzip.NewReader(resp.Body)
+		if err != nil {
+			return nil, errors.Wrap(err, "MetaService.CheckIndexPath: new gzip reader")
+		}
+		defer decodedBody.Close()
+		bodyReader = decodedBody
+	}
+	respBodyBytes, err := ioutil.ReadAll(bodyReader)
+	if err != nil {
+		return nil, errors.Wrap(err, "MetaService.CheckIndexPath: read response body")
+	}
+	if err := json.Unmarshal(respBodyBytes, &response); err != nil {
+		if resp.StatusCode != http.StatusOK {
+			return nil, errors.Errorf("MetaService.CheckIndexPath: (%d) %v", resp.StatusCode, string(respBodyBytes))
+		}
+		return nil, errors.Wrap(err, "decode json body")
+	}
+	if response.Error != "" {
+		return nil, errors.New(response.Error)
+	}
+	return &response.CheckIndexPathResponse, nil
+}
+
 // GenerateKeyRequest is the input object for GenerateKey.
 type GenerateKeyRequest struct {
 
@@ -1109,43 +1019,6 @@ type AutocompleteIndex struct {
 	// CaseSensitive preserves case across this index. By default, all entries and
 	// queries are lowercased.
 	CaseSensitive bool `json:"caseSensitive"`
-}
-
-// CheckAutocompleteIndexNameRequest is the input for CheckAutocompleteIndexPath.
-type CheckAutocompleteIndexNameRequest struct {
-
-	// IndexName is the name of the index to check.
-	IndexName string `json:"indexName"`
-}
-
-// ValidationResult describes the result of a validation check.
-type ValidationResult struct {
-
-	// Valid indicates whether the validation was successful or not.
-	Valid bool `json:"valid"`
-
-	// Message is a human readable objection, or empty if valid.
-	Message string `json:"message"`
-}
-
-// CheckAutocompleteIndexNameResponse is the output for CheckAutocompleteIndexName.
-type CheckAutocompleteIndexNameResponse struct {
-
-	// ValidationResult holds the result of the check.
-	ValidationResult ValidationResult `json:"validationResult"`
-}
-
-// CheckAutocompleteIndexPathRequest is the input object for
-// CheckAutocompleteIndexPath.
-type CheckAutocompleteIndexPathRequest struct {
-	IndexPath string `json:"indexPath"`
-}
-
-// CheckAutocompleteIndexPathResponse is the output for CheckAutocompleteIndexPath.
-type CheckAutocompleteIndexPathResponse struct {
-
-	// ValidationResult holds the result of the check.
-	ValidationResult ValidationResult `json:"validationResult"`
 }
 
 // CompleteQuery describes a search query.
@@ -1275,6 +1148,16 @@ type CheckIndexNameRequest struct {
 	IndexName string `json:"indexName"`
 }
 
+// ValidationResult describes the result of a validation check.
+type ValidationResult struct {
+
+	// Valid indicates whether the validation was successful or not.
+	Valid bool `json:"valid"`
+
+	// Message is a human readable objection, or empty if valid.
+	Message string `json:"message"`
+}
+
 // CheckIndexNameResponse is the output for CheckIndexName.
 type CheckIndexNameResponse struct {
 
@@ -1292,6 +1175,32 @@ type CheckIndexPathResponse struct {
 
 	// ValidationResult holds the result of the check.
 	ValidationResult ValidationResult `json:"validationResult"`
+}
+
+// GeoIndex describes a search index.
+type GeoIndex struct {
+
+	// IndexPath is the collection path in Firestore for this index. Each index must
+	// use a unique path.
+	IndexPath string `json:"indexPath"`
+
+	// Name is an internal human readable name for this index. End users will never see
+	// this.
+	Name string `json:"name"`
+
+	// Language of the index.
+	Language string `json:"language"`
+
+	// KeepStopWords prevents stop words from being removed from this index.
+	KeepStopWords bool `json:"keepStopWords"`
+
+	// CaseSensitive preserves case across this index. By default, all entries and
+	// queries are lowercased.
+	CaseSensitive bool `json:"caseSensitive"`
+
+	// NoStem prevents words from being reduced. Only effective if a Language is
+	// specified.
+	NoStem bool `json:"noStem"`
 }
 
 // Index describes a search index.
@@ -1387,6 +1296,102 @@ type Doc struct {
 	Fields []Field `json:"fields"`
 }
 
+// GeoDoc describes a document that can be searched.
+type GeoDoc struct {
+
+	// ID is the document identifier.
+	ID string `json:"id"`
+
+	// Lat is the latitude of the location.
+	Lat float64 `json:"lat"`
+
+	// Lon is the longitude of the location.
+	Lon float64 `json:"lon"`
+
+	// SearchFields are the searchable fields for this document.
+	SearchFields []SearchField `json:"searchFields"`
+
+	// Fields are the key/value pairs that make up this document. Fields can be
+	// returned in search results, and may be filtered.
+	Fields []Field `json:"fields"`
+}
+
+// GeoSearchQuery describes a search query.
+type GeoSearchQuery struct {
+
+	// IndexPath is the path of the index to search.
+	IndexPath string `json:"indexPath"`
+
+	// AccessKey authenticates the request. Get an AccessKey from the
+	// AccessKeyService.GenerateKey method.
+	AccessKey string `json:"accessKey"`
+
+	// Limit is the maximum number of search results to return. Smaller limits are
+	// faster.
+	Limit int `json:"limit"`
+
+	// Text contains a phrase to search for.
+	Text string `json:"text"`
+
+	// Lat is the latitude of the location to search.
+	Lat float64 `json:"lat"`
+
+	// Lon is the longitude of the location to search.
+	Lon float64 `json:"lon"`
+
+	// Radius is the aproximate distance in kilometers from center described with Lat,
+	// Lon.
+	Radius float64 `json:"radius"`
+
+	// Filters are a list of where filters to apply when performing the search.
+	Filters []Field `json:"filters"`
+
+	// Select lists the fields to get from the document. Filters are automatically
+	// included. To get search fields out, they must have been put with store set to
+	// true.
+	Select []string `json:"select"`
+
+	// SearchFields is a list of fields to search. If empty, all fields will be
+	// searched.
+	SearchFields []string `json:"searchFields"`
+
+	// Cursor is a encoded string from a previous Query, that you can use to get more
+	// results.
+	Cursor string `json:"cursor"`
+}
+
+// Highlight describes an area that specifically matches a search query.
+type Highlight struct {
+
+	// Field is the name of the field.
+	Field string `json:"field"`
+
+	// Text is the highlighted text.
+	Text string `json:"text"`
+}
+
+// GeoSearchResult is a document that matches a search query.
+type GeoSearchResult struct {
+
+	// ID is the document identifier.
+	ID string `json:"id"`
+
+	// Lat is the latitude of the location.
+	Lat float64 `json:"lat"`
+
+	// Lon is the longitude of the location.
+	Lon float64 `json:"lon"`
+
+	// Fields are the selected fields for this document.
+	Fields []Field `json:"fields"`
+
+	// Highlights describe areas within the text that specifically match the query.
+	Highlights []Highlight `json:"highlights"`
+
+	// Score is a relative value for this query. Higher score is better.
+	Score float64 `json:"score"`
+}
+
 // GetIndexRequest is the input object for GetIndex.
 type GetIndexRequest struct {
 
@@ -1410,16 +1415,6 @@ type GetIndexesResponse struct {
 
 	// Indexes are the indexes managed by this service.
 	Indexes []Index `json:"indexes"`
-}
-
-// Highlight describes an area that specifically matches a search query.
-type Highlight struct {
-
-	// Field is the name of the field.
-	Field string `json:"field"`
-
-	// Text is the highlighted text.
-	Text string `json:"text"`
 }
 
 // PutDocRequest is the input object for PutDoc.

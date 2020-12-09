@@ -46,46 +46,6 @@ firesearch.AutocompleteService = function(client) {
 }
 
 
-firesearch.AutocompleteService.prototype.checkIndexName = async function(checkAutocompleteIndexNameRequest) {
-	let headers = this.client.getHeaders();
-	headers['Accept'] = 'application/json';
-	headers['Content-Type'] = 'application/json';
-	const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CheckIndexName', {
-		method: 'POST',
-		headers: headers,
-		body: JSON.stringify(checkAutocompleteIndexNameRequest),
-	})
-	if (response.status !== 200) {
-		throw new Error(`firesearch: AutocompleteService.CheckIndexName: ${response.status} ${response.statusText}`);
-	}
-	return response.json().then(json => {
-		if (json.error) {
-			throw new Error('firesearch: ' + json.error);
-		}
-		return json;
-	})	
-}
-
-firesearch.AutocompleteService.prototype.checkIndexPath = async function(checkAutocompleteIndexPathRequest) {
-	let headers = this.client.getHeaders();
-	headers['Accept'] = 'application/json';
-	headers['Content-Type'] = 'application/json';
-	const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CheckIndexPath', {
-		method: 'POST',
-		headers: headers,
-		body: JSON.stringify(checkAutocompleteIndexPathRequest),
-	})
-	if (response.status !== 200) {
-		throw new Error(`firesearch: AutocompleteService.CheckIndexPath: ${response.status} ${response.statusText}`);
-	}
-	return response.json().then(json => {
-		if (json.error) {
-			throw new Error('firesearch: ' + json.error);
-		}
-		return json;
-	})	
-}
-
 firesearch.AutocompleteService.prototype.complete = async function(completeRequest) {
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
@@ -234,46 +194,6 @@ firesearch.IndexService = function(client) {
 }
 
 
-firesearch.IndexService.prototype.checkIndexName = async function(checkIndexNameRequest) {
-	let headers = this.client.getHeaders();
-	headers['Accept'] = 'application/json';
-	headers['Content-Type'] = 'application/json';
-	const response = await this.client.fetch(this.client.endpoint + '/IndexService.CheckIndexName', {
-		method: 'POST',
-		headers: headers,
-		body: JSON.stringify(checkIndexNameRequest),
-	})
-	if (response.status !== 200) {
-		throw new Error(`firesearch: IndexService.CheckIndexName: ${response.status} ${response.statusText}`);
-	}
-	return response.json().then(json => {
-		if (json.error) {
-			throw new Error('firesearch: ' + json.error);
-		}
-		return json;
-	})	
-}
-
-firesearch.IndexService.prototype.checkIndexPath = async function(checkIndexPathRequest) {
-	let headers = this.client.getHeaders();
-	headers['Accept'] = 'application/json';
-	headers['Content-Type'] = 'application/json';
-	const response = await this.client.fetch(this.client.endpoint + '/IndexService.CheckIndexPath', {
-		method: 'POST',
-		headers: headers,
-		body: JSON.stringify(checkIndexPathRequest),
-	})
-	if (response.status !== 200) {
-		throw new Error(`firesearch: IndexService.CheckIndexPath: ${response.status} ${response.statusText}`);
-	}
-	return response.json().then(json => {
-		if (json.error) {
-			throw new Error('firesearch: ' + json.error);
-		}
-		return json;
-	})	
-}
-
 firesearch.IndexService.prototype.createIndex = async function(createIndexRequest) {
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
@@ -405,6 +325,54 @@ firesearch.IndexService.prototype.search = async function(searchRequest) {
 	})
 	if (response.status !== 200) {
 		throw new Error(`firesearch: IndexService.Search: ${response.status} ${response.statusText}`);
+	}
+	return response.json().then(json => {
+		if (json.error) {
+			throw new Error('firesearch: ' + json.error);
+		}
+		return json;
+	})	
+}
+
+
+// MetaService provides convenience methods to check or validate indexes. Most
+// people will not need to use this service.
+firesearch.MetaService = function(client) {
+	this.client = client
+}
+
+
+firesearch.MetaService.prototype.checkIndexName = async function(checkIndexNameRequest) {
+	let headers = this.client.getHeaders();
+	headers['Accept'] = 'application/json';
+	headers['Content-Type'] = 'application/json';
+	const response = await this.client.fetch(this.client.endpoint + '/MetaService.CheckIndexName', {
+		method: 'POST',
+		headers: headers,
+		body: JSON.stringify(checkIndexNameRequest),
+	})
+	if (response.status !== 200) {
+		throw new Error(`firesearch: MetaService.CheckIndexName: ${response.status} ${response.statusText}`);
+	}
+	return response.json().then(json => {
+		if (json.error) {
+			throw new Error('firesearch: ' + json.error);
+		}
+		return json;
+	})	
+}
+
+firesearch.MetaService.prototype.checkIndexPath = async function(checkIndexPathRequest) {
+	let headers = this.client.getHeaders();
+	headers['Accept'] = 'application/json';
+	headers['Content-Type'] = 'application/json';
+	const response = await this.client.fetch(this.client.endpoint + '/MetaService.CheckIndexPath', {
+		method: 'POST',
+		headers: headers,
+		body: JSON.stringify(checkIndexPathRequest),
+	})
+	if (response.status !== 200) {
+		throw new Error(`firesearch: MetaService.CheckIndexPath: ${response.status} ${response.statusText}`);
 	}
 	return response.json().then(json => {
 		if (json.error) {

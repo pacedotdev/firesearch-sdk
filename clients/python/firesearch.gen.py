@@ -42,42 +42,6 @@ class AutocompleteService:
 	def __init__(self, client):
 		self.client = client
 	
-	def checkIndexName(self, checkAutocompleteIndexNameRequest):
-		"""CheckIndexName checks to see if an index name is available or not."""
-		url = "{}/AutocompleteService.CheckIndexName".format(self.client.endpoint)
-		headers = {
-			'Accept': 'application/json; charset=utf8',
-			'Content-Type': 'application/json; charset=utf8',
-			'X-API-Key': self.client.apiKey,
-		}
-		r = requests.post(url, json=checkAutocompleteIndexNameRequest, headers=headers)
-		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
-		j = r.json()
-		if 'error' in j:
-			err = j.get('error')
-			if err != '':
-				raise OtoError(message=err)
-		return j
-	
-	def checkIndexPath(self, checkAutocompleteIndexPathRequest):
-		"""CheckIndexPath checks to see if an AutocompleteIndexPath is valid for creating an index."""
-		url = "{}/AutocompleteService.CheckIndexPath".format(self.client.endpoint)
-		headers = {
-			'Accept': 'application/json; charset=utf8',
-			'Content-Type': 'application/json; charset=utf8',
-			'X-API-Key': self.client.apiKey,
-		}
-		r = requests.post(url, json=checkAutocompleteIndexPathRequest, headers=headers)
-		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
-		j = r.json()
-		if 'error' in j:
-			err = j.get('error')
-			if err != '':
-				raise OtoError(message=err)
-		return j
-	
 	def complete(self, completeRequest):
 		"""Complete performs a search on an AutocompleteIndex."""
 		url = "{}/AutocompleteService.Complete".format(self.client.endpoint)
@@ -210,42 +174,6 @@ class IndexService:
 	def __init__(self, client):
 		self.client = client
 	
-	def checkIndexName(self, checkIndexNameRequest):
-		"""CheckIndexName checks to see if an index name is available or not."""
-		url = "{}/IndexService.CheckIndexName".format(self.client.endpoint)
-		headers = {
-			'Accept': 'application/json; charset=utf8',
-			'Content-Type': 'application/json; charset=utf8',
-			'X-API-Key': self.client.apiKey,
-		}
-		r = requests.post(url, json=checkIndexNameRequest, headers=headers)
-		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
-		j = r.json()
-		if 'error' in j:
-			err = j.get('error')
-			if err != '':
-				raise OtoError(message=err)
-		return j
-	
-	def checkIndexPath(self, checkIndexPathRequest):
-		"""CheckIndexPath checks to see if an IndexPath is valid for creating an index."""
-		url = "{}/IndexService.CheckIndexPath".format(self.client.endpoint)
-		headers = {
-			'Accept': 'application/json; charset=utf8',
-			'Content-Type': 'application/json; charset=utf8',
-			'X-API-Key': self.client.apiKey,
-		}
-		r = requests.post(url, json=checkIndexPathRequest, headers=headers)
-		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
-		j = r.json()
-		if 'error' in j:
-			err = j.get('error')
-			if err != '':
-				raise OtoError(message=err)
-		return j
-	
 	def createIndex(self, createIndexRequest):
 		"""CreateIndex creates a new index."""
 		url = "{}/IndexService.CreateIndex".format(self.client.endpoint)
@@ -363,6 +291,48 @@ class IndexService:
 			'X-API-Key': self.client.apiKey,
 		}
 		r = requests.post(url, json=searchRequest, headers=headers)
+		if r.status_code != 200:
+			raise OtoError(message="status code: {}".format(r.status_code))
+		j = r.json()
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
+		return j
+	
+class MetaService:
+	"""MetaService provides convenience methods to check or validate indexes. Most people will not need to use this service."""
+
+	def __init__(self, client):
+		self.client = client
+	
+	def checkIndexName(self, checkIndexNameRequest):
+		"""CheckIndexName checks to see if an index name is available or not."""
+		url = "{}/MetaService.CheckIndexName".format(self.client.endpoint)
+		headers = {
+			'Accept': 'application/json; charset=utf8',
+			'Content-Type': 'application/json; charset=utf8',
+			'X-API-Key': self.client.apiKey,
+		}
+		r = requests.post(url, json=checkIndexNameRequest, headers=headers)
+		if r.status_code != 200:
+			raise OtoError(message="status code: {}".format(r.status_code))
+		j = r.json()
+		if 'error' in j:
+			err = j.get('error')
+			if err != '':
+				raise OtoError(message=err)
+		return j
+	
+	def checkIndexPath(self, checkIndexPathRequest):
+		"""CheckIndexPath checks to see if an IndexPath is valid for creating an index."""
+		url = "{}/MetaService.CheckIndexPath".format(self.client.endpoint)
+		headers = {
+			'Accept': 'application/json; charset=utf8',
+			'Content-Type': 'application/json; charset=utf8',
+			'X-API-Key': self.client.apiKey,
+		}
+		r = requests.post(url, json=checkIndexPathRequest, headers=headers)
 		if r.status_code != 200:
 			raise OtoError(message="status code: {}".format(r.status_code))
 		j = r.json()

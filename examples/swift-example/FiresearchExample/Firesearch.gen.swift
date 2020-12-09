@@ -73,97 +73,6 @@ class AutocompleteService {
 		self.client = client
 	}
 
-	// CheckIndexName checks to see if an index name is available or not.
-	func checkIndexName(withRequest checkAutocompleteIndexNameRequest: CheckAutocompleteIndexNameRequest, completion: @escaping (_ response: CheckAutocompleteIndexNameResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/AutocompleteService.CheckIndexName"
-		var request = URLRequest(url: URL(string: url)!)
-		request.httpMethod = "POST"
-		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
-		var jsonData: Data
-		do {
-			jsonData = try JSONEncoder().encode(checkAutocompleteIndexNameRequest)
-		} catch let err {
-			completion(nil, err)
-			return
-		}
-		request.httpBody = jsonData
-		let session = URLSession(configuration: URLSessionConfiguration.default)
-		let task = session.dataTask(with: request) { (data, response, error) in
-			if let err = error {
-				completion(nil, err)
-				return
-			}
-			if let httpResponse = response as? HTTPURLResponse {
-				if (httpResponse.statusCode != 200) {
-					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-					completion(nil, err)
-					return
-				}
-			}
-			var checkAutocompleteIndexNameResponse: CheckAutocompleteIndexNameResponse
-			do {
-				checkAutocompleteIndexNameResponse = try JSONDecoder().decode(CheckAutocompleteIndexNameResponse.self, from: data!)
-			} catch let err {
-				completion(nil, err)
-				return
-			}
-			if checkAutocompleteIndexNameResponse.error != nil {
-				let err = OtoError("\(url): \(checkAutocompleteIndexNameResponse.error!)")
-				completion(nil, err)
-				return
-			}
-			completion(checkAutocompleteIndexNameResponse, nil)
-		}
-		task.resume()
-	}
-
-	// CheckIndexPath checks to see if an AutocompleteIndexPath is valid for creating
-// an index.
-	func checkIndexPath(withRequest checkAutocompleteIndexPathRequest: CheckAutocompleteIndexPathRequest, completion: @escaping (_ response: CheckAutocompleteIndexPathResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/AutocompleteService.CheckIndexPath"
-		var request = URLRequest(url: URL(string: url)!)
-		request.httpMethod = "POST"
-		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
-		var jsonData: Data
-		do {
-			jsonData = try JSONEncoder().encode(checkAutocompleteIndexPathRequest)
-		} catch let err {
-			completion(nil, err)
-			return
-		}
-		request.httpBody = jsonData
-		let session = URLSession(configuration: URLSessionConfiguration.default)
-		let task = session.dataTask(with: request) { (data, response, error) in
-			if let err = error {
-				completion(nil, err)
-				return
-			}
-			if let httpResponse = response as? HTTPURLResponse {
-				if (httpResponse.statusCode != 200) {
-					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-					completion(nil, err)
-					return
-				}
-			}
-			var checkAutocompleteIndexPathResponse: CheckAutocompleteIndexPathResponse
-			do {
-				checkAutocompleteIndexPathResponse = try JSONDecoder().decode(CheckAutocompleteIndexPathResponse.self, from: data!)
-			} catch let err {
-				completion(nil, err)
-				return
-			}
-			if checkAutocompleteIndexPathResponse.error != nil {
-				let err = OtoError("\(url): \(checkAutocompleteIndexPathResponse.error!)")
-				completion(nil, err)
-				return
-			}
-			completion(checkAutocompleteIndexPathResponse, nil)
-		}
-		task.resume()
-	}
-
 	// Complete performs a search on an AutocompleteIndex.
 	func complete(withRequest completeRequest: CompleteRequest, completion: @escaping (_ response: CompleteResponse?, _ error: Error?) -> ()) {
 		let url = "\(self.client.endpoint)/AutocompleteService.Complete"
@@ -491,96 +400,6 @@ class IndexService {
 		self.client = client
 	}
 
-	// CheckIndexName checks to see if an index name is available or not.
-	func checkIndexName(withRequest checkIndexNameRequest: CheckIndexNameRequest, completion: @escaping (_ response: CheckIndexNameResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/IndexService.CheckIndexName"
-		var request = URLRequest(url: URL(string: url)!)
-		request.httpMethod = "POST"
-		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
-		var jsonData: Data
-		do {
-			jsonData = try JSONEncoder().encode(checkIndexNameRequest)
-		} catch let err {
-			completion(nil, err)
-			return
-		}
-		request.httpBody = jsonData
-		let session = URLSession(configuration: URLSessionConfiguration.default)
-		let task = session.dataTask(with: request) { (data, response, error) in
-			if let err = error {
-				completion(nil, err)
-				return
-			}
-			if let httpResponse = response as? HTTPURLResponse {
-				if (httpResponse.statusCode != 200) {
-					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-					completion(nil, err)
-					return
-				}
-			}
-			var checkIndexNameResponse: CheckIndexNameResponse
-			do {
-				checkIndexNameResponse = try JSONDecoder().decode(CheckIndexNameResponse.self, from: data!)
-			} catch let err {
-				completion(nil, err)
-				return
-			}
-			if checkIndexNameResponse.error != nil {
-				let err = OtoError("\(url): \(checkIndexNameResponse.error!)")
-				completion(nil, err)
-				return
-			}
-			completion(checkIndexNameResponse, nil)
-		}
-		task.resume()
-	}
-
-	// CheckIndexPath checks to see if an IndexPath is valid for creating an index.
-	func checkIndexPath(withRequest checkIndexPathRequest: CheckIndexPathRequest, completion: @escaping (_ response: CheckIndexPathResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/IndexService.CheckIndexPath"
-		var request = URLRequest(url: URL(string: url)!)
-		request.httpMethod = "POST"
-		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
-		var jsonData: Data
-		do {
-			jsonData = try JSONEncoder().encode(checkIndexPathRequest)
-		} catch let err {
-			completion(nil, err)
-			return
-		}
-		request.httpBody = jsonData
-		let session = URLSession(configuration: URLSessionConfiguration.default)
-		let task = session.dataTask(with: request) { (data, response, error) in
-			if let err = error {
-				completion(nil, err)
-				return
-			}
-			if let httpResponse = response as? HTTPURLResponse {
-				if (httpResponse.statusCode != 200) {
-					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
-					completion(nil, err)
-					return
-				}
-			}
-			var checkIndexPathResponse: CheckIndexPathResponse
-			do {
-				checkIndexPathResponse = try JSONDecoder().decode(CheckIndexPathResponse.self, from: data!)
-			} catch let err {
-				completion(nil, err)
-				return
-			}
-			if checkIndexPathResponse.error != nil {
-				let err = OtoError("\(url): \(checkIndexPathResponse.error!)")
-				completion(nil, err)
-				return
-			}
-			completion(checkIndexPathResponse, nil)
-		}
-		task.resume()
-	}
-
 	// CreateIndex creates a new index.
 	func createIndex(withRequest createIndexRequest: CreateIndexRequest, completion: @escaping (_ response: CreateIndexResponse?, _ error: Error?) -> ()) {
 		let url = "\(self.client.endpoint)/IndexService.CreateIndex"
@@ -900,6 +719,106 @@ class IndexService {
 
 }
 
+// MetaService provides convenience methods to check or validate indexes. Most
+// people will not need to use this service.
+class MetaService {
+	var client: Client
+	init(withClient client: Client) {
+		self.client = client
+	}
+
+	// CheckIndexName checks to see if an index name is available or not.
+	func checkIndexName(withRequest checkIndexNameRequest: CheckIndexNameRequest, completion: @escaping (_ response: CheckIndexNameResponse?, _ error: Error?) -> ()) {
+		let url = "\(self.client.endpoint)/MetaService.CheckIndexName"
+		var request = URLRequest(url: URL(string: url)!)
+		request.httpMethod = "POST"
+		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+		var jsonData: Data
+		do {
+			jsonData = try JSONEncoder().encode(checkIndexNameRequest)
+		} catch let err {
+			completion(nil, err)
+			return
+		}
+		request.httpBody = jsonData
+		let session = URLSession(configuration: URLSessionConfiguration.default)
+		let task = session.dataTask(with: request) { (data, response, error) in
+			if let err = error {
+				completion(nil, err)
+				return
+			}
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
+			var checkIndexNameResponse: CheckIndexNameResponse
+			do {
+				checkIndexNameResponse = try JSONDecoder().decode(CheckIndexNameResponse.self, from: data!)
+			} catch let err {
+				completion(nil, err)
+				return
+			}
+			if checkIndexNameResponse.error != nil {
+				let err = OtoError("\(url): \(checkIndexNameResponse.error!)")
+				completion(nil, err)
+				return
+			}
+			completion(checkIndexNameResponse, nil)
+		}
+		task.resume()
+	}
+
+	// CheckIndexPath checks to see if an IndexPath is valid for creating an index.
+	func checkIndexPath(withRequest checkIndexPathRequest: CheckIndexPathRequest, completion: @escaping (_ response: CheckIndexPathResponse?, _ error: Error?) -> ()) {
+		let url = "\(self.client.endpoint)/MetaService.CheckIndexPath"
+		var request = URLRequest(url: URL(string: url)!)
+		request.httpMethod = "POST"
+		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+		var jsonData: Data
+		do {
+			jsonData = try JSONEncoder().encode(checkIndexPathRequest)
+		} catch let err {
+			completion(nil, err)
+			return
+		}
+		request.httpBody = jsonData
+		let session = URLSession(configuration: URLSessionConfiguration.default)
+		let task = session.dataTask(with: request) { (data, response, error) in
+			if let err = error {
+				completion(nil, err)
+				return
+			}
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode != 200) {
+					let err = OtoError("\(url): \(httpResponse.statusCode) status code")
+					completion(nil, err)
+					return
+				}
+			}
+			var checkIndexPathResponse: CheckIndexPathResponse
+			do {
+				checkIndexPathResponse = try JSONDecoder().decode(CheckIndexPathResponse.self, from: data!)
+			} catch let err {
+				completion(nil, err)
+				return
+			}
+			if checkIndexPathResponse.error != nil {
+				let err = OtoError("\(url): \(checkIndexPathResponse.error!)")
+				completion(nil, err)
+				return
+			}
+			completion(checkIndexPathResponse, nil)
+		}
+		task.resume()
+	}
+
+}
+
 
 
 // GenerateKeyRequest is the input object for GenerateKey.
@@ -964,55 +883,6 @@ struct AutocompleteIndex: Codable {
 	// CaseSensitive preserves case across this index. By default, all entries and
 // queries are lowercased.
 	var caseSensitive:  Bool?
-
-}
-
-// CheckAutocompleteIndexNameRequest is the input for CheckAutocompleteIndexPath.
-struct CheckAutocompleteIndexNameRequest: Codable {
-
-	// IndexName is the name of the index to check.
-	var indexName:  String?
-
-}
-
-// ValidationResult describes the result of a validation check.
-struct ValidationResult: Codable {
-
-	// Valid indicates whether the validation was successful or not.
-	var valid:  Bool?
-
-	// Message is a human readable objection, or empty if valid.
-	var message:  String?
-
-}
-
-// CheckAutocompleteIndexNameResponse is the output for CheckAutocompleteIndexName.
-struct CheckAutocompleteIndexNameResponse: Codable {
-
-	// ValidationResult holds the result of the check.
-	var validationResult: ValidationResult?
-
-	// Error is string explaining what went wrong. Empty if everything was fine.
-	var error:  String?
-
-}
-
-// CheckAutocompleteIndexPathRequest is the input object for
-// CheckAutocompleteIndexPath.
-struct CheckAutocompleteIndexPathRequest: Codable {
-
-		var indexPath:  String?
-
-}
-
-// CheckAutocompleteIndexPathResponse is the output for CheckAutocompleteIndexPath.
-struct CheckAutocompleteIndexPathResponse: Codable {
-
-	// ValidationResult holds the result of the check.
-	var validationResult: ValidationResult?
-
-	// Error is string explaining what went wrong. Empty if everything was fine.
-	var error:  String?
 
 }
 
@@ -1180,6 +1050,17 @@ struct CheckIndexNameRequest: Codable {
 
 }
 
+// ValidationResult describes the result of a validation check.
+struct ValidationResult: Codable {
+
+	// Valid indicates whether the validation was successful or not.
+	var valid:  Bool?
+
+	// Message is a human readable objection, or empty if valid.
+	var message:  String?
+
+}
+
 // CheckIndexNameResponse is the output for CheckIndexName.
 struct CheckIndexNameResponse: Codable {
 
@@ -1206,6 +1087,33 @@ struct CheckIndexPathResponse: Codable {
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	var error:  String?
+
+}
+
+// GeoIndex describes a search index.
+struct GeoIndex: Codable {
+
+	// IndexPath is the collection path in Firestore for this index. Each index must
+// use a unique path.
+	var indexPath:  String?
+
+	// Name is an internal human readable name for this index. End users will never see
+// this.
+	var name:  String?
+
+	// Language of the index.
+	var language:  String?
+
+	// KeepStopWords prevents stop words from being removed from this index.
+	var keepStopWords:  Bool?
+
+	// CaseSensitive preserves case across this index. By default, all entries and
+// queries are lowercased.
+	var caseSensitive:  Bool?
+
+	// NoStem prevents words from being reduced. Only effective if a Language is
+// specified.
+	var noStem:  Bool?
 
 }
 
@@ -1320,6 +1228,106 @@ struct Doc: Codable {
 
 }
 
+// GeoDoc describes a document that can be searched.
+struct GeoDoc: Codable {
+
+	// ID is the document identifier.
+	var id:  String?
+
+	// Lat is the latitude of the location.
+	var lat:  Double?
+
+	// Lon is the longitude of the location.
+	var lon:  Double?
+
+	// SearchFields are the searchable fields for this document.
+	var searchFields: [SearchField]?
+
+	// Fields are the key/value pairs that make up this document. Fields can be
+// returned in search results, and may be filtered.
+	var fields: [Field]?
+
+}
+
+// GeoSearchQuery describes a search query.
+struct GeoSearchQuery: Codable {
+
+	// IndexPath is the path of the index to search.
+	var indexPath:  String?
+
+	// AccessKey authenticates the request. Get an AccessKey from the
+// AccessKeyService.GenerateKey method.
+	var accessKey:  String?
+
+	// Limit is the maximum number of search results to return. Smaller limits are
+// faster.
+	var limit:  Double?
+
+	// Text contains a phrase to search for.
+	var text:  String?
+
+	// Lat is the latitude of the location to search.
+	var lat:  Double?
+
+	// Lon is the longitude of the location to search.
+	var lon:  Double?
+
+	// Radius is the aproximate distance in kilometers from center described with Lat,
+// Lon.
+	var radius:  Double?
+
+	// Filters are a list of where filters to apply when performing the search.
+	var filters: [Field]?
+
+	// Select lists the fields to get from the document. Filters are automatically
+// included. To get search fields out, they must have been put with store set to
+// true.
+	var select: [ String]?
+
+	// SearchFields is a list of fields to search. If empty, all fields will be
+// searched.
+	var searchFields: [ String]?
+
+	// Cursor is a encoded string from a previous Query, that you can use to get more
+// results.
+	var cursor:  String?
+
+}
+
+// Highlight describes an area that specifically matches a search query.
+struct Highlight: Codable {
+
+	// Field is the name of the field.
+	var field:  String?
+
+	// Text is the highlighted text.
+	var text:  String?
+
+}
+
+// GeoSearchResult is a document that matches a search query.
+struct GeoSearchResult: Codable {
+
+	// ID is the document identifier.
+	var id:  String?
+
+	// Lat is the latitude of the location.
+	var lat:  Double?
+
+	// Lon is the longitude of the location.
+	var lon:  Double?
+
+	// Fields are the selected fields for this document.
+	var fields: [Field]?
+
+	// Highlights describe areas within the text that specifically match the query.
+	var highlights: [Highlight]?
+
+	// Score is a relative value for this query. Higher score is better.
+	var score:  Double?
+
+}
+
 // GetIndexRequest is the input object for GetIndex.
 struct GetIndexRequest: Codable {
 
@@ -1352,17 +1360,6 @@ struct GetIndexesResponse: Codable {
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	var error:  String?
-
-}
-
-// Highlight describes an area that specifically matches a search query.
-struct Highlight: Codable {
-
-	// Field is the name of the field.
-	var field:  String?
-
-	// Text is the highlighted text.
-	var text:  String?
 
 }
 

@@ -34,7 +34,7 @@ export class AccessKeyService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AccessKeyService.GenerateKey: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`AccessKeyService.GenerateKey: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/AccessKeyService.GenerateKey', {
 			method: 'POST',
@@ -59,67 +59,6 @@ export class AccessKeyService {
 export class AutocompleteService {
 	constructor(readonly client: Client) {}
 	
-// CheckIndexName checks to see if an index name is available or not.
-	async checkIndexName(checkAutocompleteIndexNameRequest?: CheckAutocompleteIndexNameRequest): Promise<CheckAutocompleteIndexNameResponse> {
-		if (checkAutocompleteIndexNameRequest == null) {
-			checkAutocompleteIndexNameRequest = new CheckAutocompleteIndexNameRequest();
-		}
-		const headers: any = {};
-		if (this.client.apiKey) {
-			headers['X-API-Key'] = this.client.apiKey;
-		}
-		headers['Accept'] = 'application/json';
-		headers['Content-Type'] = 'application/json';
-		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.CheckIndexName: no fetch (try client.fetch = window.fetch)`)
-		}
-		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CheckIndexName', {
-			method: 'POST',
-			headers: headers,
-			body: JSON.stringify(checkAutocompleteIndexNameRequest),
-		})
-		if (response.status !== 200) {
-			throw new Error(`AutocompleteService.CheckIndexName: ${response.status} ${response.statusText}`);
-		}
-		return response.json().then((json: any) => {
-			if (json.error) {
-				throw new Error(json.error);
-			}
-			return new CheckAutocompleteIndexNameResponse(json);
-		})
-	}
-	
-// CheckIndexPath checks to see if an AutocompleteIndexPath is valid for creating
-// an index.
-	async checkIndexPath(checkAutocompleteIndexPathRequest?: CheckAutocompleteIndexPathRequest): Promise<CheckAutocompleteIndexPathResponse> {
-		if (checkAutocompleteIndexPathRequest == null) {
-			checkAutocompleteIndexPathRequest = new CheckAutocompleteIndexPathRequest();
-		}
-		const headers: any = {};
-		if (this.client.apiKey) {
-			headers['X-API-Key'] = this.client.apiKey;
-		}
-		headers['Accept'] = 'application/json';
-		headers['Content-Type'] = 'application/json';
-		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.CheckIndexPath: no fetch (try client.fetch = window.fetch)`)
-		}
-		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CheckIndexPath', {
-			method: 'POST',
-			headers: headers,
-			body: JSON.stringify(checkAutocompleteIndexPathRequest),
-		})
-		if (response.status !== 200) {
-			throw new Error(`AutocompleteService.CheckIndexPath: ${response.status} ${response.statusText}`);
-		}
-		return response.json().then((json: any) => {
-			if (json.error) {
-				throw new Error(json.error);
-			}
-			return new CheckAutocompleteIndexPathResponse(json);
-		})
-	}
-	
 // Complete performs a search on an AutocompleteIndex.
 	async complete(completeRequest?: CompleteRequest): Promise<CompleteResponse> {
 		if (completeRequest == null) {
@@ -132,7 +71,7 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.Complete: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`AutocompleteService.Complete: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.Complete', {
 			method: 'POST',
@@ -162,7 +101,7 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.CreateIndex: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`AutocompleteService.CreateIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CreateIndex', {
 			method: 'POST',
@@ -193,7 +132,7 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.DeleteDoc: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`AutocompleteService.DeleteDoc: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.DeleteDoc', {
 			method: 'POST',
@@ -224,7 +163,7 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.DeleteIndex: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`AutocompleteService.DeleteIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.DeleteIndex', {
 			method: 'POST',
@@ -254,7 +193,7 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.GetIndex: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`AutocompleteService.GetIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.GetIndex', {
 			method: 'POST',
@@ -284,7 +223,7 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.GetIndexes: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`AutocompleteService.GetIndexes: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.GetIndexes', {
 			method: 'POST',
@@ -314,7 +253,7 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.PutDoc: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`AutocompleteService.PutDoc: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.PutDoc', {
 			method: 'POST',
@@ -339,66 +278,6 @@ export class AutocompleteService {
 export class IndexService {
 	constructor(readonly client: Client) {}
 	
-// CheckIndexName checks to see if an index name is available or not.
-	async checkIndexName(checkIndexNameRequest?: CheckIndexNameRequest): Promise<CheckIndexNameResponse> {
-		if (checkIndexNameRequest == null) {
-			checkIndexNameRequest = new CheckIndexNameRequest();
-		}
-		const headers: any = {};
-		if (this.client.apiKey) {
-			headers['X-API-Key'] = this.client.apiKey;
-		}
-		headers['Accept'] = 'application/json';
-		headers['Content-Type'] = 'application/json';
-		if (this.client.fetch == null) {
-			throw new Error(`IndexService.CheckIndexName: no fetch (try client.fetch = window.fetch)`)
-		}
-		const response = await this.client.fetch(this.client.endpoint + '/IndexService.CheckIndexName', {
-			method: 'POST',
-			headers: headers,
-			body: JSON.stringify(checkIndexNameRequest),
-		})
-		if (response.status !== 200) {
-			throw new Error(`IndexService.CheckIndexName: ${response.status} ${response.statusText}`);
-		}
-		return response.json().then((json: any) => {
-			if (json.error) {
-				throw new Error(json.error);
-			}
-			return new CheckIndexNameResponse(json);
-		})
-	}
-	
-// CheckIndexPath checks to see if an IndexPath is valid for creating an index.
-	async checkIndexPath(checkIndexPathRequest?: CheckIndexPathRequest): Promise<CheckIndexPathResponse> {
-		if (checkIndexPathRequest == null) {
-			checkIndexPathRequest = new CheckIndexPathRequest();
-		}
-		const headers: any = {};
-		if (this.client.apiKey) {
-			headers['X-API-Key'] = this.client.apiKey;
-		}
-		headers['Accept'] = 'application/json';
-		headers['Content-Type'] = 'application/json';
-		if (this.client.fetch == null) {
-			throw new Error(`IndexService.CheckIndexPath: no fetch (try client.fetch = window.fetch)`)
-		}
-		const response = await this.client.fetch(this.client.endpoint + '/IndexService.CheckIndexPath', {
-			method: 'POST',
-			headers: headers,
-			body: JSON.stringify(checkIndexPathRequest),
-		})
-		if (response.status !== 200) {
-			throw new Error(`IndexService.CheckIndexPath: ${response.status} ${response.statusText}`);
-		}
-		return response.json().then((json: any) => {
-			if (json.error) {
-				throw new Error(json.error);
-			}
-			return new CheckIndexPathResponse(json);
-		})
-	}
-	
 // CreateIndex creates a new index.
 	async createIndex(createIndexRequest?: CreateIndexRequest): Promise<CreateIndexResponse> {
 		if (createIndexRequest == null) {
@@ -411,7 +290,7 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.CreateIndex: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`IndexService.CreateIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.CreateIndex', {
 			method: 'POST',
@@ -442,7 +321,7 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.DeleteDoc: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`IndexService.DeleteDoc: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.DeleteDoc', {
 			method: 'POST',
@@ -473,7 +352,7 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.DeleteIndex: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`IndexService.DeleteIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.DeleteIndex', {
 			method: 'POST',
@@ -503,7 +382,7 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.GetIndex: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`IndexService.GetIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.GetIndex', {
 			method: 'POST',
@@ -533,7 +412,7 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.GetIndexes: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`IndexService.GetIndexes: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.GetIndexes', {
 			method: 'POST',
@@ -563,7 +442,7 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.PutDoc: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`IndexService.PutDoc: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.PutDoc', {
 			method: 'POST',
@@ -593,7 +472,7 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.Search: no fetch (try client.fetch = window.fetch)`)
+			throw new Error(`IndexService.Search: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
 		const response = await this.client.fetch(this.client.endpoint + '/IndexService.Search', {
 			method: 'POST',
@@ -608,6 +487,73 @@ export class IndexService {
 				throw new Error(json.error);
 			}
 			return new SearchResponse(json);
+		})
+	}
+	
+}
+
+// MetaService provides convenience methods to check or validate indexes. Most
+// people will not need to use this service.
+export class MetaService {
+	constructor(readonly client: Client) {}
+	
+// CheckIndexName checks to see if an index name is available or not.
+	async checkIndexName(checkIndexNameRequest?: CheckIndexNameRequest): Promise<CheckIndexNameResponse> {
+		if (checkIndexNameRequest == null) {
+			checkIndexNameRequest = new CheckIndexNameRequest();
+		}
+		const headers: any = {};
+		if (this.client.apiKey) {
+			headers['X-API-Key'] = this.client.apiKey;
+		}
+		headers['Accept'] = 'application/json';
+		headers['Content-Type'] = 'application/json';
+		if (this.client.fetch == null) {
+			throw new Error(`MetaService.CheckIndexName: no fetch (try client.fetch = window.fetch.bind(window))`)
+		}
+		const response = await this.client.fetch(this.client.endpoint + '/MetaService.CheckIndexName', {
+			method: 'POST',
+			headers: headers,
+			body: JSON.stringify(checkIndexNameRequest),
+		})
+		if (response.status !== 200) {
+			throw new Error(`MetaService.CheckIndexName: ${response.status} ${response.statusText}`);
+		}
+		return response.json().then((json: any) => {
+			if (json.error) {
+				throw new Error(json.error);
+			}
+			return new CheckIndexNameResponse(json);
+		})
+	}
+	
+// CheckIndexPath checks to see if an IndexPath is valid for creating an index.
+	async checkIndexPath(checkIndexPathRequest?: CheckIndexPathRequest): Promise<CheckIndexPathResponse> {
+		if (checkIndexPathRequest == null) {
+			checkIndexPathRequest = new CheckIndexPathRequest();
+		}
+		const headers: any = {};
+		if (this.client.apiKey) {
+			headers['X-API-Key'] = this.client.apiKey;
+		}
+		headers['Accept'] = 'application/json';
+		headers['Content-Type'] = 'application/json';
+		if (this.client.fetch == null) {
+			throw new Error(`MetaService.CheckIndexPath: no fetch (try client.fetch = window.fetch.bind(window))`)
+		}
+		const response = await this.client.fetch(this.client.endpoint + '/MetaService.CheckIndexPath', {
+			method: 'POST',
+			headers: headers,
+			body: JSON.stringify(checkIndexPathRequest),
+		})
+		if (response.status !== 200) {
+			throw new Error(`MetaService.CheckIndexPath: ${response.status} ${response.statusText}`);
+		}
+		return response.json().then((json: any) => {
+			if (json.error) {
+				throw new Error(json.error);
+			}
+			return new CheckIndexPathResponse(json);
 		})
 	}
 	
@@ -753,116 +699,6 @@ export class AutocompleteIndex {
 	// CaseSensitive preserves case across this index. By default, all entries and
 // queries are lowercased.
 	caseSensitive: boolean = booleanDefault;
-
-}
-
-// CheckAutocompleteIndexNameRequest is the input for CheckAutocompleteIndexPath.
-export class CheckAutocompleteIndexNameRequest {
-	constructor(data?: any) {
-		if (data) {
-		
-			
-			this.indexName = data.indexName;
-			
-		
-		}
-	}
-
-	// IndexName is the name of the index to check.
-	indexName: string = stringDefault;
-
-}
-
-// ValidationResult describes the result of a validation check.
-export class ValidationResult {
-	constructor(data?: any) {
-		if (data) {
-		
-			
-			this.valid = data.valid;
-			
-		
-			
-			this.message = data.message;
-			
-		
-		}
-	}
-
-	// Valid indicates whether the validation was successful or not.
-	valid: boolean = booleanDefault;
-
-	// Message is a human readable objection, or empty if valid.
-	message: string = stringDefault;
-
-}
-
-// CheckAutocompleteIndexNameResponse is the output for CheckAutocompleteIndexName.
-export class CheckAutocompleteIndexNameResponse {
-	constructor(data?: any) {
-		if (data) {
-		
-			
-				
-					this.validationResult = new ValidationResult(data.validationResult);
-				
-			
-		
-			
-			this.error = data.error;
-			
-		
-		}
-	}
-
-	// ValidationResult holds the result of the check.
-	validationResult?: ValidationResult;
-
-	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string = stringDefault;
-
-}
-
-// CheckAutocompleteIndexPathRequest is the input object for
-// CheckAutocompleteIndexPath.
-export class CheckAutocompleteIndexPathRequest {
-	constructor(data?: any) {
-		if (data) {
-		
-			
-			this.indexPath = data.indexPath;
-			
-		
-		}
-	}
-
-		indexPath: string = stringDefault;
-
-}
-
-// CheckAutocompleteIndexPathResponse is the output for CheckAutocompleteIndexPath.
-export class CheckAutocompleteIndexPathResponse {
-	constructor(data?: any) {
-		if (data) {
-		
-			
-				
-					this.validationResult = new ValidationResult(data.validationResult);
-				
-			
-		
-			
-			this.error = data.error;
-			
-		
-		}
-	}
-
-	// ValidationResult holds the result of the check.
-	validationResult?: ValidationResult;
-
-	// Error is string explaining what went wrong. Empty if everything was fine.
-	error: string = stringDefault;
 
 }
 
@@ -1240,6 +1076,30 @@ export class CheckIndexNameRequest {
 
 }
 
+// ValidationResult describes the result of a validation check.
+export class ValidationResult {
+	constructor(data?: any) {
+		if (data) {
+		
+			
+			this.valid = data.valid;
+			
+		
+			
+			this.message = data.message;
+			
+		
+		}
+	}
+
+	// Valid indicates whether the validation was successful or not.
+	valid: boolean = booleanDefault;
+
+	// Message is a human readable objection, or empty if valid.
+	message: string = stringDefault;
+
+}
+
 // CheckIndexNameResponse is the output for CheckIndexName.
 export class CheckIndexNameResponse {
 	constructor(data?: any) {
@@ -1305,6 +1165,62 @@ export class CheckIndexPathResponse {
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	error: string = stringDefault;
+
+}
+
+// GeoIndex describes a search index.
+export class GeoIndex {
+	constructor(data?: any) {
+		if (data) {
+		
+			
+			this.indexPath = data.indexPath;
+			
+		
+			
+			this.name = data.name;
+			
+		
+			
+			this.language = data.language;
+			
+		
+			
+			this.keepStopWords = data.keepStopWords;
+			
+		
+			
+			this.caseSensitive = data.caseSensitive;
+			
+		
+			
+			this.noStem = data.noStem;
+			
+		
+		}
+	}
+
+	// IndexPath is the collection path in Firestore for this index. Each index must
+// use a unique path.
+	indexPath: string = stringDefault;
+
+	// Name is an internal human readable name for this index. End users will never see
+// this.
+	name: string = stringDefault;
+
+	// Language of the index.
+	language: string = stringDefault;
+
+	// KeepStopWords prevents stop words from being removed from this index.
+	keepStopWords: boolean = booleanDefault;
+
+	// CaseSensitive preserves case across this index. By default, all entries and
+// queries are lowercased.
+	caseSensitive: boolean = booleanDefault;
+
+	// NoStem prevents words from being reduced. Only effective if a Language is
+// specified.
+	noStem: boolean = booleanDefault;
 
 }
 
@@ -1562,6 +1478,257 @@ export class Doc {
 
 }
 
+// GeoDoc describes a document that can be searched.
+export class GeoDoc {
+	constructor(data?: any) {
+		if (data) {
+		
+			
+			this.id = data.id;
+			
+		
+			
+			this.lat = data.lat;
+			
+		
+			
+			this.lon = data.lon;
+			
+		
+			
+				
+					if (data.searchFields) {
+						this.searchFields = new Array<SearchField>()
+						for (let i = 0; i < data.searchFields.length; i++) {
+							this.searchFields.push(new SearchField(data.searchFields[i]));
+						}
+					}
+				
+			
+		
+			
+				
+					if (data.fields) {
+						this.fields = new Array<Field>()
+						for (let i = 0; i < data.fields.length; i++) {
+							this.fields.push(new Field(data.fields[i]));
+						}
+					}
+				
+			
+		
+		}
+	}
+
+	// ID is the document identifier.
+	id: string = stringDefault;
+
+	// Lat is the latitude of the location.
+	lat: number = numberDefault;
+
+	// Lon is the longitude of the location.
+	lon: number = numberDefault;
+
+	// SearchFields are the searchable fields for this document.
+	searchFields?: SearchField[];
+
+	// Fields are the key/value pairs that make up this document. Fields can be
+// returned in search results, and may be filtered.
+	fields?: Field[];
+
+}
+
+// GeoSearchQuery describes a search query.
+export class GeoSearchQuery {
+	constructor(data?: any) {
+		if (data) {
+		
+			
+			this.indexPath = data.indexPath;
+			
+		
+			
+			this.accessKey = data.accessKey;
+			
+		
+			
+			this.limit = data.limit;
+			
+		
+			
+			this.text = data.text;
+			
+		
+			
+			this.lat = data.lat;
+			
+		
+			
+			this.lon = data.lon;
+			
+		
+			
+			this.radius = data.radius;
+			
+		
+			
+				
+					if (data.filters) {
+						this.filters = new Array<Field>()
+						for (let i = 0; i < data.filters.length; i++) {
+							this.filters.push(new Field(data.filters[i]));
+						}
+					}
+				
+			
+		
+			
+			this.select = data.select;
+			
+		
+			
+			this.searchFields = data.searchFields;
+			
+		
+			
+			this.cursor = data.cursor;
+			
+		
+		}
+	}
+
+	// IndexPath is the path of the index to search.
+	indexPath: string = stringDefault;
+
+	// AccessKey authenticates the request. Get an AccessKey from the
+// AccessKeyService.GenerateKey method.
+	accessKey: string = stringDefault;
+
+	// Limit is the maximum number of search results to return. Smaller limits are
+// faster.
+	limit: number = numberDefault;
+
+	// Text contains a phrase to search for.
+	text: string = stringDefault;
+
+	// Lat is the latitude of the location to search.
+	lat: number = numberDefault;
+
+	// Lon is the longitude of the location to search.
+	lon: number = numberDefault;
+
+	// Radius is the aproximate distance in kilometers from center described with Lat,
+// Lon.
+	radius: number = numberDefault;
+
+	// Filters are a list of where filters to apply when performing the search.
+	filters?: Field[];
+
+	// Select lists the fields to get from the document. Filters are automatically
+// included. To get search fields out, they must have been put with store set to
+// true.
+	select?: string[];
+
+	// SearchFields is a list of fields to search. If empty, all fields will be
+// searched.
+	searchFields?: string[];
+
+	// Cursor is a encoded string from a previous Query, that you can use to get more
+// results.
+	cursor: string = stringDefault;
+
+}
+
+// Highlight describes an area that specifically matches a search query.
+export class Highlight {
+	constructor(data?: any) {
+		if (data) {
+		
+			
+			this.field = data.field;
+			
+		
+			
+			this.text = data.text;
+			
+		
+		}
+	}
+
+	// Field is the name of the field.
+	field: string = stringDefault;
+
+	// Text is the highlighted text.
+	text: string = stringDefault;
+
+}
+
+// GeoSearchResult is a document that matches a search query.
+export class GeoSearchResult {
+	constructor(data?: any) {
+		if (data) {
+		
+			
+			this.id = data.id;
+			
+		
+			
+			this.lat = data.lat;
+			
+		
+			
+			this.lon = data.lon;
+			
+		
+			
+				
+					if (data.fields) {
+						this.fields = new Array<Field>()
+						for (let i = 0; i < data.fields.length; i++) {
+							this.fields.push(new Field(data.fields[i]));
+						}
+					}
+				
+			
+		
+			
+				
+					if (data.highlights) {
+						this.highlights = new Array<Highlight>()
+						for (let i = 0; i < data.highlights.length; i++) {
+							this.highlights.push(new Highlight(data.highlights[i]));
+						}
+					}
+				
+			
+		
+			
+			this.score = data.score;
+			
+		
+		}
+	}
+
+	// ID is the document identifier.
+	id: string = stringDefault;
+
+	// Lat is the latitude of the location.
+	lat: number = numberDefault;
+
+	// Lon is the longitude of the location.
+	lon: number = numberDefault;
+
+	// Fields are the selected fields for this document.
+	fields?: Field[];
+
+	// Highlights describe areas within the text that specifically match the query.
+	highlights?: Highlight[];
+
+	// Score is a relative value for this query. Higher score is better.
+	score: number = numberDefault;
+
+}
+
 // GetIndexRequest is the input object for GetIndex.
 export class GetIndexRequest {
 	constructor(data?: any) {
@@ -1643,30 +1810,6 @@ export class GetIndexesResponse {
 
 	// Error is string explaining what went wrong. Empty if everything was fine.
 	error: string = stringDefault;
-
-}
-
-// Highlight describes an area that specifically matches a search query.
-export class Highlight {
-	constructor(data?: any) {
-		if (data) {
-		
-			
-			this.field = data.field;
-			
-		
-			
-			this.text = data.text;
-			
-		
-		}
-	}
-
-	// Field is the name of the field.
-	field: string = stringDefault;
-
-	// Text is the highlighted text.
-	text: string = stringDefault;
 
 }
 
