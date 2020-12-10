@@ -5,6 +5,10 @@ gen:
 		-ignore "${OTO_IGNORE}" \
 		../firesearch/cloudrun/oto
 	oto -v \
+		-template ./clients/python/firesearch.py.plush -out ./examples/python-example/firesearch.py \
+		-ignore "${OTO_IGNORE}" \
+		../firesearch/cloudrun/oto
+	oto -v \
 		-template ./clients/go/firesearch/client.go.plush -out ./clients/go/firesearch/firesearch.gen.go \
 		-ignore "${OTO_IGNORE}" \
 		-pkg firesearch \

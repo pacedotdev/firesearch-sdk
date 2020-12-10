@@ -26,20 +26,20 @@ import (
 func run(ctx context.Context, args []string) error {
 	flags := flag.NewFlagSet(args[0], flag.ContinueOnError)
 	var (
-		endpoint  = flags.String("endpoint", "http://localhost:8888/api", "Firesearch API endpoint")
+		host      = flags.String("host", "http://localhost:8888", "Firesearch API host")
 		secret    = flags.String("secret", "", "Secret API key")
 		indexPath = flags.String("index", "firesearch-tutorial/indexes/movies-index", "Firesearch index path")
 	)
 	if err := flags.Parse(args[1:]); err != nil {
 		return err
 	}
-	if *endpoint == "" {
-		return errors.New("missing endpoint")
+	if *host == "" {
+		return errors.New("missing host")
 	}
 	if *indexPath == "" {
 		return errors.New("missing indexPath")
 	}
-	client := firesearch.NewClient(*endpoint, *secret)
+	client := firesearch.NewClient(*host, *secret)
 	indexService := firesearch.NewIndexService(client)
 	// add a new movie
 	fmt.Println("Adding new document new-movie-1 \"Tenet\"...")

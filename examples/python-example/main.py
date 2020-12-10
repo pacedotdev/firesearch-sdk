@@ -2,9 +2,9 @@ from firesearch import Client, IndexService
 
 
 def main():
-    endpoint = 'http://localhost:8080/api'
+    host = 'http://localhost:8080'
     apiKey = ''  # if you have security on
-    client = Client(endpoint, apiKey)
+    client = Client(host, apiKey)
     indexService = IndexService(client)
 
     print('Adding some new documents')

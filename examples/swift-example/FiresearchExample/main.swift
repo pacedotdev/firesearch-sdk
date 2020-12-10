@@ -29,39 +29,10 @@ import Foundation
 let indexPath = "firesearch-tutorial/indexes/movies-index"
 let searchTerms = "Nolan"
 
-let client = Client(withEndpoint: "http://localhost:8888/api")
+let client = Client(withHost: "http://localhost:8888")
 let indexService = IndexService(withClient: client)
 
 print("Firesearch Swift example")
-
-
-let searchRequest2 = SearchRequest(
-    query: SearchQuery(
-        indexPath: "firesearch/indexes/my-index",
-        accessKey: "oisurgbhviodljgnuhidofgjdfiughdfiughindfg",
-        limit: 10,
-        text: "meaning of life",
-        filters: [
-            Field(
-                key: "status",
-                value: AnyCodable(value: "active")
-            )
-        ],
-        select: ["description","notes"],
-        searchFields: ["description"],
-        cursor: "aaabbbccc12233"
-    )
-)
-indexService.search(withRequest: searchRequest2) {
-    (searchResponse: SearchResponse?, err: Error?) in
-    
-    if err != nil {
-        print("ERROR: \(err!)")
-        return
-    }
-    
-}
-
 
 let searchResponse = SearchResponse(
     query: SearchQuery(
@@ -101,9 +72,6 @@ let searchResponse = SearchResponse(
     cursor: "aaabbbccc12233",
     more: true
 )
-
-
-
 
 let putDocRequest = PutDocRequest(
     indexPath: indexPath,
@@ -171,4 +139,32 @@ indexService.search(withRequest: searchRequest) { (searchResponse: SearchRespons
     print("Thanks for trying Firesearch.")
 }
 
+//// test an error case
+//let searchRequest2 = SearchRequest(
+//    query: SearchQuery(
+//        indexPath: "firesearch/indexes/my-index",
+//        accessKey: "oisurgbhviodljgnuhidofgjdfiughdfiughindfg",
+//        limit: 10,
+//        text: "meaning of life",
+//        filters: [
+//            Field(
+//                key: "status",
+//                value: AnyCodable(value: "active")
+//            )
+//        ],
+//        select: ["description","notes"],
+//        searchFields: ["description"],
+//        cursor: "aaabbbccc12233"
+//    )
+//)
+//indexService.search(withRequest: searchRequest2) {
+//    (searchResponse: SearchResponse?, err: Error?) in
+//
+//    if err != nil {
+//        print("This error came back from Firesearch: \(err!)")
+//        return
+//    }
+//}
+
 sleep(5)
+

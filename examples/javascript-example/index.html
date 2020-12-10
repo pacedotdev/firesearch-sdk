@@ -29,7 +29,8 @@
 			running instance
 		*/
 		const client = new firesearch.Client()
-		client.endpoint = 'http://localhost:8888/api'
+		client.host = 'http://localhost:8888'
+		client.fetch = window.fetch.bind(window)
 
 		/*
 			Use the firesearch.IndexService to add documents 
@@ -88,7 +89,7 @@
 					select: ['title'],
 				}
 			}
-			write(`POST ${client.endpoint}`)
+			write(`POST ${client.host}`)
 			write(JSON.stringify(input, '', '\t'))
 			indexService.search(input)
 				.then(response => {

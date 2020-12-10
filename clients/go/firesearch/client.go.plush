@@ -21,9 +21,9 @@ import (
 
 // Client is used to access Pace services.
 type Client struct {
-	// Endpoint is the URL of the remote server that this Client should
+	// Host is the URL of the remote server that this Client should
 	// access.
-	Endpoint  string
+	Host  string
 	// APIKey is the string that provides access to the service.
 	APIKey string
 	// HTTPClient is the http.Client to use when making HTTP requests.
@@ -33,9 +33,9 @@ type Client struct {
 }
 
 // NewClient makes a new Client.
-func NewClient(endpoint string, apiKey string) *Client {
+func NewClient(host string, apiKey string) *Client {
 	c := &Client{
-		Endpoint: endpoint,
+		Host: host,
 		APIKey: apiKey,
 		Debug: func(s string) {},
 		HTTPClient: &http.Client{Timeout:10*time.Second},
@@ -61,7 +61,7 @@ func New<%= service.Name %>(client *Client) *<%= service.Name %> {
 	if err != nil {
 		return nil, errors.Wrap(err, "<%= service.Name %>.<%= method.Name %>: marshal <%= method.InputObject.TypeName %>")
 	}
-	url := s.client.Endpoint + "/<%= service.Name %>.<%= method.Name %>"
+	url := s.client.Host + "/api/<%= service.Name %>.<%= method.Name %>"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))

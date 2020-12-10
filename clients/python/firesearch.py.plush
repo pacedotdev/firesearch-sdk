@@ -6,11 +6,11 @@ import json
 class Client:
 	"""Client provides access to the Firesearch API."""
 
-	def __init__(self, endpoint="http://localhost:8888/api", apiKey=""):
-		self.endpoint = endpoint
+	def __init__(self, host="http://localhost:8888/", apiKey=""):
+		self.host = host
 		self.apiKey = apiKey
-		if self.endpoint == "":
-			raise FieldError(field="endpoint", message="endpoint missing")
+		if self.host == "":
+			raise FieldError(field="host", message="host missing")
 
 <%= for (service) in def.Services { %>class <%= service.Name %>:
 	"""<%= format_comment_line(service.Comment) %>"""
@@ -20,7 +20,7 @@ class Client:
 	<%= for (method) in service.Methods { %>
 	def <%= method.NameLowerCamel %>(self, <%= method.InputObject.ObjectNameLowerCamel %>):
 		"""<%= format_comment_line(method.Comment) %>"""
-		url = "{}/<%= service.Name %>.<%= method.Name %>".format(self.client.endpoint)
+		url = "{}/api/<%= service.Name %>.<%= method.Name %>".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',

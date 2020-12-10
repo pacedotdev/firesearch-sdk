@@ -6,11 +6,11 @@ import json
 class Client:
 	"""Client provides access to the Firesearch API."""
 
-	def __init__(self, endpoint="http://localhost:8888/api", apiKey=""):
-		self.endpoint = endpoint
+	def __init__(self, host="http://localhost:8888/", apiKey=""):
+		self.host = host
 		self.apiKey = apiKey
-		if self.endpoint == "":
-			raise FieldError(field="endpoint", message="endpoint missing")
+		if self.host == "":
+			raise FieldError(field="host", message="host missing")
 
 class AccessKeyService:
 	"""AccessKeyService provides keys needed to perform searches."""
@@ -20,7 +20,7 @@ class AccessKeyService:
 	
 	def generateKey(self, generateKeyRequest):
 		"""GenerateKey generates a key for an index path prefix to enable searches. The key expires after 24 hours."""
-		url = "{}/AccessKeyService.GenerateKey".format(self.client.endpoint)
+		url = "{}/api/AccessKeyService.GenerateKey".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -44,7 +44,7 @@ class AutocompleteService:
 	
 	def complete(self, completeRequest):
 		"""Complete performs a search on an AutocompleteIndex."""
-		url = "{}/AutocompleteService.Complete".format(self.client.endpoint)
+		url = "{}/api/AutocompleteService.Complete".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -62,7 +62,7 @@ class AutocompleteService:
 	
 	def createIndex(self, createAutocompleteIndexRequest):
 		"""CreateIndex creates a new index."""
-		url = "{}/AutocompleteService.CreateIndex".format(self.client.endpoint)
+		url = "{}/api/AutocompleteService.CreateIndex".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -80,7 +80,7 @@ class AutocompleteService:
 	
 	def deleteDoc(self, deleteAutocompleteDocRequest):
 		"""DeleteDoc removes a document from an AutocompleteIndex. Once deleted, it will stop appearing in search results."""
-		url = "{}/AutocompleteService.DeleteDoc".format(self.client.endpoint)
+		url = "{}/api/AutocompleteService.DeleteDoc".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -98,7 +98,7 @@ class AutocompleteService:
 	
 	def deleteIndex(self, deleteAutocompleteIndexRequest):
 		"""DeleteIndex deletes the AutocompleteIndex. All index data, as well as any metadata about this AutocompleteIndex will be completely deleted."""
-		url = "{}/AutocompleteService.DeleteIndex".format(self.client.endpoint)
+		url = "{}/api/AutocompleteService.DeleteIndex".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -116,7 +116,7 @@ class AutocompleteService:
 	
 	def getIndex(self, getAutocompleteIndexRequest):
 		"""GetIndex gets an AutocompleteIndex."""
-		url = "{}/AutocompleteService.GetIndex".format(self.client.endpoint)
+		url = "{}/api/AutocompleteService.GetIndex".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -134,7 +134,7 @@ class AutocompleteService:
 	
 	def getIndexes(self, getAutocompleteIndexesRequest):
 		"""GetIndexes gets a list of AutocompleteIndexes."""
-		url = "{}/AutocompleteService.GetIndexes".format(self.client.endpoint)
+		url = "{}/api/AutocompleteService.GetIndexes".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -152,7 +152,7 @@ class AutocompleteService:
 	
 	def putDoc(self, putAutocompleteDocRequest):
 		"""PutDoc puts a document into an AutocompleteIndex."""
-		url = "{}/AutocompleteService.PutDoc".format(self.client.endpoint)
+		url = "{}/api/AutocompleteService.PutDoc".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -176,7 +176,7 @@ class IndexService:
 	
 	def createIndex(self, createIndexRequest):
 		"""CreateIndex creates a new index."""
-		url = "{}/IndexService.CreateIndex".format(self.client.endpoint)
+		url = "{}/api/IndexService.CreateIndex".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -194,7 +194,7 @@ class IndexService:
 	
 	def deleteDoc(self, deleteDocRequest):
 		"""DeleteDoc removes a document from an Index. Once deleted, it will stop appearing in search results."""
-		url = "{}/IndexService.DeleteDoc".format(self.client.endpoint)
+		url = "{}/api/IndexService.DeleteDoc".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -212,7 +212,7 @@ class IndexService:
 	
 	def deleteIndex(self, deleteIndexRequest):
 		"""DeleteIndex deletes the Index. All index data, as well as any metadata about this Index will be completely deleted."""
-		url = "{}/IndexService.DeleteIndex".format(self.client.endpoint)
+		url = "{}/api/IndexService.DeleteIndex".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -230,7 +230,7 @@ class IndexService:
 	
 	def getIndex(self, getIndexRequest):
 		"""GetIndex gets an Index."""
-		url = "{}/IndexService.GetIndex".format(self.client.endpoint)
+		url = "{}/api/IndexService.GetIndex".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -248,7 +248,7 @@ class IndexService:
 	
 	def getIndexes(self, getIndexesRequest):
 		"""GetIndexes gets a list of Indexes."""
-		url = "{}/IndexService.GetIndexes".format(self.client.endpoint)
+		url = "{}/api/IndexService.GetIndexes".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -266,7 +266,7 @@ class IndexService:
 	
 	def putDoc(self, putDocRequest):
 		"""PutDoc puts a document into an Index."""
-		url = "{}/IndexService.PutDoc".format(self.client.endpoint)
+		url = "{}/api/IndexService.PutDoc".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -284,7 +284,7 @@ class IndexService:
 	
 	def search(self, searchRequest):
 		"""Search performs a search on an Index."""
-		url = "{}/IndexService.Search".format(self.client.endpoint)
+		url = "{}/api/IndexService.Search".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -308,7 +308,7 @@ class MetaService:
 	
 	def checkIndexName(self, checkIndexNameRequest):
 		"""CheckIndexName checks to see if an index name is available or not."""
-		url = "{}/MetaService.CheckIndexName".format(self.client.endpoint)
+		url = "{}/api/MetaService.CheckIndexName".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',
@@ -326,7 +326,7 @@ class MetaService:
 	
 	def checkIndexPath(self, checkIndexPathRequest):
 		"""CheckIndexPath checks to see if an IndexPath is valid for creating an index."""
-		url = "{}/MetaService.CheckIndexPath".format(self.client.endpoint)
+		url = "{}/api/MetaService.CheckIndexPath".format(self.client.host)
 		headers = {
 			'Accept': 'application/json; charset=utf8',
 			'Content-Type': 'application/json; charset=utf8',

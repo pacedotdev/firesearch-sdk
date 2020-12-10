@@ -3,9 +3,9 @@
 import Foundation
 
 class Client {
-	var endpoint: String
-	init(withEndpoint url: String) {
-		self.endpoint = url
+	var host: String
+	init(withHost url: String) {
+		self.host = url
 	}
 }
 
@@ -20,7 +20,7 @@ class AccessKeyService {
 	// GenerateKey generates a key for an index path prefix to enable searches. The key
 // expires after 24 hours.
 	func generateKey(withRequest generateKeyRequest: GenerateKeyRequest, completion: @escaping (_ response: GenerateKeyResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/AccessKeyService.GenerateKey"
+		let url = "\(self.client.host)/api/AccessKeyService.GenerateKey"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -75,7 +75,7 @@ class AutocompleteService {
 
 	// Complete performs a search on an AutocompleteIndex.
 	func complete(withRequest completeRequest: CompleteRequest, completion: @escaping (_ response: CompleteResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/AutocompleteService.Complete"
+		let url = "\(self.client.host)/api/AutocompleteService.Complete"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -120,7 +120,7 @@ class AutocompleteService {
 
 	// CreateIndex creates a new index.
 	func createIndex(withRequest createAutocompleteIndexRequest: CreateAutocompleteIndexRequest, completion: @escaping (_ response: CreateAutocompleteIndexResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/AutocompleteService.CreateIndex"
+		let url = "\(self.client.host)/api/AutocompleteService.CreateIndex"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -166,7 +166,7 @@ class AutocompleteService {
 	// DeleteDoc removes a document from an AutocompleteIndex. Once deleted, it will
 // stop appearing in search results.
 	func deleteDoc(withRequest deleteAutocompleteDocRequest: DeleteAutocompleteDocRequest, completion: @escaping (_ response: DeleteAutocompleteDocResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/AutocompleteService.DeleteDoc"
+		let url = "\(self.client.host)/api/AutocompleteService.DeleteDoc"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -212,7 +212,7 @@ class AutocompleteService {
 	// DeleteIndex deletes the AutocompleteIndex. All index data, as well as any
 // metadata about this AutocompleteIndex will be completely deleted.
 	func deleteIndex(withRequest deleteAutocompleteIndexRequest: DeleteAutocompleteIndexRequest, completion: @escaping (_ response: DeleteAutocompleteIndexResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/AutocompleteService.DeleteIndex"
+		let url = "\(self.client.host)/api/AutocompleteService.DeleteIndex"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -257,7 +257,7 @@ class AutocompleteService {
 
 	// GetIndex gets an AutocompleteIndex.
 	func getIndex(withRequest getAutocompleteIndexRequest: GetAutocompleteIndexRequest, completion: @escaping (_ response: GetAutocompleteIndexResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/AutocompleteService.GetIndex"
+		let url = "\(self.client.host)/api/AutocompleteService.GetIndex"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -302,7 +302,7 @@ class AutocompleteService {
 
 	// GetIndexes gets a list of AutocompleteIndexes.
 	func getIndexes(withRequest getAutocompleteIndexesRequest: GetAutocompleteIndexesRequest, completion: @escaping (_ response: GetAutocompleteIndexesResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/AutocompleteService.GetIndexes"
+		let url = "\(self.client.host)/api/AutocompleteService.GetIndexes"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -347,7 +347,7 @@ class AutocompleteService {
 
 	// PutDoc puts a document into an AutocompleteIndex.
 	func putDoc(withRequest putAutocompleteDocRequest: PutAutocompleteDocRequest, completion: @escaping (_ response: PutAutocompleteDocResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/AutocompleteService.PutDoc"
+		let url = "\(self.client.host)/api/AutocompleteService.PutDoc"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -402,7 +402,7 @@ class IndexService {
 
 	// CreateIndex creates a new index.
 	func createIndex(withRequest createIndexRequest: CreateIndexRequest, completion: @escaping (_ response: CreateIndexResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/IndexService.CreateIndex"
+		let url = "\(self.client.host)/api/IndexService.CreateIndex"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -448,7 +448,7 @@ class IndexService {
 	// DeleteDoc removes a document from an Index. Once deleted, it will stop appearing
 // in search results.
 	func deleteDoc(withRequest deleteDocRequest: DeleteDocRequest, completion: @escaping (_ response: DeleteDocResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/IndexService.DeleteDoc"
+		let url = "\(self.client.host)/api/IndexService.DeleteDoc"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -494,7 +494,7 @@ class IndexService {
 	// DeleteIndex deletes the Index. All index data, as well as any metadata about
 // this Index will be completely deleted.
 	func deleteIndex(withRequest deleteIndexRequest: DeleteIndexRequest, completion: @escaping (_ response: DeleteIndexResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/IndexService.DeleteIndex"
+		let url = "\(self.client.host)/api/IndexService.DeleteIndex"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -539,7 +539,7 @@ class IndexService {
 
 	// GetIndex gets an Index.
 	func getIndex(withRequest getIndexRequest: GetIndexRequest, completion: @escaping (_ response: GetIndexResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/IndexService.GetIndex"
+		let url = "\(self.client.host)/api/IndexService.GetIndex"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -584,7 +584,7 @@ class IndexService {
 
 	// GetIndexes gets a list of Indexes.
 	func getIndexes(withRequest getIndexesRequest: GetIndexesRequest, completion: @escaping (_ response: GetIndexesResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/IndexService.GetIndexes"
+		let url = "\(self.client.host)/api/IndexService.GetIndexes"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -629,7 +629,7 @@ class IndexService {
 
 	// PutDoc puts a document into an Index.
 	func putDoc(withRequest putDocRequest: PutDocRequest, completion: @escaping (_ response: PutDocResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/IndexService.PutDoc"
+		let url = "\(self.client.host)/api/IndexService.PutDoc"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -674,7 +674,7 @@ class IndexService {
 
 	// Search performs a search on an Index.
 	func search(withRequest searchRequest: SearchRequest, completion: @escaping (_ response: SearchResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/IndexService.Search"
+		let url = "\(self.client.host)/api/IndexService.Search"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -729,7 +729,7 @@ class MetaService {
 
 	// CheckIndexName checks to see if an index name is available or not.
 	func checkIndexName(withRequest checkIndexNameRequest: CheckIndexNameRequest, completion: @escaping (_ response: CheckIndexNameResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/MetaService.CheckIndexName"
+		let url = "\(self.client.host)/api/MetaService.CheckIndexName"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -774,7 +774,7 @@ class MetaService {
 
 	// CheckIndexPath checks to see if an IndexPath is valid for creating an index.
 	func checkIndexPath(withRequest checkIndexPathRequest: CheckIndexPathRequest, completion: @escaping (_ response: CheckIndexPathResponse?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/MetaService.CheckIndexPath"
+		let url = "\(self.client.host)/api/MetaService.CheckIndexPath"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")

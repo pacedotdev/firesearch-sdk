@@ -3,9 +3,9 @@
 import Foundation
 
 class Client {
-	var endpoint: String
-	init(withEndpoint url: String) {
-		self.endpoint = url
+	var host: String
+	init(withHost url: String) {
+		self.host = url
 	}
 }
 
@@ -17,7 +17,7 @@ class Client {
 	}
 <%= for (method) in service.Methods { %>
 	<%= format_comment_text(method.Comment) %>	func <%= camelize_down(method.Name) %>(withRequest <%= camelize_down(method.InputObject.TypeName) %>: <%= method.InputObject.TypeName %>, completion: @escaping (_ response: <%= method.OutputObject.TypeName %>?, _ error: Error?) -> ()) {
-		let url = "\(self.client.endpoint)/<%= service.Name %>.<%= method.Name %>"
+		let url = "\(self.client.host)/api/<%= service.Name %>.<%= method.Name %>"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
 		request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")

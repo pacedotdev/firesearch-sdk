@@ -2,17 +2,17 @@
 
 // Client provides access to remote services.
 export class Client {
-	// endpoint points to the Firesearch API.
-	public endpoint: string = '/api'
-	// apiKey is the secret API key to access the services.
+	// host points to the Firesearch instance.
+	public host: string = ''
+	// apiKey is the API key to access the services.
 	// This should only be used for backend to backend communication,
 	// secret keys should never find their way into the browser.
 	public apiKey: string = ''
 	// fetch is the method to use to access remote
 	// services.
 	public fetch: any = null
-	constructor(endpoint: string) {
-		this.endpoint = endpoint
+	constructor(host: string) {
+		this.host = host
 	}
 }
 
@@ -34,15 +34,15 @@ export class AccessKeyService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AccessKeyService.GenerateKey: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: AccessKeyService.GenerateKey: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/AccessKeyService.GenerateKey', {
+		const response = await this.client.fetch(this.client.host + '/api/AccessKeyService.GenerateKey', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(generateKeyRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`AccessKeyService.GenerateKey: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: AccessKeyService.GenerateKey: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -71,15 +71,15 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.Complete: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: AutocompleteService.Complete: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.Complete', {
+		const response = await this.client.fetch(this.client.host + '/api/AutocompleteService.Complete', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(completeRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`AutocompleteService.Complete: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: AutocompleteService.Complete: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -101,15 +101,15 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.CreateIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: AutocompleteService.CreateIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.CreateIndex', {
+		const response = await this.client.fetch(this.client.host + '/api/AutocompleteService.CreateIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(createAutocompleteIndexRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`AutocompleteService.CreateIndex: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: AutocompleteService.CreateIndex: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -132,15 +132,15 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.DeleteDoc: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: AutocompleteService.DeleteDoc: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.DeleteDoc', {
+		const response = await this.client.fetch(this.client.host + '/api/AutocompleteService.DeleteDoc', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(deleteAutocompleteDocRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`AutocompleteService.DeleteDoc: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: AutocompleteService.DeleteDoc: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -163,15 +163,15 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.DeleteIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: AutocompleteService.DeleteIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.DeleteIndex', {
+		const response = await this.client.fetch(this.client.host + '/api/AutocompleteService.DeleteIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(deleteAutocompleteIndexRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`AutocompleteService.DeleteIndex: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: AutocompleteService.DeleteIndex: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -193,15 +193,15 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.GetIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: AutocompleteService.GetIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.GetIndex', {
+		const response = await this.client.fetch(this.client.host + '/api/AutocompleteService.GetIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(getAutocompleteIndexRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`AutocompleteService.GetIndex: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: AutocompleteService.GetIndex: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -223,15 +223,15 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.GetIndexes: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: AutocompleteService.GetIndexes: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.GetIndexes', {
+		const response = await this.client.fetch(this.client.host + '/api/AutocompleteService.GetIndexes', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(getAutocompleteIndexesRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`AutocompleteService.GetIndexes: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: AutocompleteService.GetIndexes: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -253,15 +253,15 @@ export class AutocompleteService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`AutocompleteService.PutDoc: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: AutocompleteService.PutDoc: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/AutocompleteService.PutDoc', {
+		const response = await this.client.fetch(this.client.host + '/api/AutocompleteService.PutDoc', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(putAutocompleteDocRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`AutocompleteService.PutDoc: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: AutocompleteService.PutDoc: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -290,15 +290,15 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.CreateIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: IndexService.CreateIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/IndexService.CreateIndex', {
+		const response = await this.client.fetch(this.client.host + '/api/IndexService.CreateIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(createIndexRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`IndexService.CreateIndex: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: IndexService.CreateIndex: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -321,15 +321,15 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.DeleteDoc: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: IndexService.DeleteDoc: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/IndexService.DeleteDoc', {
+		const response = await this.client.fetch(this.client.host + '/api/IndexService.DeleteDoc', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(deleteDocRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`IndexService.DeleteDoc: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: IndexService.DeleteDoc: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -352,15 +352,15 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.DeleteIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: IndexService.DeleteIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/IndexService.DeleteIndex', {
+		const response = await this.client.fetch(this.client.host + '/api/IndexService.DeleteIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(deleteIndexRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`IndexService.DeleteIndex: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: IndexService.DeleteIndex: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -382,15 +382,15 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.GetIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: IndexService.GetIndex: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/IndexService.GetIndex', {
+		const response = await this.client.fetch(this.client.host + '/api/IndexService.GetIndex', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(getIndexRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`IndexService.GetIndex: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: IndexService.GetIndex: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -412,15 +412,15 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.GetIndexes: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: IndexService.GetIndexes: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/IndexService.GetIndexes', {
+		const response = await this.client.fetch(this.client.host + '/api/IndexService.GetIndexes', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(getIndexesRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`IndexService.GetIndexes: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: IndexService.GetIndexes: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -442,15 +442,15 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.PutDoc: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: IndexService.PutDoc: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/IndexService.PutDoc', {
+		const response = await this.client.fetch(this.client.host + '/api/IndexService.PutDoc', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(putDocRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`IndexService.PutDoc: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: IndexService.PutDoc: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -472,15 +472,15 @@ export class IndexService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`IndexService.Search: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: IndexService.Search: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/IndexService.Search', {
+		const response = await this.client.fetch(this.client.host + '/api/IndexService.Search', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(searchRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`IndexService.Search: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: IndexService.Search: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -509,15 +509,15 @@ export class MetaService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`MetaService.CheckIndexName: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: MetaService.CheckIndexName: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/MetaService.CheckIndexName', {
+		const response = await this.client.fetch(this.client.host + '/api/MetaService.CheckIndexName', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(checkIndexNameRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`MetaService.CheckIndexName: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: MetaService.CheckIndexName: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {
@@ -539,15 +539,15 @@ export class MetaService {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`MetaService.CheckIndexPath: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: MetaService.CheckIndexPath: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/MetaService.CheckIndexPath', {
+		const response = await this.client.fetch(this.client.host + '/api/MetaService.CheckIndexPath', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(checkIndexPathRequest),
 		})
 		if (response.status !== 200) {
-			throw new Error(`MetaService.CheckIndexPath: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: MetaService.CheckIndexPath: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {

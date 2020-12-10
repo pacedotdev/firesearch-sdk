@@ -2,17 +2,17 @@
 
 // Client provides access to remote services.
 export class Client {
-	// endpoint points to the Firesearch API.
-	public endpoint: string = '/api'
-	// apiKey is the secret API key to access the services.
+	// host points to the Firesearch instance.
+	public host: string = ''
+	// apiKey is the API key to access the services.
 	// This should only be used for backend to backend communication,
 	// secret keys should never find their way into the browser.
 	public apiKey: string = ''
 	// fetch is the method to use to access remote
 	// services.
 	public fetch: any = null
-	constructor(endpoint: string) {
-		this.endpoint = endpoint
+	constructor(host: string) {
+		this.host = host
 	}
 }
 
@@ -31,15 +31,15 @@ export class Client {
 		headers['Accept'] = 'application/json';
 		headers['Content-Type'] = 'application/json';
 		if (this.client.fetch == null) {
-			throw new Error(`<%= service.Name %>.<%= method.Name %>: no fetch (try client.fetch = window.fetch.bind(window))`)
+			throw new Error(`firesearch: <%= service.Name %>.<%= method.Name %>: no fetch (try client.fetch = window.fetch.bind(window))`)
 		}
-		const response = await this.client.fetch(this.client.endpoint + '/<%= service.Name %>.<%= method.Name %>', {
+		const response = await this.client.fetch(this.client.host + '/api/<%= service.Name %>.<%= method.Name %>', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(<%= camelize_down(method.InputObject.TypeName) %>),
 		})
 		if (response.status !== 200) {
-			throw new Error(`<%= service.Name %>.<%= method.Name %>: ${response.status} ${response.statusText}`);
+			throw new Error(`firesearch: <%= service.Name %>.<%= method.Name %>: ${response.status} ${response.statusText}`);
 		}
 		return response.json().then((json: any) => {
 			if (json.error) {

@@ -19,9 +19,9 @@ import (
 
 // Client is used to access Pace services.
 type Client struct {
-	// Endpoint is the URL of the remote server that this Client should
+	// Host is the URL of the remote server that this Client should
 	// access.
-	Endpoint string
+	Host string
 	// APIKey is the string that provides access to the service.
 	APIKey string
 	// HTTPClient is the http.Client to use when making HTTP requests.
@@ -31,9 +31,9 @@ type Client struct {
 }
 
 // NewClient makes a new Client.
-func NewClient(endpoint string, apiKey string) *Client {
+func NewClient(host string, apiKey string) *Client {
 	c := &Client{
-		Endpoint:   endpoint,
+		Host:       host,
 		APIKey:     apiKey,
 		Debug:      func(s string) {},
 		HTTPClient: &http.Client{Timeout: 10 * time.Second},
@@ -60,7 +60,7 @@ func (s *AccessKeyService) GenerateKey(ctx context.Context, r GenerateKeyRequest
 	if err != nil {
 		return nil, errors.Wrap(err, "AccessKeyService.GenerateKey: marshal GenerateKeyRequest")
 	}
-	url := s.client.Endpoint + "/AccessKeyService.GenerateKey"
+	url := s.client.Host + "/api/AccessKeyService.GenerateKey"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -124,7 +124,7 @@ func (s *AutocompleteService) Complete(ctx context.Context, r CompleteRequest) (
 	if err != nil {
 		return nil, errors.Wrap(err, "AutocompleteService.Complete: marshal CompleteRequest")
 	}
-	url := s.client.Endpoint + "/AutocompleteService.Complete"
+	url := s.client.Host + "/api/AutocompleteService.Complete"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -175,7 +175,7 @@ func (s *AutocompleteService) CreateIndex(ctx context.Context, r CreateAutocompl
 	if err != nil {
 		return nil, errors.Wrap(err, "AutocompleteService.CreateIndex: marshal CreateAutocompleteIndexRequest")
 	}
-	url := s.client.Endpoint + "/AutocompleteService.CreateIndex"
+	url := s.client.Host + "/api/AutocompleteService.CreateIndex"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -227,7 +227,7 @@ func (s *AutocompleteService) DeleteDoc(ctx context.Context, r DeleteAutocomplet
 	if err != nil {
 		return nil, errors.Wrap(err, "AutocompleteService.DeleteDoc: marshal DeleteAutocompleteDocRequest")
 	}
-	url := s.client.Endpoint + "/AutocompleteService.DeleteDoc"
+	url := s.client.Host + "/api/AutocompleteService.DeleteDoc"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -279,7 +279,7 @@ func (s *AutocompleteService) DeleteIndex(ctx context.Context, r DeleteAutocompl
 	if err != nil {
 		return nil, errors.Wrap(err, "AutocompleteService.DeleteIndex: marshal DeleteAutocompleteIndexRequest")
 	}
-	url := s.client.Endpoint + "/AutocompleteService.DeleteIndex"
+	url := s.client.Host + "/api/AutocompleteService.DeleteIndex"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -330,7 +330,7 @@ func (s *AutocompleteService) GetIndex(ctx context.Context, r GetAutocompleteInd
 	if err != nil {
 		return nil, errors.Wrap(err, "AutocompleteService.GetIndex: marshal GetAutocompleteIndexRequest")
 	}
-	url := s.client.Endpoint + "/AutocompleteService.GetIndex"
+	url := s.client.Host + "/api/AutocompleteService.GetIndex"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -381,7 +381,7 @@ func (s *AutocompleteService) GetIndexes(ctx context.Context, r GetAutocompleteI
 	if err != nil {
 		return nil, errors.Wrap(err, "AutocompleteService.GetIndexes: marshal GetAutocompleteIndexesRequest")
 	}
-	url := s.client.Endpoint + "/AutocompleteService.GetIndexes"
+	url := s.client.Host + "/api/AutocompleteService.GetIndexes"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -432,7 +432,7 @@ func (s *AutocompleteService) PutDoc(ctx context.Context, r PutAutocompleteDocRe
 	if err != nil {
 		return nil, errors.Wrap(err, "AutocompleteService.PutDoc: marshal PutAutocompleteDocRequest")
 	}
-	url := s.client.Endpoint + "/AutocompleteService.PutDoc"
+	url := s.client.Host + "/api/AutocompleteService.PutDoc"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -496,7 +496,7 @@ func (s *IndexService) CreateIndex(ctx context.Context, r CreateIndexRequest) (*
 	if err != nil {
 		return nil, errors.Wrap(err, "IndexService.CreateIndex: marshal CreateIndexRequest")
 	}
-	url := s.client.Endpoint + "/IndexService.CreateIndex"
+	url := s.client.Host + "/api/IndexService.CreateIndex"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -548,7 +548,7 @@ func (s *IndexService) DeleteDoc(ctx context.Context, r DeleteDocRequest) (*Dele
 	if err != nil {
 		return nil, errors.Wrap(err, "IndexService.DeleteDoc: marshal DeleteDocRequest")
 	}
-	url := s.client.Endpoint + "/IndexService.DeleteDoc"
+	url := s.client.Host + "/api/IndexService.DeleteDoc"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -600,7 +600,7 @@ func (s *IndexService) DeleteIndex(ctx context.Context, r DeleteIndexRequest) (*
 	if err != nil {
 		return nil, errors.Wrap(err, "IndexService.DeleteIndex: marshal DeleteIndexRequest")
 	}
-	url := s.client.Endpoint + "/IndexService.DeleteIndex"
+	url := s.client.Host + "/api/IndexService.DeleteIndex"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -651,7 +651,7 @@ func (s *IndexService) GetIndex(ctx context.Context, r GetIndexRequest) (*GetInd
 	if err != nil {
 		return nil, errors.Wrap(err, "IndexService.GetIndex: marshal GetIndexRequest")
 	}
-	url := s.client.Endpoint + "/IndexService.GetIndex"
+	url := s.client.Host + "/api/IndexService.GetIndex"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -702,7 +702,7 @@ func (s *IndexService) GetIndexes(ctx context.Context, r GetIndexesRequest) (*Ge
 	if err != nil {
 		return nil, errors.Wrap(err, "IndexService.GetIndexes: marshal GetIndexesRequest")
 	}
-	url := s.client.Endpoint + "/IndexService.GetIndexes"
+	url := s.client.Host + "/api/IndexService.GetIndexes"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -753,7 +753,7 @@ func (s *IndexService) PutDoc(ctx context.Context, r PutDocRequest) (*PutDocResp
 	if err != nil {
 		return nil, errors.Wrap(err, "IndexService.PutDoc: marshal PutDocRequest")
 	}
-	url := s.client.Endpoint + "/IndexService.PutDoc"
+	url := s.client.Host + "/api/IndexService.PutDoc"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -804,7 +804,7 @@ func (s *IndexService) Search(ctx context.Context, r SearchRequest) (*SearchResp
 	if err != nil {
 		return nil, errors.Wrap(err, "IndexService.Search: marshal SearchRequest")
 	}
-	url := s.client.Endpoint + "/IndexService.Search"
+	url := s.client.Host + "/api/IndexService.Search"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -868,7 +868,7 @@ func (s *MetaService) CheckIndexName(ctx context.Context, r CheckIndexNameReques
 	if err != nil {
 		return nil, errors.Wrap(err, "MetaService.CheckIndexName: marshal CheckIndexNameRequest")
 	}
-	url := s.client.Endpoint + "/MetaService.CheckIndexName"
+	url := s.client.Host + "/api/MetaService.CheckIndexName"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))
@@ -919,7 +919,7 @@ func (s *MetaService) CheckIndexPath(ctx context.Context, r CheckIndexPathReques
 	if err != nil {
 		return nil, errors.Wrap(err, "MetaService.CheckIndexPath: marshal CheckIndexPathRequest")
 	}
-	url := s.client.Endpoint + "/MetaService.CheckIndexPath"
+	url := s.client.Host + "/api/MetaService.CheckIndexPath"
 	s.client.Debug(fmt.Sprintf("POST %s", url))
 	s.client.Debug(fmt.Sprintf(">> %s", string(requestBodyBytes)))
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(requestBodyBytes))

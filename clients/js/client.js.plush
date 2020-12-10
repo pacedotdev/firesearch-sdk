@@ -3,12 +3,12 @@
 'use strict';
 
 const firesearch = {}
-firesearch.Client = function(endpoint) {
-	this.endpoint = endpoint || '/api'
+firesearch.Client = function(host) {
+	this.host = host || ''
 	this.getHeaders = function() {
 		return {}
 	}
-	this.fetch = window.fetch.bind(window)
+	this.fetch = null
 }
 
 <%= for (service) in def.Services { %>
@@ -21,7 +21,10 @@ firesearch.<%= service.Name %>.prototype.<%= method.NameLowerCamel %> = async fu
 	let headers = this.client.getHeaders();
 	headers['Accept'] = 'application/json';
 	headers['Content-Type'] = 'application/json';
-	const response = await this.client.fetch(this.client.endpoint + '/<%= service.Name %>.<%= method.Name %>', {
+	if (!this.client.fetch) {
+		throw new Error(`firesearch: <%= service.Name %>.<%= method.Name %>: no fetch (try client.fetch = window.fetch.bind(window))`)
+	}
+	const response = await this.client.fetch(this.client.host + '/api/<%= service.Name %>.<%= method.Name %>', {
 		method: 'POST',
 		headers: headers,
 		body: JSON.stringify(<%= camelize_down(method.InputObject.TypeName) %>),
