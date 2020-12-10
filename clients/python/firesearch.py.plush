@@ -10,7 +10,7 @@ class Client:
 		self.host = host
 		self.apiKey = apiKey
 		if self.host == "":
-			raise FieldError(field="host", message="host missing")
+			raise OtoError('host is missing')
 
 <%= for (service) in def.Services { %>class <%= service.Name %>:
 	"""<%= format_comment_line(service.Comment) %>"""
@@ -28,39 +28,18 @@ class Client:
 		}
 		r = requests.post(url, json=<%= method.InputObject.ObjectNameLowerCamel %>, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	<% } %>
 <% } %>
 
 
-class Error(Exception):
+class OtoError(Exception):
 	"""Base class for exceptions in this module."""
 	pass
 
-class OtoError(Error):
-	"""Exception raised for an error making the request.
-
-	Attributes:
-		message -- explanation of the error
-	"""
-
-	def __init__(self, message):
-		self.message = message
-
-class FieldError(Error):
-	"""Exception raised for missing fields.
-
-	Attributes:
-		field -- field which the error occurred
-		message -- explanation of the error
-	"""
-
-	def __init__(self, field, message):
-		self.field = field
-		self.message = message

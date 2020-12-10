@@ -10,7 +10,7 @@ class Client:
 		self.host = host
 		self.apiKey = apiKey
 		if self.host == "":
-			raise FieldError(field="host", message="host missing")
+			raise OtoError('host is missing')
 
 class AccessKeyService:
 	"""AccessKeyService provides keys needed to perform searches."""
@@ -28,12 +28,12 @@ class AccessKeyService:
 		}
 		r = requests.post(url, json=generateKeyRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 class AutocompleteService:
@@ -52,12 +52,12 @@ class AutocompleteService:
 		}
 		r = requests.post(url, json=completeRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 	def createIndex(self, createAutocompleteIndexRequest):
@@ -70,12 +70,12 @@ class AutocompleteService:
 		}
 		r = requests.post(url, json=createAutocompleteIndexRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 	def deleteDoc(self, deleteAutocompleteDocRequest):
@@ -88,12 +88,12 @@ class AutocompleteService:
 		}
 		r = requests.post(url, json=deleteAutocompleteDocRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 	def deleteIndex(self, deleteAutocompleteIndexRequest):
@@ -106,12 +106,12 @@ class AutocompleteService:
 		}
 		r = requests.post(url, json=deleteAutocompleteIndexRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 	def getIndex(self, getAutocompleteIndexRequest):
@@ -124,12 +124,12 @@ class AutocompleteService:
 		}
 		r = requests.post(url, json=getAutocompleteIndexRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 	def getIndexes(self, getAutocompleteIndexesRequest):
@@ -142,12 +142,12 @@ class AutocompleteService:
 		}
 		r = requests.post(url, json=getAutocompleteIndexesRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 	def putDoc(self, putAutocompleteDocRequest):
@@ -160,12 +160,12 @@ class AutocompleteService:
 		}
 		r = requests.post(url, json=putAutocompleteDocRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 class IndexService:
@@ -184,12 +184,12 @@ class IndexService:
 		}
 		r = requests.post(url, json=createIndexRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 	def deleteDoc(self, deleteDocRequest):
@@ -202,12 +202,12 @@ class IndexService:
 		}
 		r = requests.post(url, json=deleteDocRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 	def deleteIndex(self, deleteIndexRequest):
@@ -220,12 +220,12 @@ class IndexService:
 		}
 		r = requests.post(url, json=deleteIndexRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 	def getIndex(self, getIndexRequest):
@@ -238,12 +238,12 @@ class IndexService:
 		}
 		r = requests.post(url, json=getIndexRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 	def getIndexes(self, getIndexesRequest):
@@ -256,12 +256,12 @@ class IndexService:
 		}
 		r = requests.post(url, json=getIndexesRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 	def putDoc(self, putDocRequest):
@@ -274,12 +274,12 @@ class IndexService:
 		}
 		r = requests.post(url, json=putDocRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 	def search(self, searchRequest):
@@ -292,12 +292,12 @@ class IndexService:
 		}
 		r = requests.post(url, json=searchRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 class MetaService:
@@ -316,12 +316,12 @@ class MetaService:
 		}
 		r = requests.post(url, json=checkIndexNameRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 	def checkIndexPath(self, checkIndexPathRequest):
@@ -334,39 +334,18 @@ class MetaService:
 		}
 		r = requests.post(url, json=checkIndexPathRequest, headers=headers)
 		if r.status_code != 200:
-			raise OtoError(message="status code: {}".format(r.status_code))
+			raise OtoError("status code: {}".format(r.status_code))
 		j = r.json()
 		if 'error' in j:
 			err = j.get('error')
 			if err != '':
-				raise OtoError(message=err)
+				raise OtoError(err)
 		return j
 	
 
 
 
-class Error(Exception):
+class OtoError(Exception):
 	"""Base class for exceptions in this module."""
 	pass
 
-class OtoError(Error):
-	"""Exception raised for an error making the request.
-
-	Attributes:
-		message -- explanation of the error
-	"""
-
-	def __init__(self, message):
-		self.message = message
-
-class FieldError(Error):
-	"""Exception raised for missing fields.
-
-	Attributes:
-		field -- field which the error occurred
-		message -- explanation of the error
-	"""
-
-	def __init__(self, field, message):
-		self.field = field
-		self.message = message
