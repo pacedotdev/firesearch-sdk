@@ -6,7 +6,7 @@ import json
 class Client:
 	"""Client provides access to the Firesearch API."""
 
-	def __init__(self, host="http://localhost:8888/", apiKey=""):
+	def __init__(self, host="http://localhost:8888", apiKey=""):
 		self.host = host
 		self.apiKey = apiKey
 		if self.host == "":
